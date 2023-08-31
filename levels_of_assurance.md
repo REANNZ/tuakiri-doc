@@ -1,3 +1,7 @@
+---
+redirect_from: Levels+of+Assurance
+id: levels_of_assurance
+---
 # Levels of Assurance
 
 # What are levels of assurance?

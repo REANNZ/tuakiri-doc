@@ -1,3 +1,7 @@
+---
+redirect_from: Install+Shibboleth+SP+on+Debian+Based+linux
+id: service_providers/install_shibboleth_sp_on_debian_based_linux
+---
 # Install Shibboleth SP on Debian Based linux
 
 # Introduction

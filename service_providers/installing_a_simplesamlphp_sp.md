@@ -1,3 +1,7 @@
+---
+redirect_from: Installing+a+SimpleSAMLphp+SP
+id: service_providers/installing_a_simplesamlphp_sp
+---
 # Installing a SimpleSAMLphp SP
 
 This manual is written for CentOS 7.  Adjust accordingly for other OS distributions.

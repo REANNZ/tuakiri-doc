@@ -1,3 +1,7 @@
+---
+redirect_from: Configuring+a+Shibboleth+Identity+Provider+to+join+the+Tuakiri+Federation
+id: identity_providers/configuring_a_shibboleth_identity_provider_to_join_the_Tuakiri_federation
+---
 # Configuring a Shibboleth Identity Provider to join the Tuakiri Federation
 
 For a Shibboleth Identity Provider to join one of the Tuakiri Federations (Test/Dev or Production), the following steps have to be done:

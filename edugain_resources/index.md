@@ -1,3 +1,7 @@
+---
+redirect_from: eduGAIN+resources
+id: edugain_resources/index
+---
 # eduGAIN resources
 
 *   [eduGAIN Information Pack](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815539015/eduGAIN+Information+Pack)

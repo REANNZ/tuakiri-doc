@@ -1,3 +1,7 @@
+---
+redirect_from: Attributes
+id: attributes
+---
 # Attributes
 
 Tuakiri attributes are based on the attributes used  by AAF (for more information, visit our [Attributes Documentation](https://attributes.tuakiri.ac.nz/documentation/attributes)). Detailed information about these attributes can be found in the [auEduPerson Definition and Attribute Vocabulary](https://reannz.atlassian.net/wiki/download/attachments/3815538694/auEduPerson_attribute_vocabulary_v02-1-0.pdf?version=2&modificationDate=1598020111365&cacheVersion=1&api=v2) document.

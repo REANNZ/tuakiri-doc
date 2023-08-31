@@ -1,3 +1,7 @@
+---
+redirect_from: Single+Log+Out+SLO
+id: single_log_out_slo
+---
 # Single Log Out (SLO)
 
 Single Log Out (SLO) is a concept parallel to the Single Sign On (SSO) concept: if a user can seamlessly establish sessions with a number of services, there should also be a way to seamlessly terminate such sessions.

@@ -1,3 +1,7 @@
+---
+redirect_from: Replacing+back-channel+certificate+and+key+on+an+SP
+id: service_providers/replacing_back-channel_certificate_and_key_on_an_sp
+---
 # Replacing back-channel certificate and key on an SP
 
 If the back-channel certificates on an existing SP need to be replaced (e.g., due to the private key being possibly compromised or for any other reason), this sequence of steps does this key replacement without any impact on the users of the SP (i.e., login works through all the steps).

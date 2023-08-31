@@ -1,3 +1,7 @@
+---
+redirect_from: Configuring+an+IdP+for+eduGAIN
+id: identity_providers/configuring_an_idp_for_edugain
+---
 # Configuring an IdP for eduGAIN
 
 After meeting the [organisational requirements for joining eduGAIN](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815539060/Process+for+joining+eduGAIN), the IdP needs to meet the following technical requirements:

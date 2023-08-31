@@ -1,3 +1,7 @@
+---
+redirect_from: Creating+an+Organization+in+the+Tuakiri+Federation
+id: federation_management/creating_an_organization_in_the_Tuakiri_federation
+---
 # Creating an Organization in the Tuakiri Federation
 
 # Introduction

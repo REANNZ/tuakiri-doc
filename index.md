@@ -1,3 +1,7 @@
+---
+redirect_from: Documentation
+id: index
+---
 # Documentation
 
 # Background Information

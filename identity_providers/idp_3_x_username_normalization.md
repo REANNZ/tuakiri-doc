@@ -1,3 +1,7 @@
+---
+redirect_from: IdP+3.x+username+normalization
+id: identity_providers/idp_3_x_username_normalization
+---
 # IdP 3.x username normalization
 
 # Overview

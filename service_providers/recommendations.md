@@ -1,3 +1,7 @@
+---
+redirect_from: Recommendations
+id: service_providers/recommendations
+---
 # Recommendations
 
 This page contains recommendations for setting up a Shibboleth SP in the Tuakiri Federation.

@@ -1,3 +1,7 @@
+---
+redirect_from: Virtual+Home+User+Guide
+id: virtual_home/virtual_home_user_guide
+---
 # Virtual Home User Guide
 
 /\*<!\[CDATA\[\*/ div.rbtoc1693284012132 {padding: 0px;} div.rbtoc1693284012132 ul {list-style: disc;margin-left: 0px;} div.rbtoc1693284012132 li {margin-left: 0px;padding-left: 0px;} /\*\]\]>\*/

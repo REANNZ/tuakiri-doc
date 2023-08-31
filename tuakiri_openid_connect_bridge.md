@@ -1,3 +1,7 @@
+---
+redirect_from: Tuakiri+OpenID+Connect+Bridge
+id: tuakiri_openid_connect_bridge
+---
 # Tuakiri OpenID Connect Bridge
 
 The Tuakiri OpenID Connect Bridge allows to connect services using OpenID Connect to authenticate users into Tuakiri.

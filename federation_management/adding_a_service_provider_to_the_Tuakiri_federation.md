@@ -1,3 +1,7 @@
+---
+redirect_from: Adding+a+Service+Provider+to+the+Tuakiri+Federation
+id: federation_management/adding_a_service_provider_to_the_Tuakiri_federation
+---
 # Adding a Service Provider to the Tuakiri Federation
 
 # Introduction

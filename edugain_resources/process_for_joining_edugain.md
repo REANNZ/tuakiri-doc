@@ -1,3 +1,7 @@
+---
+redirect_from: Process+for+joining+eduGAIN
+id: edugain_resources/process_for_joining_edugain
+---
 # Process for joining eduGAIN
 
 Please see the [eduGAIN Information Pack](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815539015/eduGAIN+Information+Pack) for full details.

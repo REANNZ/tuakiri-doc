@@ -1,3 +1,7 @@
+---
+redirect_from: ECP
+id: ecp
+---
 # ECP
 
 The Enhanced Client/Proxy profile is an extension to the SAML 2.0 protocol suite that adds support for non-browser tools and applications to establish a Shibboleth session.

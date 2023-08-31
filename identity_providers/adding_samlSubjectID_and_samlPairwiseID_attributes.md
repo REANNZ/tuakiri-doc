@@ -1,3 +1,7 @@
+---
+redirect_from: Adding+samlSubjectID+and+samlPairwiseID+attributes
+id: identity_providers/adding_samlSubjectID_and_samlPairwiseID_attributes
+---
 # Adding samlSubjectID and samlPairwiseID attributes
 
 The international R&E community has agreed on new attributes to identify users in SAML SSO: a general-purpose subject identifier, **samlSubjectID** and a pairwise (targeted) identifier, **samlPairwiseID** .

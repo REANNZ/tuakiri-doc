@@ -1,3 +1,7 @@
+---
+redirect_from: Configuring+an+SP+for+eduGAIN
+id: service_providers/configuring_an_sp_for_edugain
+---
 # Configuring an SP for eduGAIN
 
 After meeting the [organisational requirements for joining eduGAIN](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815539060/Process+for+joining+eduGAIN), the SP needs to meet the following technical requirements:

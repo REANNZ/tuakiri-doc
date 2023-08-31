@@ -1,3 +1,7 @@
+---
+redirect_from: Upgrading+a+Shibboleth+3.x+IdP
+id: identity_providers/upgrading_a_shibboleth_3_x_idp
+---
 # Upgrading a Shibboleth 3.x IdP
 
 Shibboleth IdP 3.x installer had been designed to make upgrades seamless by separating user-managed and system-managed files.

@@ -1,3 +1,7 @@
+---
+redirect_from: schacHomeOrganizationType
+id: attributes/schacHomeOrganizationType
+---
 # schacHomeOrganizationType
 
 The schacHomeOrganizationType attribute uses a controlled vocabulary, managed in the [SCHAC URN Registry](https://wiki.refeds.org/display/STAN/SCHAC+URN+Registry).

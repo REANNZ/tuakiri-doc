@@ -1,3 +1,7 @@
+---
+redirect_from: Tuakiri+Hosted+IdP
+id: tuakiri_hosted_idp
+---
 # Tuakiri Hosted IdP
 
 The requirement to run an Identity Provider (IdP) server has been a barrier to joining Tuakiri for some organisations. REANNZ has now removed this barrier by developing the Tuakiri Hosted IdP, a solution to make joining Tuakiri easier.

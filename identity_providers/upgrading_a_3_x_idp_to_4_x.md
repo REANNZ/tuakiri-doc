@@ -1,3 +1,7 @@
+---
+redirect_from: Upgrading+a+3.x+IdP+to+4.x
+id: identity_providers/upgrading_a_3_x_idp_to_4_x
+---
 # Upgrading a 3.x IdP to 4.x
 
 IdP 4.0.0 was released in March 2020 and IdP 3.x will be declared End-Of-Life on December 31st, 2020.   All production IdPs thus have to be upgraded to 4.x.

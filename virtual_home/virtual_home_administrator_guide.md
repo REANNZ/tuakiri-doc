@@ -1,3 +1,7 @@
+---
+redirect_from: Virtual+Home+Administrator+Guide
+id: virtual_home/virtual_home_administrator_guide
+---
 # Virtual Home Administrator Guide
 
 /\*<!\[CDATA\[\*/ div.rbtoc1693284046367 {padding: 0px;} div.rbtoc1693284046367 ul {list-style: disc;margin-left: 0px;} div.rbtoc1693284046367 li {margin-left: 0px;padding-left: 0px;} /\*\]\]>\*/

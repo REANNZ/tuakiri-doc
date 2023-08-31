@@ -1,3 +1,7 @@
+---
+redirect_from: Multi-Factor+Authentication+with+REFEDS+MFA+profile
+id: multi-factor_authentication_with_refeds_mfa_profile
+---
 # Multi-Factor Authentication with REFEDS MFA profile
 
 For many use cases, the authentication requirements are increasing and Multi-Factor Authentication (MFA) is being required.

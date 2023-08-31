@@ -1,3 +1,7 @@
+---
+redirect_from: Installing+Shibboleth+SP+on+RedHat+based+Linux
+id: service_providers/installing_shibboleth_sp_on_redhat_based_linux
+---
 # Installing Shibboleth SP on RedHat based Linux
 
 # Introduction

@@ -1,3 +1,7 @@
+---
+redirect_from: Registering+Tuakiri+Hosted+IdP+as+a+Service+with+Google+Apps+or+GSuite
+id: tuakiri_hosted_idp/registering_tuakiri_hosted_idp_as_a_service_with_google_apps_or_gsuite
+---
 # Registering Tuakiri Hosted IdP as a Service with Google Apps or GSuite
 
 The [Tuakiri Hosted IdP](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815538725/Tuakiri+Hosted+IdP) runs a SAML Identity Provider (IdP) as a SAML proxy, facing Tuakiri as an IdP and facing an upstream IdP as a Service Provider (SP).

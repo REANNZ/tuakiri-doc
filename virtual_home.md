@@ -1,3 +1,7 @@
+---
+redirect_from: Virtual+Home
+id: virtual_home
+---
 # Virtual Home
 
 ##### What is the Tuakiri Virtual Home?

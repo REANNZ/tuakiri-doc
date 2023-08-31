@@ -1,3 +1,7 @@
+---
+redirect_from: eduGAIN+Information+Pack
+id: edugain_resources/edugain_information_pack
+---
 # eduGAIN Information Pack
 
 /\*<!\[CDATA\[\*/ div.rbtoc1693284353985 {padding: 0px;} div.rbtoc1693284353985 ul {list-style: disc;margin-left: 0px;} div.rbtoc1693284353985 li {margin-left: 0px;padding-left: 0px;} /\*\]\]>\*/

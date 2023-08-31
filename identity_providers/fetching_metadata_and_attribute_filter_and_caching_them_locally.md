@@ -1,3 +1,7 @@
+---
+redirect_from: Fetching+Metadata+and+Attribute+Filter+and+caching+them+locally
+id: identity_providers/fetching_metadata_and_attribute_filter_and_caching_them_locally
+---
 # Fetching Metadata and Attribute Filter and caching them locally
 
 This documents an alternative solution to managing refreshes to the metadata and attribute filter files.  The easier solution recommended in the installation manual is to let the IdP manage the refreshes.
