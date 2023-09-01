@@ -30,7 +30,7 @@ This document will cover adding a Service Provider to the Tuakiri or Tuakiri-TES
 
 # Registration
 
-{% include federation_management/adding_an_sp_to_tuakiri-excerpt %}
+{% include federation_management/adding_an_sp_to_tuakiri-excerpt.md %}
 
 # Configuring Shibboleth SP
 

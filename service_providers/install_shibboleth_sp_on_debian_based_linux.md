@@ -107,7 +107,7 @@ The key steps are:
 
 # Federation Membership
 
-{% federation_management/include adding_an_sp_to_tuakiri-excerpt %}
+{% federation_management/include adding_an_sp_to_tuakiri-excerpt.md %}
 
 ## Configuration
 

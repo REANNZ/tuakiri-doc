@@ -154,7 +154,7 @@ Shibboleth SP is available for RedHat and derivative distributions via yum repos
 
 # Federation Membership
 
-{% include federation_management/adding_an_sp_to_tuakiri-excerpt %}
+{% include federation_management/adding_an_sp_to_tuakiri-excerpt.md %}
 
 ## Configuration
 
