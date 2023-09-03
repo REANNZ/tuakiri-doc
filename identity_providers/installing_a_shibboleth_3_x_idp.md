@@ -520,75 +520,7 @@ However, the contents of `$IDP_HOME/metadata/idp-metadata.xml` is served by the 
 
 If this URL is used anywhere to obtain the IdP metadata (we recommend against this practice, as it is insecure and fragile, but this gets used in some bilateral setups), this file will have to be kept up-to-date with the actual IdP metadata.  However, the installer should initially create it with the correct contents.
 
-*   Configure the IdP to load the Federation Metadata in `/opt/shibboleth-idp/conf/metadata-providers.xml` by adding the following snippet into the `Chaining` `MetadataProvider`.
-    
-    ```
-        <MetadataProvider id="TuakiriMetadata"
-                          xsi:type="FileBackedHTTPMetadataProvider"
-                      refreshDelayFactor="0.125"
-                      maxRefreshDelay="PT2H"
-                      backingFile="%{idp.home}/metadata/tuakiri-metadata.xml"
-                      metadataURL="https://directory.tuakiri.ac.nz/metadata/tuakiri-metadata-signed.xml">
-    
-                <MetadataFilter xsi:type="SignatureValidation"
-                        certificateFile="${idp.home}/credentials/tuakiri-metadata-cert.pem"
-                        requireSignedRoot="true">
-                </MetadataFilter>
-                <MetadataFilter xsi:type="EntityRoleWhiteList">
-                        <RetainedRole>md:SPSSODescriptor</RetainedRole>
-                </MetadataFilter>
-    
-        </MetadataProvider>
-    ```
-    
-      
-    
-    *   Note: validity checking is implicitly turned on, so it is not needed to explicitly add the `RequiredValidUntil` metadata filter, which would only be useful to reject metadata published with a validity longer then maxValidityInterval milliseconds.  We recommend to rely on signature validation.  The Tuakiri metadata are being generated with a validity of one week.
-    *   Note: by default, metadata get refreshed only every 3 hours (0.75 factor out of 4 hours maximum refresh interval).   
-        *   To make metadata changes propagate faster (reload every 15 minutes), set the maximum refresh interval to 2 hours and the factor to 0.125 as above.
-        *   To avoid re-fetching the file even when not changed, turn on caching (memory caching is enough as we already do have a backing file)
-    *   See the IDP30 [https://wiki.shibboleth.net/confluence/display/IDP30/MetadataConfiguration](https://wiki.shibboleth.net/confluence/display/IDP30/MetadataConfiguration) and [https://wiki.shibboleth.net/confluence/display/IDP30/FileBackedHTTPMetadataProvider](https://wiki.shibboleth.net/confluence/display/IDP30/FileBackedHTTPMetadataProvider) documentation for more information.
-    *   Note: in IdP 3.0.0, the `RetainedRole` element was incorrectly using the namespace `samlmd` - as of 3.1.1, the namespace declared in metadata-providers.xml and used in the examples is `md`, consistent with other use.
-
-*   This definition is referring to a certificate used to verify the signature - store the certificate in `/opt/shibboleth-idp/credentials`
-    
-    ```
-    wget https://directory.tuakiri.ac.nz/metadata/tuakiri-metadata-cert.pem -O $IDP_HOME/credentials/tuakiri-metadata-cert.pem
-    ```
-    
-    Tuakiri-TEST specific
-    
-    When building a TEST IdP and registering into Tuakiri-TEST instead, please load instead the Tuakiri-TEST metadata with:
-    
-    ```
-        <MetadataProvider id="TuakiriTESTMetadata"
-                          xsi:type="FileBackedHTTPMetadataProvider"
-                      refreshDelayFactor="0.125"
-                      maxRefreshDelay="PT2H"
-                      backingFile="%{idp.home}/metadata/tuakiri-test-metadata.xml"
-                      metadataURL="https://directory.test.tuakiri.ac.nz/metadata/tuakiri-test-metadata-signed.xml">
-    
-                <MetadataFilter xsi:type="SignatureValidation"
-                        certificateFile="${idp.home}/credentials/tuakiri-test-metadata-cert.pem"
-                        requireSignedRoot="true">
-                </MetadataFilter>
-                <MetadataFilter xsi:type="EntityRoleWhiteList">
-                        <RetainedRole>md:SPSSODescriptor</RetainedRole>
-                </MetadataFilter>
-    
-        </MetadataProvider>
-    ```
-    
-    and fetch the Tuakiri-TEST metadata signing certificate instead:
-    
-    ```
-    wget https://directory.test.tuakiri.ac.nz/metadata/tuakiri-test-metadata-cert.pem -O $IDP_HOME/credentials/tuakiri-test-metadata-cert.pem
-    ```
-    
-
-  
-
-  
+{% include identity_providers/idp_excerpt_idp3-load-metadata.md %}
 
 Please note that historically (in IdP 2.x), the IdP was  also loading its own metadata.  This is no longer needed and the `$IDP_HOME/metadata/idp-metadata.xml` file now exists only for informative purposes.
 
@@ -1523,29 +1455,7 @@ For IdP version 3, these instructions need to be slightly adjusted, as IdPv3 gen
 *   Otherwise, proceed as with an IdPV2 (2.4.x) registration - and select that version if the Federation Registry is not listing 3.0.0 as an explicit choice.
 *   Also, when updating the registration entry, add the Single Log Out (SLO) endpoints as documented in the [Configuring Single Logout](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815538813/Installing+a+Shibboleth+3.x+IdP#InstallingaShibboleth3.xIdP-ConfiguringSingleLogout) section.
 
-Go to the respecting Federation Registry URL and:
-
-*   Register an _Organisation_ for your institution (if not already registered)
-    *   For Contact Details, do not use a shared mailbox, alias or mailing list when entering an email address because the confirmation email contains a single-use link and may cause some confusion should more than one person attempt to use it.
-    *   For _Organization Name_, enter your **DNS domain name**.
-    *   For _Organization Display Name_, enter your actual organization name.
-*   Wait for the Organisation to be approved
-*   Register your IdP under that Organisation
-    *   Provide the Contact Details for the IdP admin (again, do not use a shared mailbox).
-    *   Select the organisation and provide a name and description for your IdP.
-    *   Enter the base URL for your IdP (`**[https://idp.example.org](https://idp.example.org)**`).
-    *   Enter the PEM encoded certificate used by your IdP for signing Shibboleth assertions (the default is `$IDP_HOME/credentials/idp.pem`).
-    *   Select the attributes the IdP will be able to release to the federation.
-    *   Select supported NameID formats. By default, `[urn:oasis:names:tc:SAML:2.0:nameid-format:transient](http://urnoasisnamestcSAML:2.0:nameid-format:transient)` is already selected.
-    *   Submit the details and wait for your IdP to be approved.
-    *   After having your IdP registration approved, click on the link sent to you to become an Administrator of the IdP's registration.
-        
-        Confirmation email
-        
-        *   It is important to click on the link in the confirmation email, as this makes the recipient of the email an administrator of the Identity Provider being registered in the Tuakiri Federation Registry.
-            *   The link in the confirmation email can only be used once.
-            *   Same applies for the link sent for the Organization registration.
-        
+{% include identity_providers/idp_excerpt_register-idp-into-FR.md %}
 
 # Advanced IdP Configuration
 
@@ -1685,26 +1595,7 @@ To configure each additional attribute filter, follow these steps:
 *   First, determine the URL of your remote filter.  
     For **Tuakiri**: please follow the instructions at [Configuring a Shibboleth Identity Provider to join the Tuakiri Federation#Configure attribute release/filtering through the federation](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815538798/Configuring+a+Shibboleth+Identity+Provider+to+join+the+Tuakiri+Federation#ConfiguringaShibbolethIdentityProvidertojointheTuakiriFederation-Configureattributerelease/filteringthroughthefederation) (this process would provide you with a custom URL to download the metadata from).
 
-*   Contact the [federation administrators](mailto:tuakiri@reannz.co.nz) (by emailing [tuakiri@reannz.co.nz](mailto:tuakiri@reannz.co.nz)) and request a URL for the Attribute Filter for your IdP.
-    *   In the request, please include:
-        *   The name (hostname or entityID) of your IdP
-        *   An email address that should receive notifications whenever the attribute filter changes (these are notifications only, no action will be required).
-    *   The attribute filter may have to be manually added to the list of attribute filters published. Once created, the URL will have the form of: `**[https://directory.tuakiri.ac.nz/attribute-filter/](http://directory.tuakiri.ac.nz/attribute-filter/)**``**<institution-domain>.xml**`
-
-*   Edit `$IDP_HOME/conf/services.xml` and add the additional attribute filter as an additional resource in the `shibboleth.AttributeFilterResources` `util:list` bean, using the built-in FileBackedHTTPResource:
-    
-    ```
-            <bean id="TuakiriAttributeFilterResource" class="net.shibboleth.ext.spring.resource.FileBackedHTTPResource"
-                  c:client-ref="shibboleth.MemoryCachingHttpClient" 
-                  c:url="https://directory.tuakiri.ac.nz/attribute-filter/institution.domain.ac.nz.xml"
-                  c:backingFile="%{idp.home}/conf/tuakiri-attribute-filter.xml"/>
-    ```
-    
-*   For Tuakiri-TEST, the configuration would be the same, just the URL would be different - please use the URL provided by the [federation administrators](mailto:tuakiri@reannz.co.nz).
-
-  
-
-  
+{% include identity_providers/idp_excerpt_idp3-load-attribute-filter.md %}
 
 Alternatively, set up the fetching via an external script and configure the IdP to only load an additional local file:
 
@@ -1797,14 +1688,7 @@ To allow your IdP to be used with the [ECP](https://reannz.atlassian.net/wiki/sp
     *   Please see the [IdP3 ECP documentation](https://wiki.shibboleth.net/confluence/display/IDP30/IDP3+ECP+with+Tomcat+and+Apache-Managed+Authentication) for further information:
 
 *   When registering your IdP in the Federation Registry, advertise also the ECP endpoint.  
-    
-    As of version 2.6.0, the Federation Registry automatically registers the ECP endpoint on new registrations, so no explicit action should be required.  To add an ECP endpoint to an existing IdP registration, perform the following:
-    
-    In the Federation Registry registration for your IdP:
-    
-    *   Add a new "Single Sin On Service" Endpoint
-    *   Select Binding: `[urn:oasis:names:tc:SAML:2.0:bindings:SOAP](http://urnoasisnamestcSAML:2.0:bindings:SOAP)`
-    *   Enter Location: `[https://idp.example.org/idp/profile/SAML2/SOAP/ECP](https://idp.example.org/idp/profile/SAML2/SOAP/ECP)` (substituting your IdP hostname)
+    {% include identity_providers/idp_excerpt_idp-register-ecp.md %}
 
 In order for the ECP handler (running as part of the IdP web application inside Tomcat) to receive the REMOTE\_USER variable set by Apache, the AJP connector in Tomcat must have the `tomcatAuthentication="false"` as instructed above.
 
