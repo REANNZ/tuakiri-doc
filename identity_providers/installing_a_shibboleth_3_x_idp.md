@@ -1688,6 +1688,7 @@ To allow your IdP to be used with the [ECP](https://reannz.atlassian.net/wiki/sp
     *   Please see the [IdP3 ECP documentation](https://wiki.shibboleth.net/confluence/display/IDP30/IDP3+ECP+with+Tomcat+and+Apache-Managed+Authentication) for further information:
 
 *   When registering your IdP in the Federation Registry, advertise also the ECP endpoint.  
+    
 {% include identity_providers/idp_excerpt_idp-register-ecp.md indent="    " %}
 
 In order for the ECP handler (running as part of the IdP web application inside Tomcat) to receive the REMOTE\_USER variable set by Apache, the AJP connector in Tomcat must have the `tomcatAuthentication="false"` as instructed above.
