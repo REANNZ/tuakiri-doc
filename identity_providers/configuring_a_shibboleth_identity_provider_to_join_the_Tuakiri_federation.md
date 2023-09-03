@@ -39,7 +39,7 @@ We recommend first registering a Test system into Tuakiri-TEST and after success
 
 If supporting ECP, advertise also your ECP SSO EndPoint:
 
-{% include identity_providers/idp_excerpt_idp-register-ecp.md %}
+{% include identity_providers/idp_excerpt_idp-register-ecp.md indent="" %}
 
 The IdP also needs to be [configured to support ECP](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815538790/Installing+a+Shibboleth+2.x+IdP#InstallingaShibboleth2.xIdP-ECPsupport).
 
