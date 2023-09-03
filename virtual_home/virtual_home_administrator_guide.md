@@ -3,18 +3,10 @@ redirect_from: Virtual+Home+Administrator+Guide
 id: virtual_home/virtual_home_administrator_guide
 ---
 # Virtual Home Administrator Guide
+{:.no_toc}
 
-/\*<!\[CDATA\[\*/ div.rbtoc1693284046367 {padding: 0px;} div.rbtoc1693284046367 ul {list-style: disc;margin-left: 0px;} div.rbtoc1693284046367 li {margin-left: 0px;padding-left: 0px;} /\*\]\]>\*/
-
-*   [What is this tool?](#VirtualHomeAdministratorGuide-Whatisthistool?)
-*   [Logging into the admin portal](#VirtualHomeAdministratorGuide-Loggingintotheadminportal)
-*   [How do I create groups?](#VirtualHomeAdministratorGuide-HowdoIcreategroups?)
-*   [How do I create user accounts?](#VirtualHomeAdministratorGuide-HowdoIcreateuseraccounts?)
-*   [How do I add administrators?](#VirtualHomeAdministratorGuide-HowdoIaddadministrators?)
-*   [How do I customise the invitation/welcome email for users?](#VirtualHomeAdministratorGuide-HowdoIcustomisetheinvitation/welcomeemailforusers?)
-*   [How do I deal with a user who has been locked out?](#VirtualHomeAdministratorGuide-HowdoIdealwithauserwhohasbeenlockedout?)
-*   [Other administrative tasks](#VirtualHomeAdministratorGuide-Otheradministrativetasks)
-*   [Where can I find more help?](#VirtualHomeAdministratorGuide-WherecanIfindmorehelp?)
+1. TOC
+{:toc}
 
 Download a [PDF version](https://reannz.atlassian.net/wiki/download/attachments/3815538771/VH%20Admin%20Guide%20v3.pdf?version=1&modificationDate=1412248328000&cacheVersion=1&api=v2) of this guide.
 

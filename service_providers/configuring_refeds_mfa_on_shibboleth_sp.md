@@ -3,6 +3,7 @@ redirect_from: Configuring+REFEDS+MFA+on+Shibboleth+SP
 id: service_providers/configuring_refeds_mfa_on_shibboleth_sp
 ---
 # Configuring REFEDS MFA on Shibboleth SP
+{:.no_toc}
 
 The REFEDS MFA Profile: [https://refeds.org/profile/mfa](https://refeds.org/profile/mfa) is the vendor-agnostic approach to [signalling Multi-Factor Authentication](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815538745/Multi-Factor+Authentication+with+REFEDS+MFA+profile) in R&E identity federations like Tuakiri (and among such federations when connected to [eduGAIN](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815539055/eduGAIN+resources)).
 
@@ -14,14 +15,8 @@ The SP still needs to check the response AuthnContextClassRef - as in many cases
 
 This page (drawing on the [upstream MFA documentation](https://shibboleth.atlassian.net/wiki/spaces/SP3/pages/2114781453/Requiring+Multi-Factor+Authentication)) documents the configuration steps required on Shibboleth SP.
 
-/\*<!\[CDATA\[\*/ div.rbtoc1693281137976 {padding: 0px;} div.rbtoc1693281137976 ul {list-style: disc;margin-left: 0px;} div.rbtoc1693281137976 li {margin-left: 0px;padding-left: 0px;} /\*\]\]>\*/
-
-*   1 [Requesting REFEDS MFA](#ConfiguringREFEDSMFAonShibbolethSP-RequestingREFEDSMFA)
-    *   1.1 [Requesting REFEDS MFA in explicitly initiated sessions](#ConfiguringREFEDSMFAonShibbolethSP-RequestingREFEDSMFAinexplicitlyinitiatedsessions)
-    *   1.2 [Requesting REFEDS MFA in implicitly initiated sessions](#ConfiguringREFEDSMFAonShibbolethSP-RequestingREFEDSMFAinimplicitlyinitiatedsessions)
-*   2 [Check REFEDS MFA](#ConfiguringREFEDSMFAonShibbolethSP-CheckREFEDSMFA)
-*   3 [MFA-specific error handling](#ConfiguringREFEDSMFAonShibbolethSP-MFA-specificerrorhandling)
-*   4 [Further reading](#ConfiguringREFEDSMFAonShibbolethSP-Furtherreading)
+1. TOC
+{:toc}
 
 # Requesting REFEDS MFA
 

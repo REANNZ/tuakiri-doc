@@ -3,6 +3,7 @@ redirect_from: Installing+a+SimpleSAMLphp+SP
 id: service_providers/installing_a_simplesamlphp_sp
 ---
 # Installing a SimpleSAMLphp SP
+{:.no_toc}
 
 This manual is written for CentOS 7.  Adjust accordingly for other OS distributions.
 
@@ -14,20 +15,8 @@ Full SimpleSAMLphp documentation is available at [http://simplesamlphp.org/](htt
 
 Note that while this page uses Apache as the web server SimpleSAMLphp is deployed into, SimpleSAMLphp could be used with a number of other web servers - and it's advantage over Shibboleth SP would be the independence of Apache. Please adjust the Apache specific steps to what would work with your web server.
 
-/\*<!\[CDATA\[\*/ div.rbtoc1693281232317 {padding: 0px;} div.rbtoc1693281232317 ul {list-style: disc;margin-left: 0px;} div.rbtoc1693281232317 li {margin-left: 0px;padding-left: 0px;} /\*\]\]>\*/
-
-*   1 [Prerequisites](#InstallingaSimpleSAMLphpSP-Prerequisites)
-*   2 [Basic steps](#InstallingaSimpleSAMLphpSP-Basicsteps)
-*   3 [Configuring SP](#InstallingaSimpleSAMLphpSP-ConfiguringSP)
-    *   3.1 [Loading the federation metadata](#InstallingaSimpleSAMLphpSP-Loadingthefederationmetadata)
-    *   3.2 [Configure the SP to use the Tuakiri Discovery Service](#InstallingaSimpleSAMLphpSP-ConfiguretheSPtousetheTuakiriDiscoveryService)
-    *   3.3 [Configure Additional Tuakiri Attributes](#InstallingaSimpleSAMLphpSP-ConfigureAdditionalTuakiriAttributes)
-    *   3.4 [Configuring Persistent NameID](#InstallingaSimpleSAMLphpSP-ConfiguringPersistentNameID)
-    *   3.5 [Configure signing of logout messages](#InstallingaSimpleSAMLphpSP-Configuresigningoflogoutmessages)
-*   4 [Clean up SP configuration](#InstallingaSimpleSAMLphpSP-CleanupSPconfiguration)
-*   5 [Register into Federation Registry](#InstallingaSimpleSAMLphpSP-RegisterintoFederationRegistry)
-*   6 [Testing](#InstallingaSimpleSAMLphpSP-Testing)
-*   7 [References](#InstallingaSimpleSAMLphpSP-References)
+1. TOC
+{:toc}
 
 # Prerequisites
 

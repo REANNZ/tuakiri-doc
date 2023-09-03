@@ -3,6 +3,7 @@ redirect_from: Upgrading+a+3.x+IdP+to+4.x
 id: identity_providers/upgrading_a_3_x_idp_to_4_x
 ---
 # Upgrading a 3.x IdP to 4.x
+{:.no_toc}
 
 IdP 4.0.0 was released in March 2020 and IdP 3.x will be declared End-Of-Life on December 31st, 2020.   All production IdPs thus have to be upgraded to 4.x.
 
@@ -10,17 +11,8 @@ The [upstream upgrade documentation](https://wiki.shibboleth.net/confluence/disp
 
 Already in 3.x, the process for in-place upgrades has been well tuned - and the upgrade to 4.x should be seamless as well, as long as prior to the 4.x upgrade, the IdP runs the latest 3.x (3.4.8 or 3.4.7) with no **Deprecation warnings**.
 
-/\*<!\[CDATA\[\*/ div.rbtoc1693282829315 {padding: 0px;} div.rbtoc1693282829315 ul {list-style: disc;margin-left: 0px;} div.rbtoc1693282829315 li {margin-left: 0px;padding-left: 0px;} /\*\]\]>\*/
-
-*   1 [Background](#Upgradinga3.xIdPto4.x-Background)
-    *   1.1 [In-place upgrade vs. new install](#Upgradinga3.xIdPto4.x-In-placeupgradevs.newinstall)
-*   2 [Prerequisites](#Upgradinga3.xIdPto4.x-Prerequisites)
-    *   2.1 [Java](#Upgradinga3.xIdPto4.x-Java)
-    *   2.2 [Application Container](#Upgradinga3.xIdPto4.x-ApplicationContainer)
-    *   2.3 [Shibboleth IdP versions](#Upgradinga3.xIdPto4.x-ShibbolethIdPversions)
-    *   2.4 [SharedToken module](#Upgradinga3.xIdPto4.x-SharedTokenmodule)
-    *   2.5 [Migrating from JPAStorageService to JDBCStorageService](#Upgradinga3.xIdPto4.x-MigratingfromJPAStorageServicetoJDBCStorageService)
-*   3 [Upgrade](#Upgradinga3.xIdPto4.x-Upgrade)
+1. TOC
+{:toc}
 
 # Background
 

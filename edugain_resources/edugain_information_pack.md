@@ -3,44 +3,10 @@ redirect_from: eduGAIN+Information+Pack
 id: edugain_resources/edugain_information_pack
 ---
 # eduGAIN Information Pack
+{:.no_toc}
 
-/\*<!\[CDATA\[\*/ div.rbtoc1693284353985 {padding: 0px;} div.rbtoc1693284353985 ul {list-style: disc;margin-left: 0px;} div.rbtoc1693284353985 li {margin-left: 0px;padding-left: 0px;} /\*\]\]>\*/
-
-*   1 [International connectivity for Tuakiri subscribers who want to connect their Identity Provider (IdP) or Service Providers (SP) to eduGAIN](#eduGAINInformationPack-InternationalconnectivityforTuakirisubscriberswhowanttoconnecttheirIdentityProvider(IdP)orServiceProviders(SP)toeduGAIN)
-    *   1.1 [What is eduGAIN?](#eduGAINInformationPack-WhatiseduGAIN?)
-    *   1.2 [Why should my organisation connect to eduGAIN?](#eduGAINInformationPack-WhyshouldmyorganisationconnecttoeduGAIN?)
-    *   1.3 [What does my organisation need to do to connect to eduGAIN?](#eduGAINInformationPack-WhatdoesmyorganisationneedtodotoconnecttoeduGAIN?)
-        *   1.3.1 [Requirements to connect to eduGAIN (connecting to eduGAIN is optional)](#eduGAINInformationPack-RequirementstoconnecttoeduGAIN(connectingtoeduGAINisoptional))
-        *   1.3.2 [How to connect](#eduGAINInformationPack-Howtoconnect)
-*   2 [Things to consider when connecting to eduGAIN](#eduGAINInformationPack-ThingstoconsiderwhenconnectingtoeduGAIN)
-    *   2.1 [New Zealand Privacy Act](#eduGAINInformationPack-NewZealandPrivacyAct)
-*   3 [SAML software implementation](#eduGAINInformationPack-SAMLsoftwareimplementation)
-    *   3.1 [What does my organisation need to do with its SAML software implementation?](#eduGAINInformationPack-WhatdoesmyorganisationneedtodowithitsSAMLsoftwareimplementation?)
-*   4 [Technical connection requirements](#eduGAINInformationPack-Technicalconnectionrequirements)
-    *   4.1 [eduGAIN metadata](#eduGAINInformationPack-eduGAINmetadata)
-    *   4.2 [Attributes release (for IdPs)](#eduGAINInformationPack-Attributesrelease(forIdPs))
-    *   4.3 [Attribute consumption (for SPs)](#eduGAINInformationPack-Attributeconsumption(forSPs))
-    *   4.4 [Discovery mechanism (for SPs)](#eduGAINInformationPack-Discoverymechanism(forSPs))
-*   5 [Research and Scholarship (R&S) Entity Category](#eduGAINInformationPack-ResearchandScholarship(R&S)EntityCategory)
-    *   5.1 [What is R&S?](#eduGAINInformationPack-WhatisR&S?)
-    *   5.2 [Why does my organisation need to assert R&S?](#eduGAINInformationPack-WhydoesmyorganisationneedtoassertR&S?)
-    *   5.3 [How do I assert R&S?](#eduGAINInformationPack-HowdoIassertR&S?)
-        *   5.3.1 [Asserting R&S](#eduGAINInformationPack-AssertingR&S)
-    *   5.4 [R&S Attribute Bundle](#eduGAINInformationPack-R&SAttributeBundle)
-*   6 [SIRTFI](#eduGAINInformationPack-SIRTFI)
-    *   6.1 [What is SIRTFI?](#eduGAINInformationPack-WhatisSIRTFI?)
-    *   6.2 [Why does my organisation need to use SIRTFI?](#eduGAINInformationPack-WhydoesmyorganisationneedtouseSIRTFI?)
-    *   6.3 [How does my organisation assert SIRTFI?](#eduGAINInformationPack-HowdoesmyorganisationassertSIRTFI?)
-        *   6.3.1 [Assert SIRTFI](#eduGAINInformationPack-AssertSIRTFI)
-        *   6.3.2 [SIRTFI Framework](#eduGAINInformationPack-SIRTFIFramework)
-    *   6.4 [Traffic Light Protocol](#eduGAINInformationPack-TrafficLightProtocol)
-*   7 [Logos](#eduGAINInformationPack-Logos)
-*   8 [Information URL](#eduGAINInformationPack-InformationURL)
-*   9 [Request to join eduGAIN](#eduGAINInformationPack-RequesttojoineduGAIN)
-    *   9.1 [Join eduGAIN email template](#eduGAINInformationPack-JoineduGAINemailtemplate)
-        *   9.1.1 [For Identity Providers (IdP)](#eduGAINInformationPack-ForIdentityProviders(IdP))
-        *   9.1.2 [For Service Providers (SP)](#eduGAINInformationPack-ForServiceProviders(SP))
-*   10 [Acknowledgements](#eduGAINInformationPack-Acknowledgements)
+1. TOC
+{:toc}
 
 # International connectivity for Tuakiri subscribers who want to connect their Identity Provider (IdP) or Service Providers (SP) to eduGAIN
 

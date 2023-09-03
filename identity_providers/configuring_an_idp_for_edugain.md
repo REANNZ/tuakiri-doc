@@ -3,6 +3,7 @@ redirect_from: Configuring+an+IdP+for+eduGAIN
 id: identity_providers/configuring_an_idp_for_edugain
 ---
 # Configuring an IdP for eduGAIN
+{:.no_toc}
 
 After meeting the [organisational requirements for joining eduGAIN](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815539060/Process+for+joining+eduGAIN), the IdP needs to meet the following technical requirements:
 
@@ -18,16 +19,8 @@ The final step is to send the [Request to Join eduGAIN](https://reannz.atlassian
 
 This page provides further details on these technical requirements.  For the details of the full process of joining eduGAIN, please see  the [eduGAIN Information Pack](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815539015/eduGAIN+Information+Pack).
 
-/\*<!\[CDATA\[\*/ div.rbtoc1693282294879 {padding: 0px;} div.rbtoc1693282294879 ul {list-style: disc;margin-left: 0px;} div.rbtoc1693282294879 li {margin-left: 0px;padding-left: 0px;} /\*\]\]>\*/
-
-*   1 [Running up-to-date IdP software](#ConfiguringanIdPforeduGAIN-Runningup-to-dateIdPsoftware)
-*   2 [Declaring support for R&S](#ConfiguringanIdPforeduGAIN-DeclaringsupportforR&S)
-*   3 [SIRTFI](#ConfiguringanIdPforeduGAIN-SIRTFI)
-*   4 [Logo](#ConfiguringanIdPforeduGAIN-Logo)
-*   5 [Loading eduGAIN metadata](#ConfiguringanIdPforeduGAIN-LoadingeduGAINmetadata)
-*   6 [Configuring Attribute Release](#ConfiguringanIdPforeduGAIN-ConfiguringAttributeRelease)
-*   7 [Configuring page layout for Service Provider logo display](#ConfiguringanIdPforeduGAIN-ConfiguringpagelayoutforServiceProviderlogodisplay)
-*   8 [Applying Changes - Restart](#ConfiguringanIdPforeduGAIN-ApplyingChanges-Restart)
+1. TOC
+{:toc}
 
 # Running up-to-date IdP software
 

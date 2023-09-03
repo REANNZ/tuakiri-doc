@@ -3,6 +3,7 @@ redirect_from: Install+Shibboleth+SP+on+Debian+Based+linux
 id: service_providers/install_shibboleth_sp_on_debian_based_linux
 ---
 # Install Shibboleth SP on Debian Based linux
+{:.no_toc}
 
 # Introduction
 
@@ -14,24 +15,8 @@ This documentation is written based on and tested on Ubuntu 20.04 Server x86\_64
 
 Please note that SP 3.x has only been released for Ubuntu 20.04 and above and has not been released for older versions.  On hosts running older versions of Ubuntu, following this manual will install Shibboleth 2.6.x.
 
-/\*<!\[CDATA\[\*/ div.rbtoc1693281190460 {padding: 0px;} div.rbtoc1693281190460 ul {list-style: disc;margin-left: 0px;} div.rbtoc1693281190460 li {margin-left: 0px;padding-left: 0px;} /\*\]\]>\*/
-
-*   1 [Introduction](#InstallShibbolethSPonDebianBasedlinux-Introduction)
-*   2 [Prerequsites](#InstallShibbolethSPonDebianBasedlinux-Prerequsites)
-    *   2.1 [Firewall settings](#InstallShibbolethSPonDebianBasedlinux-Firewallsettings)
-    *   2.2 [Dependencies](#InstallShibbolethSPonDebianBasedlinux-Dependencies)
-    *   2.3 [Time synchronization](#InstallShibbolethSPonDebianBasedlinux-Timesynchronization)
-*   3 [Installation](#InstallShibbolethSPonDebianBasedlinux-Installation)
-*   4 [Federation Membership](#InstallShibbolethSPonDebianBasedlinux-FederationMembership)
-    *   4.1 [ECP support](#InstallShibbolethSPonDebianBasedlinux-ECPsupport)
-    *   4.2 [Configuration](#InstallShibbolethSPonDebianBasedlinux-Configuration)
-*   5 [Special considerations](#InstallShibbolethSPonDebianBasedlinux-Specialconsiderations)
-    *   5.1 [HTTP/HTTPS access](#InstallShibbolethSPonDebianBasedlinux-HTTP/HTTPSaccess)
-    *   5.2 [ECP](#InstallShibbolethSPonDebianBasedlinux-ECP)
-*   6 [Logging](#InstallShibbolethSPonDebianBasedlinux-Logging)
-*   7 [Protecting a Resource](#InstallShibbolethSPonDebianBasedlinux-ProtectingaResource)
-*   8 [Finishing up](#InstallShibbolethSPonDebianBasedlinux-Finishingup)
-*   9 [Testing](#InstallShibbolethSPonDebianBasedlinux-Testing)
+1. TOC
+{:toc}
 
 # Prerequsites
 

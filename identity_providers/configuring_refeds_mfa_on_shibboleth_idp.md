@@ -3,6 +3,7 @@ redirect_from: Configuring+REFEDS+MFA+on+Shibboleth+IdP
 id: identity_providers/configuring_refeds_mfa_on_shibboleth_idp
 ---
 # Configuring REFEDS MFA on Shibboleth IdP
+{:.no_toc}
 
 The REFEDS MFA Profile: [https://refeds.org/profile/mfa](https://refeds.org/profile/mfa) is the vendor-agnostic approach to [signalling Multi-Factor Authentication](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815538745/Multi-Factor+Authentication+with+REFEDS+MFA+profile) in R&E identity federations like Tuakiri (and among such federations when connected to [eduGAIN](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815539055/eduGAIN+resources)).
 
@@ -12,12 +13,8 @@ When receiving such value, the IdP needs to enforce an MFA login flow (if not en
 
 How this is done very much depends how how authentication is done on the IdP - and what MFA method the IdP has access to.
 
-/\*<!\[CDATA\[\*/ div.rbtoc1693282355471 {padding: 0px;} div.rbtoc1693282355471 ul {list-style: disc;margin-left: 0px;} div.rbtoc1693282355471 li {margin-left: 0px;padding-left: 0px;} /\*\]\]>\*/
-
-*   1 [Meeting REFEDS MFA Criteria](#ConfiguringREFEDSMFAonShibbolethIdP-MeetingREFEDSMFACriteria)
-*   2 [REFEDS MFA on IdP proxying to AzureAD](#ConfiguringREFEDSMFAonShibbolethIdP-REFEDSMFAonIdPproxyingtoAzureAD)
-*   3 [REFEDS MFA on IdP with Password authentication and MFA](#ConfiguringREFEDSMFAonShibbolethIdP-REFEDSMFAonIdPwithPasswordauthenticationandMFA)
-*   4 [REFEDS MFA on IdP with no MFA](#ConfiguringREFEDSMFAonShibbolethIdP-REFEDSMFAonIdPwithnoMFA)
+1. TOC
+{:toc}
 
 # Meeting REFEDS MFA Criteria
 

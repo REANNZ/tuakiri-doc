@@ -3,6 +3,7 @@ redirect_from: Adding+samlSubjectID+and+samlPairwiseID+attributes
 id: identity_providers/adding_samlSubjectID_and_samlPairwiseID_attributes
 ---
 # Adding samlSubjectID and samlPairwiseID attributes
+{:.no_toc}
 
 The international R&E community has agreed on new attributes to identify users in SAML SSO: a general-purpose subject identifier, **samlSubjectID** and a pairwise (targeted) identifier, **samlPairwiseID** .
 
@@ -10,22 +11,8 @@ These attributes provide an alternative to the `eduPersonPrincipalName` and `edu
 
 This document provides the instructions for Identity Providers to start supporting the attributes - and so far, this is where it stays.
 
-/\*<!\[CDATA\[\*/ div.rbtoc1693282059487 {padding: 0px;} div.rbtoc1693282059487 ul {list-style: disc;margin-left: 0px;} div.rbtoc1693282059487 li {margin-left: 0px;padding-left: 0px;} /\*\]\]>\*/
-
-*   1 [Background](#AddingsamlSubjectIDandsamlPairwiseIDattributes-Background)
-*   2 [Rationale](#AddingsamlSubjectIDandsamlPairwiseIDattributes-Rationale)
-*   3 [New samlSubjectID and samlPairwiseID Attributes](#AddingsamlSubjectIDandsamlPairwiseIDattributes-NewsamlSubjectIDandsamlPairwiseIDAttributes)
-    *   3.1 [Syntax](#AddingsamlSubjectIDandsamlPairwiseIDattributes-Syntax)
-    *   3.2 [Semantics](#AddingsamlSubjectIDandsamlPairwiseIDattributes-Semantics)
-    *   3.3 [Release rules](#AddingsamlSubjectIDandsamlPairwiseIDattributes-Releaserules)
-*   4 [Configuring an IdP to support samlSubjectID and samlPairwiseID](#AddingsamlSubjectIDandsamlPairwiseIDattributes-ConfiguringanIdPtosupportsamlSubjectIDandsamlPairwiseID)
-    *   4.1 [Defining samlSubjectID](#AddingsamlSubjectIDandsamlPairwiseIDattributes-DefiningsamlSubjectID)
-    *   4.2 [Defining samlPairwiseID](#AddingsamlSubjectIDandsamlPairwiseIDattributes-DefiningsamlPairwiseID)
-    *   4.3 [Configuring Attribute Release](#AddingsamlSubjectIDandsamlPairwiseIDattributes-ConfiguringAttributeRelease)
-    *   4.4 [Applying changes](#AddingsamlSubjectIDandsamlPairwiseIDattributes-Applyingchanges)
-*   5 [Testing](#AddingsamlSubjectIDandsamlPairwiseIDattributes-Testing)
-*   6 [Documentation](#AddingsamlSubjectIDandsamlPairwiseIDattributes-Documentation)
-*   7 [References](#AddingsamlSubjectIDandsamlPairwiseIDattributes-References)
+1. TOC
+{:toc}
 
 # Background
 

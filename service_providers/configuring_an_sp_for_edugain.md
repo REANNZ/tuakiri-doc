@@ -3,6 +3,7 @@ redirect_from: Configuring+an+SP+for+eduGAIN
 id: service_providers/configuring_an_sp_for_edugain
 ---
 # Configuring an SP for eduGAIN
+{:.no_toc}
 
 After meeting the [organisational requirements for joining eduGAIN](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815539060/Process+for+joining+eduGAIN), the SP needs to meet the following technical requirements:
 
@@ -19,17 +20,8 @@ The final step is to send the [Request to Join eduGAIN](https://reannz.atlassian
 
 This page provides further details on these technical requirements.  For the details of the full process of joining eduGAIN, please see  the [eduGAIN Information Pack](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815539015/eduGAIN+Information+Pack).
 
-/\*<!\[CDATA\[\*/ div.rbtoc1693281078188 {padding: 0px;} div.rbtoc1693281078188 ul {list-style: disc;margin-left: 0px;} div.rbtoc1693281078188 li {margin-left: 0px;padding-left: 0px;} /\*\]\]>\*/
-
-*   1 [Running up-to-date SP software](#ConfiguringanSPforeduGAIN-Runningup-to-dateSPsoftware)
-*   2 [Declaring R&S](#ConfiguringanSPforeduGAIN-DeclaringR&S)
-*   3 [SIRTFI](#ConfiguringanSPforeduGAIN-SIRTFI)
-*   4 [Logo](#ConfiguringanSPforeduGAIN-Logo)
-*   5 [Information URL](#ConfiguringanSPforeduGAIN-InformationURL)
-*   6 [Loading eduGAIN metadata](#ConfiguringanSPforeduGAIN-LoadingeduGAINmetadata)
-*   7 [Requesting Attributes](#ConfiguringanSPforeduGAIN-RequestingAttributes)
-*   8 [Configuring Discovery Service to use](#ConfiguringanSPforeduGAIN-ConfiguringDiscoveryServicetouse)
-*   9 [Applying Changes - Restart](#ConfiguringanSPforeduGAIN-ApplyingChanges-Restart)
+1. TOC
+{:toc}
 
 # Running up-to-date SP software
 

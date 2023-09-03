@@ -3,6 +3,7 @@ redirect_from: Configuring+a+Shibboleth+Identity+Provider+to+join+the+Tuakiri+Fe
 id: identity_providers/configuring_a_shibboleth_identity_provider_to_join_the_Tuakiri_federation
 ---
 # Configuring a Shibboleth Identity Provider to join the Tuakiri Federation
+{:.no_toc}
 
 For a Shibboleth Identity Provider to join one of the Tuakiri Federations (Test/Dev or Production), the following steps have to be done:
 
@@ -17,15 +18,8 @@ There are two federations available, both fully operational:
 
 We recommend first registering a Test system into Tuakiri-TEST and after successful testing, register a production-ready system into Tuakiri Production.
 
-/\*<!\[CDATA\[\*/ div.rbtoc1693282128062 {padding: 0px;} div.rbtoc1693282128062 ul {list-style: disc;margin-left: 0px;padding-left: 20px;} div.rbtoc1693282128062 li {margin-left: 0px;padding-left: 0px;} /\*\]\]>\*/
-
-*   1 [Federation Details](#ConfiguringaShibbolethIdentityProvidertojointheTuakiriFederation-FederationDetails)
-*   2 [Registering an IdP into the Federation Registry](#ConfiguringaShibbolethIdentityProvidertojointheTuakiriFederation-RegisteringanIdPintotheFederationRegistry)
-    *   2.1 [ECP support](#ConfiguringaShibbolethIdentityProvidertojointheTuakiriFederation-ECPsupport)
-*   3 [Configuring your IdP to load the federation metadata](#ConfiguringaShibbolethIdentityProvidertojointheTuakiriFederation-ConfiguringyourIdPtoloadthefederationmetadata)
-*   4 [Configure attribute release/filtering through the federation](#ConfiguringaShibbolethIdentityProvidertojointheTuakiriFederation-Configureattributerelease/filteringthroughthefederation)
-*   5 [Appendix A - Alternative implementation](#ConfiguringaShibbolethIdentityProvidertojointheTuakiriFederation-AppendixA-Alternativeimplementation)
-    *   5.1 [Optional: Installing XmlSecTool](#ConfiguringaShibbolethIdentityProvidertojointheTuakiriFederation-Optional:InstallingXmlSecTool)
+1. TOC
+{:toc}
 
 # Federation Details
 

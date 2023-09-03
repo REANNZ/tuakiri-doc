@@ -3,19 +3,10 @@ redirect_from: Virtual+Home+User+Guide
 id: virtual_home/virtual_home_user_guide
 ---
 # Virtual Home User Guide
+{:.no_toc}
 
-/\*<!\[CDATA\[\*/ div.rbtoc1693284012132 {padding: 0px;} div.rbtoc1693284012132 ul {list-style: disc;margin-left: 0px;} div.rbtoc1693284012132 li {margin-left: 0px;padding-left: 0px;} /\*\]\]>\*/
-
-*   [What is this tool?](#VirtualHomeUserGuide-Whatisthistool?)
-*   [How do I get a Tuakiri VH account?](#VirtualHomeUserGuide-HowdoIgetaTuakiriVHaccount?)
-*   [How do I set up my new account?](#VirtualHomeUserGuide-HowdoIsetupmynewaccount?)
-*   [How do I reset my password?](#VirtualHomeUserGuide-HowdoIresetmypassword?)
-*   [How do I change my password?](#VirtualHomeUserGuide-HowdoIchangemypassword?)
-*   [How do I change my account details?](#VirtualHomeUserGuide-HowdoIchangemyaccountdetails?)
-*   [How do I use 2-step verification?](#VirtualHomeUserGuide-HowdoIuse2-stepverification?)
-*   [How do I log in to services using my account?](#VirtualHomeUserGuide-HowdoIlogintoservicesusingmyaccount?)
-*   [Why is my account locked out?](#VirtualHomeUserGuide-Whyismyaccountlockedout?)
-*   [Where can I find more help?](#VirtualHomeUserGuide-WherecanIfindmorehelp?)
+1. TOC
+{:toc}
 
 Download a [PDF version](https://reannz.atlassian.net/wiki/download/attachments/3815538773/VH%20User%20Guide%20v3.pdf?version=1&modificationDate=1412247787000&cacheVersion=1&api=v2) of this guide.
 

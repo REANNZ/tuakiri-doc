@@ -3,6 +3,7 @@ redirect_from: Installing+Shibboleth+SP+on+RedHat+based+Linux
 id: service_providers/installing_shibboleth_sp_on_redhat_based_linux
 ---
 # Installing Shibboleth SP on RedHat based Linux
+{:.no_toc}
 
 # Introduction
 
@@ -12,26 +13,8 @@ This documentation has been tested on RHEL/CentOS 6 and 7, but should work on ot
 
 {% include service_providers/shibsp-excerpt-intro-part2.md %}
 
-/\*<!\[CDATA\[\*/ div.rbtoc1693281281822 {padding: 0px;} div.rbtoc1693281281822 ul {list-style: disc;margin-left: 0px;} div.rbtoc1693281281822 li {margin-left: 0px;padding-left: 0px;} /\*\]\]>\*/
-
-*   1 [Introduction](#InstallingShibbolethSPonRedHatbasedLinux-Introduction)
-*   2 [Prerequisites](#InstallingShibbolethSPonRedHatbasedLinux-Prerequisites)
-    *   2.1 [Firewall settings](#InstallingShibbolethSPonRedHatbasedLinux-Firewallsettings)
-    *   2.2 [Time synchronization](#InstallingShibbolethSPonRedHatbasedLinux-Timesynchronization)
-    *   2.3 [Dependencies](#InstallingShibbolethSPonRedHatbasedLinux-Dependencies)
-    *   2.4 [SELinux](#InstallingShibbolethSPonRedHatbasedLinux-SELinux)
-*   3 [Installation](#InstallingShibbolethSPonRedHatbasedLinux-Installation)
-*   4 [Federation Membership](#InstallingShibbolethSPonRedHatbasedLinux-FederationMembership)
-    *   4.1 [ECP support](#InstallingShibbolethSPonRedHatbasedLinux-ECPsupport)
-    *   4.2 [Configuration](#InstallingShibbolethSPonRedHatbasedLinux-Configuration)
-*   5 [Special considerations](#InstallingShibbolethSPonRedHatbasedLinux-Specialconsiderations)
-    *   5.1 [HTTP/HTTPS access](#InstallingShibbolethSPonRedHatbasedLinux-HTTP/HTTPSaccess)
-    *   5.2 [RedHat Enterprise Linux 6 and 7](#InstallingShibbolethSPonRedHatbasedLinux-RedHatEnterpriseLinux6and7)
-    *   5.3 [ECP](#InstallingShibbolethSPonRedHatbasedLinux-ECP)
-*   6 [Logging](#InstallingShibbolethSPonRedHatbasedLinux-Logging)
-*   7 [Protecting a resource](#InstallingShibbolethSPonRedHatbasedLinux-Protectingaresource)
-*   8 [Finishing up](#InstallingShibbolethSPonRedHatbasedLinux-Finishingup)
-*   9 [Testing](#InstallingShibbolethSPonRedHatbasedLinux-Testing)
+1. TOC
+{:toc}
 
 # Prerequisites
 
