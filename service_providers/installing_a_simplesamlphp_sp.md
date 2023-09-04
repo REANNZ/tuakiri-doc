@@ -231,7 +231,8 @@ We will be using **`sp.example.org`** to refer to the hostname of your Service P
         
         For historical and archival purposes, the instructions are included here - but can be ignored in favour of using the above `certificates` setting.
         
-        ![](https://reannz.atlassian.net/wiki/images/icons/grey_arrow_down.png)Click here to expand...
+        <details markdown="1">
+        <summary>Click here to expand...</summary>
         
         *   Set the 'validateFingerprint' to the fingerprint value of the metadata issuing certificate
             *   Tuakiri-PROD: `06:85:C5:89:2F:38:83:98:77:1B:A4:5D:58:A4:06:3A:A4:C1:CE:45`
@@ -244,7 +245,7 @@ We will be using **`sp.example.org`** to refer to the hostname of your Service P
                       openssl x509 -fingerprint -noout -in metadata-cert.pem 
                 ```
                 
-        
+        </details>
 
 *   Edit `config/config.php` and in `metadata.sources`, replace the existing `'type'=>'flatfile'` entry with:
     

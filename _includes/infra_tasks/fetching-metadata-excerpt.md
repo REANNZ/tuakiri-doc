@@ -68,7 +68,8 @@ To deploy this solution without XmlSecTool:
         
 *   For archival purposes, we also keep the original instructions for configuring the Tuakiri metadata and attribute filter on a 2.x IdP - unfold the box below to see the IdP 2.x compatible syntax:
     
-    ![](https://reannz.atlassian.net/wiki/images/icons/grey_arrow_down.png)Legacy IdP 2.x syntax for loading metadata and attribute filter
+    <details markdown="1">
+    <summary>Legacy IdP 2.x syntax for loading metadata and attribute filter</summary>
     
     *   Load the metadata from the local file: add the following into `$IDP_HOME/conf/relying-party.xml` (the variation from the standard implementation above is using a `FilesystemResource` instead of a `FileBackedHttpResource`)
         *   Add the following snippet into the `ChainingMetadataProvider`:
@@ -99,6 +100,7 @@ To deploy this solution without XmlSecTool:
                 <srv:ConfigurationResource file="/opt/shibboleth-idp/conf/tuakiri-attribute-filter.xml" xsi:type="resource:FilesystemResource" />
         ```
         
+    </details>
     
 
 *   Create a cron job to periodically (every 2 hours) download the metadata and the attribute filter: run `crontab -e` and add the following entry (matching the command you had run on the command line earlier):

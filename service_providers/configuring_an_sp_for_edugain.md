@@ -96,7 +96,8 @@ To load the metadata, add the following snippet in `/etc/shibboleth/shibboleth2.
 </MetadataProvider>
 ```
 
-![](https://reannz.atlassian.net/wiki/images/icons/grey_arrow_down.png)Or click here to see the corresponding snippet for the Tuakiri TEST
+<details markdown="1">
+<summary>Or click here to see the corresponding snippet for the Tuakiri TEST</summary>
 
 **Tuakiri-TEST: load eduGAIN metadata**
 
@@ -111,6 +112,7 @@ To load the metadata, add the following snippet in `/etc/shibboleth/shibboleth2.
 </MetadataProvider>
 ```
 
+</details>
   
 
 # Requesting Attributes

@@ -38,7 +38,8 @@ Edit `/etc/shibboleth/shibboleth2.xml:`
     
 *   Shibboleth 2.x only: restrict cipherSuites:
     
-    ![](https://reannz.atlassian.net/wiki/images/icons/grey_arrow_down.png)Click here to expand...
+    <details markdown="1">
+    <summary>Click here to expand...</summary>
     
     In earlier versions (Shibboleth SP 2.x), we were recommending to configure the TLS protocols and cipher-suites acceptable on the back-channel - the [default settings](https://wiki.shibboleth.net/confluence/display/SHIB2/NativeSPApplication#NativeSPApplication-RelyingPartyAttributes) were overly permissive and insecure.
     
@@ -51,6 +52,8 @@ Edit `/etc/shibboleth/shibboleth2.xml:`
     ```
     
     This sets the protocols to TLSv1.2 only (banning SSLv2, SSLv3, TLSv1.0, TLSv1.1) and blocks all ciphers deemed insecure (as of October 2017).
+
+    </details>
     
 *   Optionally, customize settings in the `<Errors>` element.  These settings configure the error handling pages that would be rendered to the users should an error occur.  At the very least, we recommend changing the `supportContact` attribute from `root@localhost` to your support service email address.  Documentation for advanced configuration of error handling is available at the [Shibboleth SP Errors documentation page](https://wiki.shibboleth.net/confluence/display/SHIB2/NativeSPErrors#NativeSPErrors-ConfigurationReference).
 
