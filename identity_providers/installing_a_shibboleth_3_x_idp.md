@@ -1183,7 +1183,8 @@ To configure SAML2 Persistent NameID (based on [https://wiki.shibboleth.net/conf
     ```
     
 
-![](https://reannz.atlassian.net/wiki/images/icons/grey_arrow_down.png)Historical eduPersonTargetedID documentation
+<details markdown="1">
+<summary>Historical eduPersonTargetedID documentation</summary>
 
  For historical purposes, we also include the original documentation on setting up eduPersonTargetedID.  However, as per above, we strongly encourage the migration to SAML2 Persistent NameID.
 
@@ -1277,10 +1278,7 @@ To configure SAML2 Persistent NameID (based on [https://wiki.shibboleth.net/conf
     *   Remember to still populate the sourceAttributeID and salt values appropriately (using the same instructions as for `StoredIdConnector` above)
     *   Update the `dependency ref` in the attribute definition to match the connector `id="computedID"`
 
-  
-
-  
-
+</details>
   
 
 For reference, to deactivate a particular value for a particular user, set the `deactivationDate` timestamp on that value's record directly in the database - e.g. with the following SQL code:
@@ -1696,7 +1694,8 @@ The software side of the SLO implementation comes enabled out of the box on IdPV
 *   The most important step is to remove the boilerplate notice saying the page should be customized.  
     Remove the notice (expand here to see the exact changes): 
     
-    ![](https://reannz.atlassian.net/wiki/images/icons/grey_arrow_down.png)Click here to expand...
+    <details markdown="1">
+    <summary>Click here to expand...</summary>
     
     ```
     --- logout.vm.orig    2018-10-12 15:08:08.726832762 +1300
@@ -1714,12 +1713,14 @@ The software side of the SLO implementation comes enabled out of the box on IdPV
                      <p>#springMessageText("idp.logout.sp-initiated", "You have been logged out of the following service:")</p>
                      <blockquote>
     ```
+    </details>
     
     If you enable Single Logout without customizing your Logout page (i.e., leaving in the original default page), users utilizing the Logout functionality will see an unflattering page saying: **"This page is an example and should be customized."**
     
 *   Optionally, also add additional notices to the landing logout pages: (`$IDP_HOME/views/logout-propagate.vm`  and `$IDP_HOME/views/logout-complete.vm`).  You may wish to inform the users that sessions derived by the applications on the SPs might not have been terminated and that the only safe way to terminate the session is to close the browser.  Expand here to see our suggestion at the wording:
     
-    ![](https://reannz.atlassian.net/wiki/images/icons/grey_arrow_down.png)Click here to expand...
+    <details markdown="1">
+    <summary>Click here to expand...</summary>
     
     ```
     --- logout-complete.vm.orig    2018-10-12 15:08:08.725832770 +1300
@@ -1747,6 +1748,7 @@ The software side of the SLO implementation comes enabled out of the box on IdPV
                <div class="column two">
                  <ul class="list list-help">
     ```
+    </details>
     
 
   
@@ -1918,7 +1920,8 @@ An institution may decide to bypass the consent module for Service Providers (SP
     *   Add a reference to the condition to the `intercept/attribute-release` flow:  
              `p:activationCondition-ref="AttributeReleaseActivationCondition"`
 
-![](https://reannz.atlassian.net/wiki/images/icons/grey_arrow_down.png)Click here to expand the activationCondition bean definition
+<details markdown="1">
+<summary>Click here to expand the activationCondition bean definition</summary>
 
 **AvailableInterceptFlows bean after adding activationCondition**
 
@@ -1967,6 +1970,7 @@ An institution may decide to bypass the consent module for Service Providers (SP
     </bean>
 ```
 
+</details>
   
   
 
@@ -2088,7 +2092,8 @@ To enable this service, please make the following changes (based on upstream ins
         
 *   Optionally, if your IdP has non-Tuakiri traffic (such as bilateral arrangements with individual service providers) that should not be sent to the centralized log collection servers (if it is, it would still get discarded in subsequent processing), please follow these instructions: 
     
-    ![](https://reannz.atlassian.net/wiki/images/icons/grey_arrow_down.png)Click here to expand the instructions to filter usage logging messages...
+    <details markdown="1">
+    <summary>Click here to expand the instructions to filter usage logging messages...</summary>
     
     *   Define an ActivationCondition bean called `TuakiriFTicksCondition` in `$IDP_HOME/conf/global.xml`  (in Tuakiri-TEST, replace the `tuakiri.ac.nz`  labels with `test.tuakiri.ac.nz` ): 
         
@@ -2120,7 +2125,8 @@ To enable this service, please make the following changes (based on upstream ins
         
         Preserving these instructions for historical reference (and for sites still on 4.0.x).
         
-        ![](https://reannz.atlassian.net/wiki/images/icons/grey_arrow_down.png)Click here to expand the instructions for filtering usage logs on IdP 4.0.x
+        <details markdown="1">
+        <summary>Click here to expand the instructions for filtering usage logs on IdP 4.0.x</summary>
         
         *   Edit the definition of `WriteFTICKSLog`  bean in `$IDP_HOME/system/flows/saml/saml-abstract-beans.xml` and instead of the default in-line activation condition, pass a reference to the bean defined above:
             
@@ -2137,7 +2143,9 @@ To enable this service, please make the following changes (based on upstream ins
                      p:digestAlgorithm="#{'%{idp.fticks.algorithm:SHA-256}'.trim()}" p:salt="%{idp.fticks.salt:}" />
             
             ```
+        </details>
             
+    </details>
         
     
 *   And restart the IdP - by restarting Tomcat, `service tomcat restart`
@@ -2190,7 +2198,8 @@ On CentOS 7.5, the missing permission has been added and this workaround is no l
 
 If you are running CentOS 7.4, please unfold the box below to see the details of the workaround - archived otherwise for histroical purposes only.
 
-![](https://reannz.atlassian.net/wiki/images/icons/grey_arrow_down.png)Click here to expand...
+<details markdown="1">
+<summary>Click here to expand...</summary>
 
 Tomat needs to be able to connect to MySQL - and unfortunately, this has been so far omitted in the SELinux policy for target.  While we expect this to be fixed in future updates to the SELinux policy, for now, we have to use a workaround - create a custom policy module.
 
@@ -2220,6 +2229,7 @@ Tomat needs to be able to connect to MySQL - and unfortunately, this has been so
 
 With these in place, Tomcat should have all the SELinux permissions required and the IdP should operate normally.
 
+</details>
   
 
 ## Enabling HSTS
@@ -2250,7 +2260,8 @@ Please see the [IdPv3 wiki](https://wiki.shibboleth.net/confluence/display/IDP30
   
 Earlier versions of this documentation included a workaround needed for IdP 3.1.x only.
 
-![](https://reannz.atlassian.net/wiki/images/icons/grey_arrow_down.png)Click here to expand historical IdP 3.1.x compatbility workaround... (no action required on IdP 3.2.0+)
+<details markdown="1">
+<summary>Click here to expand historical IdP 3.1.x compatbility workaround... (no action required on IdP 3.2.0+)</summary>
 
 Login breaks on IdP 3.1.x with SPs misconfigured to request AuthenticationType `urn:oasis:names:tc:SAML:2.0:ac:classes:unspecified`.
 
@@ -2277,6 +2288,8 @@ For further details, please see [https://issues.shibboleth.net/jira/browse/IDP-7
 Note that as this interim workaround is applied to a file under `$IDP_HOME/system/`, it would get overwritten in an upgrade - but, the next version the upgrade would be introducing should already have the proper permanent workaround included.
 
 **No action is required on IdP 3.2.0+**
+
+</details>
 
 # Starting the IdP
 

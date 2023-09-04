@@ -49,9 +49,8 @@ To configure a 3.x IdP to Load the Tuakiri metadata:
 
 For archival purposes, we also keep the original instructions for configuring the Tuakiri metadata into a 2.x IdP - unfold the box below to see the IdP 2.x compatible syntax:
 
-![](https://reannz.atlassian.net/wiki/images/icons/grey_arrow_down.png)Legacy IdP 2.x configuration to load Tuakiri metadata
-
-  
+<details markdown="1">
+<summary>Legacy IdP 2.x configuration to load Tuakiri metadata</summary>
 
 *   Download the metadata signing certificate into `$IDP_HOME/credentials`:
     
@@ -86,6 +85,7 @@ For archival purposes, we also keep the original instructions for configuring th
         
         Remember to uncomment the `<security:TrustEngine id="shibboleth.MetadataTrustEngine" xsi:type="security:StaticExplicitKeySignature">` element if it is still commented out (it is commented out in the default configuration).
         
+</details>
 
   
 
@@ -97,7 +97,8 @@ To configure a 3.x IdP to Load the Tuakiri-managed attribute filter:
 
 For archival purposes, we also keep the original instructions for configuring the Tuakiri-managed attribute filter into a 2.x IdP - unfold the box below to see the IdP 2.x compatible syntax:
 
-![](https://reannz.atlassian.net/wiki/images/icons/grey_arrow_down.png)Legacy IdP 2.x syntax to load an attribute filter
+<details markdown="1">
+<summary>Legacy IdP 2.x syntax to load an attribute filter</summary>
 
 After requesting the attribute filter:
 
@@ -129,10 +130,8 @@ After requesting the attribute filter:
     +             configurationResourcePollingFrequency="PT2H0M0.000S" configurationResourcePollingRetryAttempts="10"
                  xsi:type="attribute-afp:ShibbolethAttributeFilteringEngine">
     ```
-    
 
-  
-
+</details>
   
 
 Now your IdP should be able to access service providers within the Tuakiri federation.

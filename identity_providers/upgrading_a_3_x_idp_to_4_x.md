@@ -54,9 +54,11 @@ Unfortunately, on CentOS 7, only Tomcat 7 is available in the base OS repository
 
 There are many blog posts providing instructions for manual one-off installs.   We provide a set of instructions here as convenience - with the aim to make future updates to newer Tomcat version easier (using separate per-version directories for Tomcat binary distribution, but a shared directory for application context-descriptor files).  Feel free to use these - but also to install Tomcat or Jetty via other means.
 
-![](https://reannz.atlassian.net/wiki/images/icons/grey_arrow_down.png)Click here to expand instructions to install newer version of Tomcat on RedHat-based systems.
+<details markdown="1">
+<summary>Click here to expand instructions to install newer version of Tomcat on RedHat-based systems.</summary>
 
 {% include infra_tasks/tomcat8_5.md %}
+</details>
 
 Only proceed further after upgrading the application container to a compatible version - Tomcat 8.5 or later or Jetty 9.4
 
@@ -180,7 +182,8 @@ The steps, as per in the [JDBCStorageService documentation](https://shibboleth.a
         *   Remove/comment-out `<LDAPProperty name="java.naming.referral" value="follow"/>` .  This property can be replaced with the boolean attribute `followReferrals` on the LDAPDirectory element.  However, this property was only needed with IdP software up to and including 2.x - and has been ignored by IdP 3.x and 4.x.  
             Actually turning the referral following on might have undesired side-effects (IdP attempting to connect to other trees in the AD forest, potentially failing - and reporting a warning) - unless it is needed for the IdP operation, we recommend leaving it off.
             
-            ![](https://reannz.atlassian.net/wiki/images/icons/grey_arrow_down.png)Click here to expand the instructions to turn followReferrals on...
+            <details markdown="1">
+            <summary>Click here to expand the instructions to turn followReferrals on...</summary>
             
             ```
             <DataConnector id="myLDAP" xsi:type="LDAPDirectory"
@@ -188,6 +191,7 @@ The steps, as per in the [JDBCStorageService documentation](https://shibboleth.a
                 ...
             />
             ```
+            </details>
             
 *   Upgrade SharedToken module:
     *   Download new version:
