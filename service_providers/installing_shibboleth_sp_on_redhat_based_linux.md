@@ -39,9 +39,9 @@ yum install httpd mod_ssl
 **Configuring SELinux to permit httpd-shibd communication**
 
   
-
+> **Note**  
 These steps are required on an RHEL6/CentOS6 system with SELinux running in Enforcing mode - otherwise, `mod_shib` running inside Apache would not be able to communicate with `shibd`.
-
+>
 On RHEL7/CentOS7, the default SELinux policy already permits these actions and the following step is not required.
 
   
