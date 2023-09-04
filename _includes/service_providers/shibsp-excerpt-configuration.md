@@ -3,7 +3,7 @@ Edit `/etc/shibboleth/shibboleth2.xml:`
 
 *   Replace all instances of `sp.example.org` with your hostname.
 
-*   In the [\<Sessions\>](https://wiki.shibboleth.net/confluence/display/SP3/Sessions)element:
+*   In the [\<Sessions\>](https://wiki.shibboleth.net/confluence/display/SP3/Sessions) element:
     *   Make session handler use SSL: set `handlerSSL="true"`  
         **Recommended**: go even further and in the `Sessions` element, change the `handlerURL` from a relative one (`"/Shibboleth.sso"` to an absolute one - `handlerURL="[https://sp.example.org/Shibboleth.sso](https://sp.example.org/Shibboleth.sso)"`. In the URL, use the hostname used in the endpoint URLs registered in the Federation Registry. This makes sure the server is always issuing correct endpoint URLs in outgoing requests, even when users refer to the server with alternative names. This is in particular important when there are multiple hostnames resolving to your server (such as one prefixed with "www." and one without).
     *   We also strongly recommend to configure the SP to use **secure**  cookies that would only be sent over an encrypted (https) connection.  Unless you are also using plain HTTP to access your application in authenticated mode (which is dangerous - risk of cookie theft / session hijacking), change the `cookieProps`  setting to use secure cookies:

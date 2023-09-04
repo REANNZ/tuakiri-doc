@@ -1186,7 +1186,7 @@ To configure SAML2 Persistent NameID (based on [https://wiki.shibboleth.net/conf
 <details markdown="1">
 <summary>Historical eduPersonTargetedID documentation</summary>
 
- For historical purposes, we also include the original documentation on setting up eduPersonTargetedID.  However, as per above, we strongly encourage the migration to SAML2 Persistent NameID.
+For historical purposes, we also include the original documentation on setting up eduPersonTargetedID.  However, as per above, we strongly encourage the migration to SAML2 Persistent NameID.
 
   
 

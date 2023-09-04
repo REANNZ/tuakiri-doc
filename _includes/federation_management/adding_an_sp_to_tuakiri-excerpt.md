@@ -78,7 +78,7 @@ Note that the invite code can only be used once - but once the original recipien
 If your SP should support [ECP](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815538794/ECP) (access via non-browser clients), then also register support for ECP:
 
 *   After your SP registration is complete, log into the Federation Registry again (in the same way as above)
-*   Open the entry for your SP (under Subscriprs -> Service Providers or directly from the Dashboard)
+*   Open the entry for your SP (under Subscribers -> Service Providers or directly from the Dashboard)
 *   Under EndPoints -> Assertion Consumer Service, add a new Endpoint:
     *   Select Binding: `urn:oasis:names:tc:SAML:2.0:bindings:PAOS`
     *   Enter Location: `[https://sp.example.org/Shibboleth.sso/SAML2/ECP](https://sp.example.org/Shibboleth.sso/SAML2/ECP)` (substituting `sp.example.org` with your SP hostname)
