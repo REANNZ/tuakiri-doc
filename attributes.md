@@ -37,9 +37,8 @@ This page provides background information on how to map Tuakiri/AAF attributes t
 
 # Attribute Matrix
 
-|     |     |     |     |
-| --- | --- | --- | --- |
 | Attribute Name (on IdP) | Attritbute Name (on SP) | Required? | Typical source |
+| --- | --- | --- | --- |
 | commonName | cn  | Core | LDAP ("cn" or "displayName") |
 | displayName | displayName | Core | LDAP ("displayName") |
 | email | mail | Core | LDAP ("mail") |

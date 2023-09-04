@@ -1753,9 +1753,8 @@ The software side of the SLO implementation comes enabled out of the box on IdPV
 
 **Step 3**: Register the following additional endpoints as Single Logout Service in your IdP metadata the Federation Registry, with the following bindings names and URL values (substituting your IdP hostname in the URLs):
 
-|     |     |
-| --- | --- |
 | Binding | URL |
+| --- | --- |
 | urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect | https://idp.example.org/idp/profile/SAML2/Redirect/SLO |
 | urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST | https://idp.example.org/idp/profile/SAML2/POST/SLO |
 | urn:oasis:names:tc:SAML:2.0:bindings:SOAP | https://idp.example.org:8443/idp/profile/SAML2/SOAP/SLO |

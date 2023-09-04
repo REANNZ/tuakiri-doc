@@ -73,9 +73,8 @@ Note that there is no TEST eduGAIN federation, so test SPs cannot do full end-to
 
 The metadata URL and signing certificate are:
 
-|     |     |     |
-| --- | --- | --- |
 | Federation name | Tuakiri | Tuakiri TEST |
+| --- | --- | --- |
 | Metadata name | **[tuakiri.ac.nz/edugain-verified](http://tuakiri.ac.nz/edugain-verified)** | **[test.tuakiri.ac.nz/edugain-verified](http://test.tuakiri.ac.nz/edugain-verified)** |
 | Metadata distribution point | [https://directory.tuakiri.ac.nz/metadata/tuakiri-edugain-verified.xml](https://directory.tuakiri.ac.nz/metadata/tuakiri-edugain-verified.xml) | [https://directory.test.tuakiri.ac.nz/metadata/tuakiri-test-edugain-verified.xml](https://directory.test.tuakiri.ac.nz/metadata/tuakiri-test-edugain-verified.xml) |
 | Metadata signing certificate | [https://directory.tuakiri.ac.nz/metadata/tuakiri-metadata-cert.pem](https://directory.tuakiri.ac.nz/metadata/tuakiri-metadata-cert.pem) | [https://directory.test.tuakiri.ac.nz/metadata/tuakiri-test-metadata-cert.pem](https://directory.test.tuakiri.ac.nz/metadata/tuakiri-test-metadata-cert.pem) |

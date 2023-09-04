@@ -31,9 +31,8 @@ By connecting to eduGAIN, your organisation will benefit from:
 
 ### Requirements to connect to eduGAIN (connecting to eduGAIN is optional)
 
-|     |     |     |     |     |
-| --- | --- | --- | --- | --- |
 |     | SAML  <br>Software implementation | Technical  <br>Connection requirements | R&S  <br>Research & Scholarship Entity Category | SIRTFI  <br>Security Incident Response Trust Framework for Federated Identity |
+| --- | --- | --- | --- | --- |
 | IdP | Run the latest version of software | Consume Metadata  <br>Release attributes | Mandatory | Mandatory |
 | SP  | Run the latest version of software | Consume Metadata  <br>Discovery Service  <br>Request Attributes | Recommende for qualifying services | Recommended |
 
@@ -60,9 +59,8 @@ These principles set the rules for collecting, storing, correcting, and disclosi
 New Zealand Identity Providers may disclose personal information to overseas Service Providers, but must satisfy themselves that international Service Providers have taken steps to protect personal information to a similar standard.  
 **Key privacy principles subscribers should consider:**
 
-|     |     |
-| --- | --- |
 | For Identity Providers | For Service Providers |
+| --- | --- |
 | Principle 2 - Collection / Consent | Principle 1 - Purpose of Collection |
 |     | Principle 2 - Collection |
 |     | Principle 9 - Retention Period |
@@ -112,9 +110,8 @@ To connect an IdP to eduGAIN, it is mandatory for Tuakiri Subscribers to assert 
 
 ### Asserting R&S
 
-|     |     |
-| --- | --- |
 | For Identity Providers | For Service Providers |
+| --- | --- |
 | **Asserting R&S means** |     |
 | “I support R&S and release the attributes defined in the R&S specification to Service Providers  <br>that meet the R&S specification requirements.” | “I meet the requirements of the R&S category.  <br>I expect to receive attributes defined in the R&S specification from IdPs indicating they support R&S” |
 | **To connect to eduGAIN all IdPs need to assert the R&S Attribute Bundle.** | **If an SP meets the R&S Registration Criteria ([refeds.org/category/research-and-scholarship](http://refeds.org/category/research-and-scholarship))  <br>then you can expect to receive these attributes from an IdP asserting R&S.** |
@@ -181,9 +178,8 @@ SIRTFI is an important global framework covering good practice for communicating
 
 The SIRTFI framework ([refeds.org/wp-content/uploads/2016/01/Sirtfi-1.0.pdf](http://refeds.org/wp-content/uploads/2016/01/Sirtfi-1.0.pdf)) requires organisations to self-assess against the following areas:
 
-|     |     |     |     |
-| --- | --- | --- | --- |
 | Operational Security  <br>(OS) | Incident Response  <br>(IR) | Traceability  <br>(TR) | Participant Responsibilities  <br>(PR) |
+| --- | --- | --- | --- |
 | Security patches | IR assistance | Retaining records | Acceptable Use Policy (AUP) |
 | Vulnerability management | SIRTFI IR assistance | Audit trails | User acknowledgement of AUP |
 | Threat detection | Collaboration |     |     |

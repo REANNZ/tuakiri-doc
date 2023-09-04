@@ -10,9 +10,8 @@ This page contains recommendations for setting up a Shibboleth SP in the Tuakiri
 
 If you need to provide dual login (both a Tuakiri login option and custom username/password login option) for users, we recommend using the following text and logo to explain to users what the Tuakiri login entails:
 
-|     |
-| --- |
 | ![](https://rapidconnect.tuakiri.ac.nz/REANNZ_Tuakiri_service_234x82.png) |
+| --- |
 | Users from many NZ universities and CRIs can log in  <br>with their username and password from their home  <br>institution using Tuakiri. |
 | **<Log in button>** |
 

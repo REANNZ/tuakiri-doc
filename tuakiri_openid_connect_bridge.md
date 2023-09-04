@@ -55,9 +55,8 @@ You will receive the clientID and secret from us via a secure message.
 
 You will also need to configure your service to request the correct scopes - this way, the bridge would know what claims (corresponding to attributes) to expose to your service.  The scopes and the corresponding claims are: 
 
-|     |     |     |
-| --- | --- | --- |
 | Scopes | Claims | Notes |
+| --- | --- | --- |
 | openid | sub | This scope must be always present in OpenID Connect |
 | phone | phone\_number |     |
 | email | email  <br>email\_verified |     |
