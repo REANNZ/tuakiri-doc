@@ -3,7 +3,7 @@ Normally, the Shibboleth endpoints are accessible only via HTTPS (also configure
 
 By default Shibboleth SP checks that the IP address stays the same - but in this case, the IP address for the http and https traffic appears to be different. The safety mechanisms then suspect the session has been hijacked and terminate the session. This can lead to the SP keeping the user in an [infinite loop](https://wiki.shibboleth.net/confluence/display/SHIB2/NativeSPLooping).
 
-For such applications we recommend setting `consistentAddress="false"` on the [<Sessions>](https://wiki.shibboleth.net/confluence/display/SHIB2/NativeSPSessions) element:
+For such applications we recommend setting `consistentAddress="false"` on the [\<Sessions\>](https://wiki.shibboleth.net/confluence/display/SP3/Sessions) element:
 
 ```
 consistentAddress="false"
