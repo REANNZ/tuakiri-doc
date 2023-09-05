@@ -177,7 +177,7 @@ We will be using **`sp.example.org`** to refer to the hostname of your Service P
     ```
     
 
-*   Download the metadata signing certificate for the federation metadata into `/etc/shibboleth`:
+*   Download the metadata signing certificate for the federation metadata into `/opt/simplesamlphp/cert`:
     *   For Tuakiri, run:
         
         ```
