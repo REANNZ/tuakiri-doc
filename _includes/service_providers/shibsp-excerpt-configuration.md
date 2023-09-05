@@ -57,45 +57,7 @@ Edit `/etc/shibboleth/shibboleth2.xml:`
     
 *   Optionally, customize settings in the `<Errors>` element.  These settings configure the error handling pages that would be rendered to the users should an error occur.  At the very least, we recommend changing the `supportContact` attribute from `root@localhost` to your support service email address.  Documentation for advanced configuration of error handling is available at the [Shibboleth SP Errors documentation page](https://wiki.shibboleth.net/confluence/display/SHIB2/NativeSPErrors#NativeSPErrors-ConfigurationReference).
 
-  
-
-*   Download the metadata signing certificate for the federation metadata into `/etc/shibboleth`:
-    *   For Tuakiri, run:
-        
-        ```
-        wget https://directory.tuakiri.ac.nz/metadata/tuakiri-metadata-cert.pem -O /etc/shibboleth/tuakiri-metadata-cert.pem
-        ```
-        
-    *   or for Tuakiri-TEST, run:
-        
-        ```
-        wget https://directory.test.tuakiri.ac.nz/metadata/tuakiri-test-metadata-cert.pem -O /etc/shibboleth/tuakiri-test-metadata-cert.pem
-        ```
-        
-
-*   Load the federation metadata: add the following (or equivalent) section into `/etc/shibboleth/shibboleth2.xml` just above the sample (commented-out) `MetadataProvider`element.
-    *   For Tuakiri add:
-        
-        ```
-                <MetadataProvider type="XML" url="https://directory.tuakiri.ac.nz/metadata/tuakiri-metadata-signed.xml"
-                        backingFilePath="metadata.tuakiri.xml" reloadInterval="7200" validate="true">
-                    <MetadataFilter type="RequireValidUntil" maxValidityInterval="2419200"/>
-                    <MetadataFilter type="Signature" certificate="tuakiri-metadata-cert.pem" verifyBackup="false"/>
-                </MetadataProvider>
-        ```
-        
-    *   For Tuakiri-TEST, add instead:
-        
-        ```
-                <MetadataProvider type="XML" url="https://directory.test.tuakiri.ac.nz/metadata/tuakiri-test-metadata-signed.xml"
-                        backingFilePath="metadata.tuakiri-test.xml" reloadInterval="7200" validate="true">
-                    <MetadataFilter type="RequireValidUntil" maxValidityInterval="2419200"/>
-                    <MetadataFilter type="Signature" certificate="tuakiri-test-metadata-cert.pem" verifyBackup="false"/>
-                </MetadataProvider>
-        ```
-        
-
-  
+{% include service_providers/shibsp-excerpt-conf-metadata.md %}
 
 *   The Shibboleth SP installation needs to be configured to map attributes received from the IdP - in `/etc/shibboleth/attribute-map.xml`. Change the attribute mapping definition by either editing the file and uncommenting attributes to be accepted, or replace the file with the recommended **Tuakiri** **[attribute-map.xml](https://github.com/REANNZ/Tuakiri-public/raw/master/shibboleth-sp/attribute-map.xml)** **file mapping** **_all_** **Tuakiri attributes** (and optionally comment out those attributes not used by your SP). This can be conveniently done with
     

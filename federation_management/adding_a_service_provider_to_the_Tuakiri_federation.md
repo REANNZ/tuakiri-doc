@@ -28,3 +28,5 @@ This document will cover adding a Service Provider to the Tuakiri or Tuakiri-TES
 For full information (including setup instructions for a new install), please see [Installing Shibboleth SP on RedHat based Linux](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815538788/Installing+Shibboleth+SP+on+RedHat+based+Linux)
 
 The key part of it (relevant for an already setup SP just joining Tuakiri) is:
+
+{% include service_providers/shibsp-excerpt-conf-metadata.md %}
