@@ -5,9 +5,8 @@ id: service_providers/installing_a_simplesamlphp_sp
 # Installing a SimpleSAMLphp SP
 {:.no_toc}
 
-This manual is written for CentOS 7.  Adjust accordingly for other OS distributions.
-
-  
+> **Note**  
+> This manual is written for CentOS 7.  Adjust accordingly for other OS distributions.
 
 [SimpleSAMLphp](http://simplesamlphp.org/) is an alternative SP implementation that can be used in place of Shibboleth SP - and can be particularly suitable on hosted servers without root access or the ability to install full software packages. This page documents the basic install of SimpleSAMLphp Service Provider and the configuration steps necessary to integrate the SP into Tuakiri.
 
@@ -51,9 +50,10 @@ Note that while this page uses Apache as the web server SimpleSAMLphp is deploye
 
 *   Download simpleSAMLphp from [https://simplesamlphp.org/download](https://simplesamlphp.org/download) (1.16.3 as of August 2020)
     
-    As SimpleSAMLphp 1.17.0 and above requires PHP 5.5+, but CentOS 7 only comes with PHP 5.4, the latest version that can be used on CentOS 7 is 1.16.3.
-    
-    For other OS distributions, check PHP version available and the requirements of the target SimpleSAMLphp version.
+    > **Note**  
+    > As SimpleSAMLphp 1.17.0 and above requires PHP 5.5+, but CentOS 7 only comes with PHP 5.4, the latest version that can be used on CentOS 7 is 1.16.3.
+    >
+    > For other OS distributions, check PHP version available and the requirements of the target SimpleSAMLphp version.
     
       
     
@@ -118,7 +118,8 @@ Note that while this page uses Apache as the web server SimpleSAMLphp is deploye
 
 # Configuring SP
 
-We will be using **`sp.example.org`** to refer to the hostname of your Service Provider - please substitute that with the actual hostname of your SP.
+> **Note**  
+> We will be using **`sp.example.org`** to refer to the hostname of your Service Provider - please substitute that with the actual hostname of your SP.
 
 *   Create a certificate (self-signed for 20 years)
     
@@ -227,25 +228,26 @@ We will be using **`sp.example.org`** to refer to the hostname of your Service P
         
     *   Remove/comment-out the `validateFingerprint` entry (see note below for explanation)
         
-        Older versions of SimpleSAMLphp did not support directly referring to a certificate and instead required embedding the certificate fingerprint in the configuration.
-        
-        For historical and archival purposes, the instructions are included here - but can be ignored in favour of using the above `certificates` setting.
-        
-        <details markdown="1">
-        <summary>Click here to expand...</summary>
-        
-        *   Set the 'validateFingerprint' to the fingerprint value of the metadata issuing certificate
-            *   Tuakiri-PROD: `06:85:C5:89:2F:38:83:98:77:1B:A4:5D:58:A4:06:3A:A4:C1:CE:45`
-            *   Tuakiri-TEST: `5E:90:2D:F9:D9:5A:5A:95:BF:58:4D:02:AD:29:35:64:CC:BF:76:45`
-        *   To calculate the fignerprint yourself:
-            *   Download the metadata signing certificate (for Tuakiri-PROD and Tuakiri-TEST, they are linked from the [instructions on registering an SP into Tuakiri](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815539065/Adding+a+Service+Provider+to+the+Tuakiri+Federation))
-            *   and get the fingerprint value with:
-                
-                ```
-                      openssl x509 -fingerprint -noout -in metadata-cert.pem 
-                ```
-                
-        </details>
+        > **Note**  
+        > Older versions of SimpleSAMLphp did not support directly referring to a certificate and instead required embedding the certificate fingerprint in the configuration.
+        >
+        > For historical and archival purposes, the instructions are included here - but can be ignored in favour of using the above `certificates` setting.
+        >
+        > <details markdown="1">
+        > <summary>Click here to expand...</summary>
+        >
+        > *   Set the 'validateFingerprint' to the fingerprint value of the metadata issuing certificate
+        >     *   Tuakiri-PROD: `06:85:C5:89:2F:38:83:98:77:1B:A4:5D:58:A4:06:3A:A4:C1:CE:45`
+        >     *   Tuakiri-TEST: `5E:90:2D:F9:D9:5A:5A:95:BF:58:4D:02:AD:29:35:64:CC:BF:76:45`
+        > *   To calculate the fignerprint yourself:
+        >     *   Download the metadata signing certificate (for Tuakiri-PROD and Tuakiri-TEST, they are linked from the [instructions on registering an SP into Tuakiri](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815539065/Adding+a+Service+Provider+to+the+Tuakiri+Federation))
+        >     *   and get the fingerprint value with:
+        >         
+        >         ```
+        >               openssl x509 -fingerprint -noout -in metadata-cert.pem 
+        >         ```
+        >         
+        > </details>
 
 *   Edit `config/config.php` and in `metadata.sources`, replace the existing `'type'=>'flatfile'` entry with:
     
@@ -273,24 +275,25 @@ We will be using **`sp.example.org`** to refer to the hostname of your Service P
     
     *   (run "crontab -e" and paste the line into the editor)
         
-        Note - invoking curl
-        
-        1.  If you have changed the cron password as instructed above, the line would be different than shown here.
-        2.  If your web server is running with a self-signed HTTPS certificate, you would need to tell curl to either trust the local host certificate, or switch off certificate checking altogether.
-            *   Otherwise, with the `--silent` option, curl would just silently fail)
-            *   So use either
-                
-                ```
-                01 * * * * curl --cacert /etc/pki/tls/certs/localhost.crt --silent "https://sp.example.org/simplesaml/module.php/cron/cron.php?key=secret&tag=hourly" > /dev/null 2>&1
-                ```
-                
-            *   or
-                
-                ```
-                01 * * * * curl --insecure --silent "https://sp.example.org/simplesaml/module.php/cron/cron.php?key=secret&tag=hourly" > /dev/null 2>&1
-                ```
-                
-            *   And wait for a confirmation email to be sent to the technical contact email address after the cronjob runs at HH:01.
+        > **Note**  
+        > Note - invoking curl
+        >
+        > 1.  If you have changed the cron password as instructed above, the line would be different than shown here.
+        > 2.  If your web server is running with a self-signed HTTPS certificate, you would need to tell curl to either trust the local host certificate, or switch off certificate checking altogether.
+        >     *   Otherwise, with the `--silent` option, curl would just silently fail)
+        >     *   So use either
+        >         
+        >         ```
+        >         01 * * * * curl --cacert /etc/pki/tls/certs/localhost.crt --silent "https://sp.example.org/simplesaml/module.php/cron/cron.php?key=secret&tag=hourly" > /dev/null 2>&1
+        >         ```
+        >         
+        >     *   or
+        >         
+        >         ```
+        >         01 * * * * curl --insecure --silent "https://sp.example.org/simplesaml/module.php/cron/cron.php?key=secret&tag=hourly" > /dev/null 2>&1
+        >         ```
+        >         
+        >     *   And wait for a confirmation email to be sent to the technical contact email address after the cronjob runs at HH:01.
         
     *   You can force the job to run immediately by clicking on one of the **`hourly`** link at the bottom of the page (or pasting the cron-job URL into your browser - but the GUI link gives more output).
     *   To see the output from the metadata refresh itself, go to [https://sp.example.org/simplesaml/module.php/metarefresh/fetch.php](https://sp.example.org/simplesaml/module.php/metarefresh/fetch.php)

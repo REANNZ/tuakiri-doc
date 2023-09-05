@@ -23,40 +23,41 @@ Applying lazy sessions (making the Shibboleth sessions visible) to the whole app
 </Location>
 ```
 
-Apache 2.2 deployments
-
-Because the way authentication modules (like `mod_shib`) link into Apache has changed substantially between Apache 2.2 and 2.4, the directives to protect a resource with mod\_shib has changed as well.
-
-The module provides the `ShibCompatWith24` directive to emulate the Apache 2.4 behavior on Apache 2.2 and we recommend using this directive on new deployments (if they are with Apache 2.2) - the configuration will otherwise be ready for Apache 2.4.
-
-However, this directive is **only** available with Apache 2.2 and is **not** available on Apache 2.4, so only use it on actual Apache 2.2 deployments.
-
-<details markdown="1">
-<summary>Click here to expand Apache 2.2-specific code snippets.</summary>
-
-Protecting a resource with eager protection in Apache 2.2:
-
-```
-<Location /secure>
-  AuthType shibboleth
-  ShibCompatWith24 On
-  ShibRequestSetting requireSession 1
-  require shib-session
-</Location>
-```
-
-Protecting a resource with lazy sessions in Apache 2.2:
-
-```
-<Location />
-  AuthType shibboleth
-  ShibCompatWith24 On
-  ShibRequestSetting requireSession 0
-  require shibboleth
-</Location>
-```
-
-</details>
+> **Note**  
+> Apache 2.2 deployments
+>
+> Because the way authentication modules (like `mod_shib`) link into Apache has changed substantially between Apache 2.2 and 2.4, the directives to protect a resource with mod\_shib has changed as well.
+>
+> The module provides the `ShibCompatWith24` directive to emulate the Apache 2.4 behavior on Apache 2.2 and we recommend using this directive on new deployments (if they are with Apache 2.2) - the configuration will otherwise be ready for Apache 2.4.
+>
+> However, this directive is **only** available with Apache 2.2 and is **not** available on Apache 2.4, so only use it on actual Apache 2.2 deployments.
+>
+> <details markdown="1">
+> <summary>Click here to expand Apache 2.2-specific code snippets.</summary>
+>
+> Protecting a resource with eager protection in Apache 2.2:
+>
+> ```
+> <Location /secure>
+>   AuthType shibboleth
+>   ShibCompatWith24 On
+>   ShibRequestSetting requireSession 1
+>   require shib-session
+> </Location>
+> ```
+>
+> Protecting a resource with lazy sessions in Apache 2.2:
+>
+> ```
+> <Location />
+>   AuthType shibboleth
+>   ShibCompatWith24 On
+>   ShibRequestSetting requireSession 0
+>   require shibboleth
+> </Location>
+> ```
+>
+> </details>
   
 
 Note that in this case, to actually trigger a login, the application would have to redirect the user to a Session Initiator - a default one is located at `/Shibboleth.sso/Login`  (see the links below for more details).  

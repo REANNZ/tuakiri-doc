@@ -21,9 +21,10 @@ This document is focused on adding a production Organization to the Tuakiri Fede
 
 The Organization creation process is straightforward, but **can take up to two business days**to get a new Organization approved, be sure to plan for this delay.
 
-In order to register an Organization in the Federation Registry, it is **highly recommended** that you are able to log in with a user account on an IdP or Virtual Home already registered with the federation.
-
-It is possible to add an Organization into the federation without an account but to become the administrator of that Organization or later review the Organization entry or to make any changes, or to approve IdPs and SPs registered under the Organization, you **will** need an account.
+> **Note**  
+> In order to register an Organization in the Federation Registry, it is **highly recommended** that you are able to log in with a user account on an IdP or Virtual Home already registered with the federation.
+>
+> It is possible to add an Organization into the federation without an account but to become the administrator of that Organization or later review the Organization entry or to make any changes, or to approve IdPs and SPs registered under the Organization, you **will** need an account.
 
 Go to the [Tuakiri Federation Registry](https://registry.tuakiri.ac.nz/federationregistry) (or, if registering a development or test Organization to the Tuakiri-TEST Federation, please go to the [Tuakiri-TEST Federation Registry](https://registry.test.tuakiri.ac.nz/federationregistry/) instead).
 

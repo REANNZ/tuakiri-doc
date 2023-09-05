@@ -16,10 +16,11 @@ Go to the respecting Federation Registry URL and:
     *   Submit the details and wait for your IdP to be approved.
     *   After having your IdP registration approved, click on the link sent to you to become an Administrator of the IdP's registration.
         
-        Confirmation email
-        
-        *   It is important to click on the link in the confirmation email, as this makes the recipient of the email an administrator of the Identity Provider being registered in the Tuakiri Federation Registry.
-            *   The link in the confirmation email can only be used once.
-            *   Same applies for the link sent for the Organization registration.
+        > **Note**  
+        > Confirmation email
+        >
+        > *   It is important to click on the link in the confirmation email, as this makes the recipient of the email an administrator of the Identity Provider being registered in the Tuakiri Federation Registry.
+        >     *   The link in the confirmation email can only be used once.
+        >     *   Same applies for the link sent for the Organization registration.
         
 

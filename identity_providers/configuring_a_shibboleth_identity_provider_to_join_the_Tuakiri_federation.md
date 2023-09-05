@@ -83,7 +83,8 @@ For archival purposes, we also keep the original instructions for configuring th
                 </security:Credential>
         ```
         
-        Remember to uncomment the `<security:TrustEngine id="shibboleth.MetadataTrustEngine" xsi:type="security:StaticExplicitKeySignature">` element if it is still commented out (it is commented out in the default configuration).
+        > **Note**  
+        > Remember to uncomment the `<security:TrustEngine id="shibboleth.MetadataTrustEngine" xsi:type="security:StaticExplicitKeySignature">` element if it is still commented out (it is commented out in the default configuration).
         
 </details>
 
@@ -112,16 +113,18 @@ After requesting the attribute filter:
                                   file="/opt/shibboleth-idp/conf/tuakiri-attribute-filter.xml" />
     ```
     
-    Note: if your `$IDP_HOME` is different from `/opt/shibboleth-idp`, change the file path in the above snippet accordingly.
+    > **Note**  
+    > Note: if your `$IDP_HOME` is different from `/opt/shibboleth-idp`, change the file path in the above snippet accordingly.
     
-    If configuring this in Shibboleth IdP 2.1.x, do not use the srv: namespace prefix - i.e., use just:
-    
-    ```
-            <ConfigurationResource xsi:type="resource:FileBackedHttpResource"
-                          url="https://directory.tuakiri.ac.nz/attribute-filter/<institution-domain>.xml"
-                          file="/opt/shibboleth-idp/conf/tuakiri-attribute-filter.xml" />
-    
-    ```
+    > **Note**  
+    > If configuring this in Shibboleth IdP 2.1.x, do not use the srv: namespace prefix - i.e., use just:
+    >
+    > ```
+    >         <ConfigurationResource xsi:type="resource:FileBackedHttpResource"
+    >                       url="https://directory.tuakiri.ac.nz/attribute-filter/<institution-domain>.xml"
+    >                       file="/opt/shibboleth-idp/conf/tuakiri-attribute-filter.xml" />
+    >
+    > ```
     
 *   We also strongly recommend you configure your IdP to periodically reload this file - we recommend at 2 hour intervals. This is documented in detail in the [IdP Install Manual: Reloading configuration section](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815538790/Installing+a+Shibboleth+2.x+IdP#InstallingaShibboleth2.xIdP-Enablingautomaticreload) and [Load Attribute Filter](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815538790/Installing+a+Shibboleth+2.x+IdP#InstallingaShibboleth2.xIdP-LoadAttributeFilter) sections. The simple step is to add the `configurationResourcePollingFrequency="PT2H0M0.000S"` and `configurationResourcePollingRetryAttempts="10"` attributes to the `<srv:Service id="shibboleth.AttributeFilterEngine"`element. If you already have these attributes set for reloading the local configuration file - with a shorter interval, please adjust them accordingly to 2 hours for the remotely loaded attribute filter:
     

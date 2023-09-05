@@ -35,32 +35,33 @@
     wget https://directory.tuakiri.ac.nz/metadata/tuakiri-metadata-cert.pem -O $IDP_HOME/credentials/tuakiri-metadata-cert.pem
     ```
     
-    Tuakiri-TEST specific
-    
-    When building a TEST IdP and registering into Tuakiri-TEST instead, please load instead the Tuakiri-TEST metadata with:
-    
-    ```
-        <MetadataProvider id="TuakiriTESTMetadata"
-                          xsi:type="FileBackedHTTPMetadataProvider"
-                      refreshDelayFactor="0.125"
-                      maxRefreshDelay="PT2H"
-                      backingFile="%{idp.home}/metadata/tuakiri-test-metadata.xml"
-                      metadataURL="https://directory.test.tuakiri.ac.nz/metadata/tuakiri-test-metadata-signed.xml">
-    
-                <MetadataFilter xsi:type="SignatureValidation"
-                        certificateFile="${idp.home}/credentials/tuakiri-test-metadata-cert.pem"
-                        requireSignedRoot="true">
-                </MetadataFilter>
-                <MetadataFilter xsi:type="EntityRoleWhiteList">
-                        <RetainedRole>md:SPSSODescriptor</RetainedRole>
-                </MetadataFilter>
-    
-        </MetadataProvider>
-    ```
-    
-    and fetch the Tuakiri-TEST metadata signing certificate instead:
-    
-    ```
-    wget https://directory.test.tuakiri.ac.nz/metadata/tuakiri-test-metadata-cert.pem -O $IDP_HOME/credentials/tuakiri-test-metadata-cert.pem
-    ```
+    > **Note**  
+    > Tuakiri-TEST specific
+    >
+    > When building a TEST IdP and registering into Tuakiri-TEST instead, please load instead the Tuakiri-TEST metadata with:
+    >
+    > ```
+    >     <MetadataProvider id="TuakiriTESTMetadata"
+    >                       xsi:type="FileBackedHTTPMetadataProvider"
+    >                   refreshDelayFactor="0.125"
+    >                   maxRefreshDelay="PT2H"
+    >                   backingFile="%{idp.home}/metadata/tuakiri-test-metadata.xml"
+    >                   metadataURL="https://directory.test.tuakiri.ac.nz/metadata/tuakiri-test-metadata-signed.xml">
+    >
+    >             <MetadataFilter xsi:type="SignatureValidation"
+    >                     certificateFile="${idp.home}/credentials/tuakiri-test-metadata-cert.pem"
+    >                     requireSignedRoot="true">
+    >             </MetadataFilter>
+    >             <MetadataFilter xsi:type="EntityRoleWhiteList">
+    >                     <RetainedRole>md:SPSSODescriptor</RetainedRole>
+    >             </MetadataFilter>
+    >
+    >     </MetadataProvider>
+    > ```
+    >
+    > and fetch the Tuakiri-TEST metadata signing certificate instead:
+    >
+    > ```
+    > wget https://directory.test.tuakiri.ac.nz/metadata/tuakiri-test-metadata-cert.pem -O $IDP_HOME/credentials/tuakiri-test-metadata-cert.pem
+    > ```
 

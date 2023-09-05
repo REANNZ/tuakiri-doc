@@ -29,7 +29,8 @@ Based on upstream [upgrade instructions](https://wiki.shibboleth.net/confluence/
     service tomcat start
     ```
     
-    Running the installer also rebuild the WAR file and may trigger reloading the web application.  As the web application reload may at times malfunction, we recommend temporarily stopping Tomcat while running the installer.
+    > **Note**  
+    > Running the installer also rebuild the WAR file and may trigger reloading the web application.  As the web application reload may at times malfunction, we recommend temporarily stopping Tomcat while running the installer.
     
     *   Or to run these as a single command with minimal downtime:
         

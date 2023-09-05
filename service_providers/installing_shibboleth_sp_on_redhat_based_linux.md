@@ -103,13 +103,14 @@ Shibboleth SP is available for RedHat and derivative distributions via yum repos
     | Amazon Linux 2 | [https://shibboleth.net/cgi-bin/sp\_repo.cgi?platform=amazonlinux2](https://shibboleth.net/cgi-bin/sp_repo.cgi?platform=amazonlinux2) |
     | Amazon Linux 2023 | [https://shibboleth.net/cgi-bin/sp\_repo.cgi?platform=amazonlinux2023](https://shibboleth.net/cgi-bin/sp_repo.cgi?platform=amazonlinux2023) |
     
-    RHEL 7 RPMs
-    
-    The Shibboleth Project provides binary packages for CentOS systems, but due to licensing restrictions, cannot build packages for RHEL 7 and above - full details are at [https://wiki.shibboleth.net/confluence/display/SP3/RPMInstall](https://wiki.shibboleth.net/confluence/display/SP3/RPMInstall).
-    
-    For RHEL 7 systems, please use the binary-compatible CentOS repository.
-    
-    For RHEL version 8 and above, Rocky Linux is a supported alternative.
+    > **Note**  
+    > RHEL 7 RPMs
+    >
+    > The Shibboleth Project provides binary packages for CentOS systems, but due to licensing restrictions, cannot build packages for RHEL 7 and above - full details are at [https://wiki.shibboleth.net/confluence/display/SP3/RPMInstall](https://wiki.shibboleth.net/confluence/display/SP3/RPMInstall).
+    >
+    > For RHEL 7 systems, please use the binary-compatible CentOS repository.
+    >
+    > For RHEL version 8 and above, Rocky Linux is a supported alternative.
     
 *   Install latest version via `yum`:
     
@@ -208,14 +209,15 @@ Further information is available in the upstream documentation at [https://wiki.
      chkconfig shibd on
     ```
     
-    On RHEL7/CentOS7 using systemd, the commands should properly be:
-    
-    ```
-    systemctl enable httpd shibd
-    systemctl start httpd shibd
-    ```
-    
-    (but the legacy syntax invoking `service` and `chkconfig` still works and is rerouted to systemctl)
+    > **Note**  
+    > On RHEL7/CentOS7 using systemd, the commands should properly be:
+    >
+    > ```
+    > systemctl enable httpd shibd
+    > systemctl start httpd shibd
+    > ```
+    >
+    > (but the legacy syntax invoking `service` and `chkconfig` still works and is rerouted to systemctl)
     
 
 # Testing

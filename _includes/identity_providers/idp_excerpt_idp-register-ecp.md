@@ -1,4 +1,5 @@
-{{ include.indent }}As of version 2.6.0, the Federation Registry automatically registers the ECP endpoint on new registrations, so no explicit action should be required.  To add an ECP endpoint to an existing IdP registration, perform the following:
+{{ include.indent }}> **Note**  
+{{ include.indent }}> As of version 2.6.0, the Federation Registry automatically registers the ECP endpoint on new registrations, so no explicit action should be required.  To add an ECP endpoint to an existing IdP registration, perform the following:
 {{ include.indent }}
 {{ include.indent }}In the Federation Registry registration for your IdP:
 {{ include.indent }}

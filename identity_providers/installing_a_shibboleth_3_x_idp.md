@@ -56,7 +56,8 @@ Your Identity Management System (IdMS) will very likely have most of the attribu
                           eduPersonEntitlement: http://publisher.example.com/contract/GL123
     ```
     
-    This attribute can also be defined as a static attribute. If you would prefer not to modify your IdMS schema and do not have any eduPersonEntitlement values to release, it is OK to initially only define the attribute as static inside the IdP. For more information on this option, please see the notes on [configuring eduPersonEntitlement as a static attribute](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815538813/Installing+a+Shibboleth+3.x+IdP#InstallingaShibboleth3.xIdP-eduPersonEntitlement) further below in this document.
+    > **Note**  
+    > This attribute can also be defined as a static attribute. If you would prefer not to modify your IdMS schema and do not have any eduPersonEntitlement values to release, it is OK to initially only define the attribute as static inside the IdP. For more information on this option, please see the notes on [configuring eduPersonEntitlement as a static attribute](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815538813/Installing+a+Shibboleth+3.x+IdP#InstallingaShibboleth3.xIdP-eduPersonEntitlement) further below in this document.
     
 
 *   **auEduPersonSharedToken**: The auEduPersonSharedToken uniquely identifies users when accessing certain resources - particularly within the _computational grid_ and _data grid_. The values should be **opaque**, **non-reassignable** and **persistent** - and **transferrable** when a user moves between institutions. Even though the values are typically created as hash-values on first use, they MUST be stored and each institution must be ready to accept values users already have when coming from another institution. The attribute can be stored in either the IdMS directly (preferred) or in a database. The attribute definition details are (source: [Attribute Recommendation 2.1 (PDF)](http://www.aaf.edu.au/wp-content/uploads/2012/05/auEduPerson_attribute_vocabulary_v02-1-0.pdf), pages 9-10, with OID updated to correct value):
@@ -72,7 +73,8 @@ Your Identity Management System (IdMS) will very likely have most of the attribu
     
     *   See also the [auEduPerson LDAP Schema Definition](http://www.aaf.edu.au/wp-content/uploads/2012/05/auEduPerson_attribute_vocabulary_v02-1-0.pdf) (pages 45-52) for exact LDAP definition snippets.
         
-        This auEduPersonSharedToken values can also be stored locally in a MySQL database. If you would prefer not to modify your IdMS schema, you can also choose the local database option - at the cost of not having all of your primary identity information in your IdMS. Please see the instructions on [defining the sharedToken attribute](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815538813/Installing+a+Shibboleth+3.x+IdP#InstallingaShibboleth3.xIdP-DefinesharedToken) further below for more detail.
+        > **Note**  
+        > This auEduPersonSharedToken values can also be stored locally in a MySQL database. If you would prefer not to modify your IdMS schema, you can also choose the local database option - at the cost of not having all of your primary identity information in your IdMS. Please see the instructions on [defining the sharedToken attribute](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815538813/Installing+a+Shibboleth+3.x+IdP#InstallingaShibboleth3.xIdP-DefinesharedToken) further below for more detail.
         
 
 *   **eduPersonAssurance**: This attribute represents the [Levels of Assurance](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815539863/Levels+of+Assurance). Either add the attribute into the IdMS directly, or start collecting enough information to synthesize the values later in a _scripted attribute definition_ (like done for Affiliation below).  The attribute definition details are (source: [Attribute Recommendation 2.1 (PDF)](http://www.aaf.edu.au/wp-content/uploads/2012/05/auEduPerson_attribute_vocabulary_v02-1-0.pdf), page 13):
@@ -89,7 +91,8 @@ Your Identity Management System (IdMS) will very likely have most of the attribu
     *   For an overview of the requirements for individual assurance levels, please refer to the AAF documentation at [http://www.aaf.edu.au/technical/levels-of-assurance/](http://www.aaf.edu.au/technical/levels-of-assurance/)
     *   For detailed information on the requirements, please refer to the [NIST SP 800-63-1\* standard](http://csrc.nist.gov/publications/nistpubs/800-63-1/SP-800-63-1.pdf)
         
-        As the federation is moving to centralized management of Levels-Of-Assurance, it is recommend to at this moment only define the attribute as a static attribute releasing the floor-of-trust values. Please see the notes on [configuring eduPersonAssurance as a static attribute](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815538813/Installing+a+Shibboleth+3.x+IdP#InstallingaShibboleth3.xIdP-eduPersonAssurance) further below in this document.
+        > **Note**  
+        > As the federation is moving to centralized management of Levels-Of-Assurance, it is recommend to at this moment only define the attribute as a static attribute releasing the floor-of-trust values. Please see the notes on [configuring eduPersonAssurance as a static attribute](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815538813/Installing+a+Shibboleth+3.x+IdP#InstallingaShibboleth3.xIdP-eduPersonAssurance) further below in this document.
         
 
 # Preliminaries
@@ -123,9 +126,10 @@ A typical default firewall configuration on RedHat systems permits only incoming
         ```
         
 
-Please remember that besides the incoming connections discussed here, the IdP also needs outgoing connections to TCP ports 80 and 443, and also to UDP port 514 for Centralized logging (more details below)
-
-Outgoing connections are open in the default configuration of a local RHEL/CentOS firewall, but please make sure the perimeter firewall permits these connections too.
+> **Note**  
+> Please remember that besides the incoming connections discussed here, the IdP also needs outgoing connections to TCP ports 80 and 443, and also to UDP port 514 for Centralized logging (more details below)
+>
+> Outgoing connections are open in the default configuration of a local RHEL/CentOS firewall, but please make sure the perimeter firewall permits these connections too.
 
   
 
@@ -133,9 +137,10 @@ Outgoing connections are open in the default configuration of a local RHEL/CentO
 
 We assume a standard install of either CentOS or RHEL, version 7. The IdP web application (as of version 3) needs Tomcat at least at version 7 (or the upstream instructions recommend Jetty). Also, the IdP java binaries are compiled in class format 51.0 and need Java7.  However, given that Java7 is being phased out, the IdP works well with Java8, and the compatibility issues (see the Scripted Attributes section below) are easy to resolve, we recommend installing Java8 on platforms where it's available (which does include CentOS/RHEL 7).
 
-There are known issues with LDAP on Java versions higher then Java8.  We recommend running a 3.x IdP with Java8.  (In IdP 4.x, which requires Java 11, [this issue is taken care of](https://wiki.shibboleth.net/confluence/display/IDP4/LDAPonJava)).
-
-If you need to run a 3.x IdP with Java version higher then Java8, please see the [upstream documentation](https://wiki.shibboleth.net/confluence/display/IDP30/LDAPonJava%3E8).
+> **Note**  
+> There are known issues with LDAP on Java versions higher then Java8.  We recommend running a 3.x IdP with Java8.  (In IdP 4.x, which requires Java 11, [this issue is taken care of](https://wiki.shibboleth.net/confluence/display/IDP4/LDAPonJava)).
+>
+> If you need to run a 3.x IdP with Java version higher then Java8, please see the [upstream documentation](https://wiki.shibboleth.net/confluence/display/IDP30/LDAPonJava%3E8).
 
   
 
@@ -175,7 +180,8 @@ If you need to run a 3.x IdP with Java version higher then Java8, please see the
     yum install tomcat
     ```
     
-    Historically, this document was recommending to install Tomcat7 from JPackage.  As this document is being updated for CentOS/RHEL 7, and the default tomcat on these systems is version 7, this is no longer needed.  (Also, the JPackage repository appears to be no longer maintained).  And even for CentOS/RHEL 6, EPEL now provides Tomcat7. The original instructions are at [Install Tomcat 7 on CentOS 6](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815539013/Install+Tomcat+7+on+CentOS+6)
+    > **Note**  
+    > Historically, this document was recommending to install Tomcat7 from JPackage.  As this document is being updated for CentOS/RHEL 7, and the default tomcat on these systems is version 7, this is no longer needed.  (Also, the JPackage repository appears to be no longer maintained).  And even for CentOS/RHEL 6, EPEL now provides Tomcat7. The original instructions are at [Install Tomcat 7 on CentOS 6](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815539013/Install+Tomcat+7+on+CentOS+6)
     
 
 ## Local configuration
@@ -216,17 +222,18 @@ If you need to run a 3.x IdP with Java version higher then Java8, please see the
         ```
         
 
-SELinux
-
-RHEL/CentOS distributions (both 6 and 7) come with SELinux.
-
-SELinux improves the security of the system and we recommend leaving SELinux turned on.
-
-Up until late 2017, Tomcat was running in the unconfined context and the IdP web application did not directly benefit from SELinux, but even so, at least Apache interactions were controlled by SELinux.  And the only SELinux-specific step this manual had to cover was permitting the Apache to LDAP communication needed for ECP.
-
-As of late 2017 (RHEL/CentOS 7.4), Tomcat runs in a confined domain.  This has serious impact on operating an IdP - as the IdP web application running inside Tomcat now runs under SELinux restrictions, it now needs all actions explicitly permitted.
-
-We still recommend running with SELinux in enforcing mode.  A new section ([Configuring SELinux for Tomcat](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815538813/Installing+a+Shibboleth+3.x+IdP#InstallingaShibboleth3.xIdP-ConfiguringSELinuxforTomcat)) further below details the steps needed.  Please follow the instructions carefully - otherwise, the IdP would fail to start.
+> **Note**  
+> SELinux
+>
+> RHEL/CentOS distributions (both 6 and 7) come with SELinux.
+>
+> SELinux improves the security of the system and we recommend leaving SELinux turned on.
+>
+> Up until late 2017, Tomcat was running in the unconfined context and the IdP web application did not directly benefit from SELinux, but even so, at least Apache interactions were controlled by SELinux.  And the only SELinux-specific step this manual had to cover was permitting the Apache to LDAP communication needed for ECP.
+>
+> As of late 2017 (RHEL/CentOS 7.4), Tomcat runs in a confined domain.  This has serious impact on operating an IdP - as the IdP web application running inside Tomcat now runs under SELinux restrictions, it now needs all actions explicitly permitted.
+>
+> We still recommend running with SELinux in enforcing mode.  A new section ([Configuring SELinux for Tomcat](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815538813/Installing+a+Shibboleth+3.x+IdP#InstallingaShibboleth3.xIdP-ConfiguringSELinuxforTomcat)) further below details the steps needed.  Please follow the instructions carefully - otherwise, the IdP would fail to start.
 
   
 
@@ -332,14 +339,15 @@ Your IdP **entityId** will be `https://idp.institution.domain.ac.nz/idp/shibbole
             
     *   This installs the Shibboleth IdP web application into `/opt/shibboleth-idp/war/idp.war`
 
-About re-running the installer
-
-In general, it should not be necessary to re-run the installer.
-
-*   Re-running the installer would overwrite system files under $IDP\_HOME/system, but would preserve configuration files under $IDP\_HOME/conf
-*   But the installer would only be re-run to perform an upgrade - running the installer from a newer version **distribution** directory would overwrite system files in the **installation** directory `$IDP_HOME`, but would preserve the (assuming compatible) configuration files in `$IDP_HOME/conf`.
-
-To just rebuild the WAR file, run `$IDP_HOME/bin/build.sh` instead.
+> **Note**  
+> About re-running the installer
+>
+> In general, it should not be necessary to re-run the installer.
+>
+> *   Re-running the installer would overwrite system files under $IDP\_HOME/system, but would preserve configuration files under $IDP\_HOME/conf
+> *   But the installer would only be re-run to perform an upgrade - running the installer from a newer version **distribution** directory would overwrite system files in the **installation** directory `$IDP_HOME`, but would preserve the (assuming compatible) configuration files in `$IDP_HOME/conf`.
+>
+> To just rebuild the WAR file, run `$IDP_HOME/bin/build.sh` instead.
 
   
 
@@ -361,7 +369,8 @@ To just rebuild the WAR file, run `$IDP_HOME/bin/build.sh` instead.
     ```
     
 
-Historically, the installation process involved deploying XML parser libraries as _endorsed_ libraries in Tomcat. Since IdP 2.4.3, this is no longer needed and the step has been removed.
+> **Note**  
+> Historically, the installation process involved deploying XML parser libraries as _endorsed_ libraries in Tomcat. Since IdP 2.4.3, this is no longer needed and the step has been removed.
 
   
 
@@ -369,7 +378,8 @@ Historically, the installation process involved deploying XML parser libraries a
     
     Note
     
-    Tomcat7 already has this connector defined, but in an insecure way that would be opening the connector to outside connections as well. Comment the original definition out and instead put this definition in.
+    > **Note**  
+    > Tomcat7 already has this connector defined, but in an insecure way that would be opening the connector to outside connections as well. Comment the original definition out and instead put this definition in.
     
     ```
        <Connector port="8009" address="127.0.0.1"
@@ -397,9 +407,10 @@ Historically, the installation process involved deploying XML parser libraries a
         JAVA_OPTS="-Xms768m -Xmx1536m"
         ```
         
-        Historically, due to a [bug](http://www.jpackage.org/bugzilla/show_bug.cgi?id=377) in JPackage bundle of Tomcat7, settings in `/etc/tomcat7/tomcat7.conf` were ignored and we therefore recommended putting all Tomcat settings into `/etc/sysconfig/tomcat7`.
-        
-        With RHEL/CentOS7 Tomcat being managed by systemd, this bug (in startup script interaction) is now irrelevant.  However, we still recommend putting the memory settings into `/etc/sysconfig/tomcat`, as it is compatible with Tomcat per-instance configuration.
+        > **Note**  
+        > Historically, due to a [bug](http://www.jpackage.org/bugzilla/show_bug.cgi?id=377) in JPackage bundle of Tomcat7, settings in `/etc/tomcat7/tomcat7.conf` were ignored and we therefore recommended putting all Tomcat settings into `/etc/sysconfig/tomcat7`.
+        >
+        > With RHEL/CentOS7 Tomcat being managed by systemd, this bug (in startup script interaction) is now irrelevant.  However, we still recommend putting the memory settings into `/etc/sysconfig/tomcat`, as it is compatible with Tomcat per-instance configuration.
         
 *   The IdPV3 code relies on the web application container having support for JSTL, but Tomcat7 comes packaged without JSTL.  Therefore, install JSTL (version 1.2.1, API and implementation jars) into `/usr/share/tomcat/lib`: download from [search.maven.org/remotecontent?filepath=javax/servlet/jsp/jstl/javax.servlet.jsp.jstl-api/1.2.1/javax.servlet.jsp.jstl-api-1.2.1.jar](http://search.maven.org/remotecontent?filepath=javax/servlet/jsp/jstl/javax.servlet.jsp.jstl-api/1.2.1/javax.servlet.jsp.jstl-api-1.2.1.jar) and [search.maven.org/remotecontent?filepath=org/glassfish/web/javax.servlet.jsp.jstl/1.2.1/javax.servlet.jsp.jstl-1.2.1.jar](http://search.maven.org/remotecontent?filepath=org/glassfish/web/javax.servlet.jsp.jstl/1.2.1/javax.servlet.jsp.jstl-1.2.1.jar) (credits: [http://stackoverflow.com/tags/jstl/info](http://stackoverflow.com/tags/jstl/info)):
     
@@ -415,7 +426,8 @@ Apache needs to be configured to:
 
 *   Listen on ports 443 and 8443 - this is done via separate configuration files idp.conf and idp8443.conf (bypassing parts of the default configuration in ssl.conf)
 
-Note: historically, this guide used to recommend to disable SSL session cache to work around a [bug](https://wiki.shibboleth.net/confluence/display/SHIB2/NativeSPTroubleshootingCommonErrors#NativeSPTroubleshootingCommonErrors-error:1408F06B:SSLroutines:SSL3_GET_RECORD:baddecompression) - while the bug was never fully tracked, the current version of OpenSSL/ShibbolethSP/httpd/mod\_ssl no longer demonstrate this bug, so for performance reasons, we recommend keep SSL session caching turned on. Also, as the bug was in the back-channel communication which is rarely used with SAML2, even the impact in the unlikely case the bug reoccurs should be quite minimal.
+> **Note**  
+> Note: historically, this guide used to recommend to disable SSL session cache to work around a [bug](https://wiki.shibboleth.net/confluence/display/SHIB2/NativeSPTroubleshootingCommonErrors#NativeSPTroubleshootingCommonErrors-error:1408F06B:SSLroutines:SSL3_GET_RECORD:baddecompression) - while the bug was never fully tracked, the current version of OpenSSL/ShibbolethSP/httpd/mod\_ssl no longer demonstrate this bug, so for performance reasons, we recommend keep SSL session caching turned on. Also, as the bug was in the back-channel communication which is rarely used with SAML2, even the impact in the unlikely case the bug reoccurs should be quite minimal.
 
   
 
@@ -432,9 +444,10 @@ Note: historically, this guide used to recommend to disable SSL session cache to
     *   In both files, replace all occurrences of idp.example.org with the hostname of your IdP
     *   In `idp.conf`, configure the SSL VirtualHost to use the commercial certificate issued for your IdP
         
-        Apache 2.4.8+ marks `SSLCertificateChainFile` as deprecated.  The recommended approach on Apache 2.4.8+ for inserting intermediate CA certificates is to append them to the server certificate specified with `SSLCertificateFile` - [sorted from leaf to root](http://httpd.apache.org/docs/2.4/mod/mod_ssl.html#sslcertificatefile).
-        
-        However, as RHEL/CentOS7 only comes with Apache 2.4.6 (as of August 2016), the recommended approach on these systems is to still use a separate CA certificate chain file with the `SSLCertificateChainFile` directive.
+        > **Note**  
+        > Apache 2.4.8+ marks `SSLCertificateChainFile` as deprecated.  The recommended approach on Apache 2.4.8+ for inserting intermediate CA certificates is to append them to the server certificate specified with `SSLCertificateFile` - [sorted from leaf to root](http://httpd.apache.org/docs/2.4/mod/mod_ssl.html#sslcertificatefile).
+        >
+        > However, as RHEL/CentOS7 only comes with Apache 2.4.6 (as of August 2016), the recommended approach on these systems is to still use a separate CA certificate chain file with the `SSLCertificateChainFile` directive.
         
     *   Note that idp.conf is configured to disable all access to `<Location /idp/Authn/RemoteUser>` - all users will be authenticating via the Tomcat login screen.
     *   Note that idp.conf (as of January 2018) defaults to only allowing TLS 1.2 (dropping support for TLS 1.0 and TLS 1.1).
@@ -442,14 +455,15 @@ Note: historically, this guide used to recommend to disable SSL session cache to
         *   If you need support for these clients, comment out the first `SSLProtocol` line and uncomment the second `SSLProtocol` line
     *   Note that idp8443.conf is using the back-channel certificate generated when deploying Shibboleth IdP, stored in `/opt/shibboleth-idp/credentials`
 
-*   Earlier versions of `idp.conf` (between January and December 2018) were enabling [HSTS](https://en.wikipedia.org/wiki/HTTP_Strict_Transport_Security) by default - instructing browsers to remember to only accept secure connections to the IdP
-    
-    *   Browser would automatically rewrite all plain HTTP connections to the IdP to HTTPS
-    *   If the browser detects a certificate error, it will only display an error message and will NOT offer the option to add an exception.
-    *   This is to protect users from being tricked into accepting a malicious site pretending to be the IdP
-    
-    Since IdP 3.4.0, the IdP provides this functionality (setting the Strict-Transport-Security header) and so the HSTS setting has been retracted from the `idp.conf` template - and we instead recommend to use the functionality built into the IdP application.
-    
+> **Note**  
+> Earlier versions of `idp.conf` (between January and December 2018) were enabling [HSTS](https://en.wikipedia.org/wiki/HTTP_Strict_Transport_Security) by default - instructing browsers to remember to only accept secure connections to the IdP
+>
+> *   Browser would automatically rewrite all plain HTTP connections to the IdP to HTTPS
+> *   If the browser detects a certificate error, it will only display an error message and will NOT offer the option to add an exception.
+> *   This is to protect users from being tricked into accepting a malicious site pretending to be the IdP
+>
+> Since IdP 3.4.0, the IdP provides this functionality (setting the Strict-Transport-Security header) and so the HSTS setting has been retracted from the `idp.conf` template - and we instead recommend to use the functionality built into the IdP application.
+
 *   Make a backup of your ssl.conf
     
     ```
@@ -463,20 +477,23 @@ Note: historically, this guide used to recommend to disable SSL session cache to
 
 ## Basic Shibboleth Configuration
 
-Earlier documentation was instructing to create backup copies of all configuration file before modifying them - to easily identify locally made changes. This is no longer necessary since the version 3 installer creates pristine copies of all configuration files under `/opt/shibboleth-idp/dist/conf`
+> **Note**  
+> Earlier documentation was instructing to create backup copies of all configuration file before modifying them - to easily identify locally made changes. This is no longer necessary since the version 3 installer creates pristine copies of all configuration files under `/opt/shibboleth-idp/dist/conf`
 
-Earlier documentation was instructing to modify the generated metadata and fix the scope. This is no longer necessary because:
-
-*   The installer now specifically asks for scope (instead of just guessing it from the hostname), so the generated metadata should contain the correct scope
-*   The generated local IdP metadata is no longer used by the IdP directly.
-
-However, the contents of `$IDP_HOME/metadata/idp-metadata.xml` is served by the IdP at the URL corresponding to the default IdP entityID - `https://idp.institution.ac.nz/idp/shibboleth`  
-
-If this URL is used anywhere to obtain the IdP metadata (we recommend against this practice, as it is insecure and fragile, but this gets used in some bilateral setups), this file will have to be kept up-to-date with the actual IdP metadata.  However, the installer should initially create it with the correct contents.
+> **Note**  
+> Earlier documentation was instructing to modify the generated metadata and fix the scope. This is no longer necessary because:
+>
+> *   The installer now specifically asks for scope (instead of just guessing it from the hostname), so the generated metadata should contain the correct scope
+> *   The generated local IdP metadata is no longer used by the IdP directly.
+>
+> However, the contents of `$IDP_HOME/metadata/idp-metadata.xml` is served by the IdP at the URL corresponding to the default IdP entityID - `https://idp.institution.ac.nz/idp/shibboleth`  
+>
+> If this URL is used anywhere to obtain the IdP metadata (we recommend against this practice, as it is insecure and fragile, but this gets used in some bilateral setups), this file will have to be kept up-to-date with the actual IdP metadata.  However, the installer should initially create it with the correct contents.
 
 {% include identity_providers/idp_excerpt_idp3-load-metadata.md %}
 
-Please note that historically (in IdP 2.x), the IdP was  also loading its own metadata.  This is no longer needed and the `$IDP_HOME/metadata/idp-metadata.xml` file now exists only for informative purposes.
+> **Note**  
+> Please note that historically (in IdP 2.x), the IdP was  also loading its own metadata.  This is no longer needed and the `$IDP_HOME/metadata/idp-metadata.xml` file now exists only for informative purposes.
 
   
 
@@ -547,13 +564,14 @@ idp.authn.LDAP.userFilter                       = (sAMAccountName={user})
 # deploy local root CA certificate as $IDP_HOME/credentials/ldap-server.crt
 ```
 
-The default behavior for LDAP is to perform a case-insensitive search for username.  And the default behavior for the IdP is to accept the username in exactly the form as entered by the user.  Which can lead to inconsistent behavior of the IdP if the user changes the form how the username is entered (lower-case/upper-case/mixed-case...)
-
-Force the IdP to normalize to lower-case by setting `shibboleth.authn.Password.Lowercase` to `TRUE` in `/opt/shibboleth-idp/conf/authn/password-authn-config.xml`:
-
-```
+> **Note**  
+> The default behavior for LDAP is to perform a case-insensitive search for username.  And the default behavior for the IdP is to accept the username in exactly the form as entered by the user.  Which can lead to inconsistent behavior of the IdP if the user changes the form how the username is entered (lower-case/upper-case/mixed-case...)
+>
+> Force the IdP to normalize to lower-case by setting `shibboleth.authn.Password.Lowercase` to `TRUE` in `/opt/shibboleth-idp/conf/authn/password-authn-config.xml`:
+>
+> ```
     <util:constant id="shibboleth.authn.Password.Lowercase" static-field="java.lang.Boolean.TRUE"/>
-```
+> ```
 
 ## Link your Attribute Resolver to your LDAP server
 
@@ -578,11 +596,12 @@ However, it may be necessary to make some customizations:
     <LDAPProperty name="java.naming.ldap.attributes.binary" value="objectGUID objectSid msExchMailboxGuid msExchMailboxSecurityDescriptor mSMQDigests mSMQSignCertificates"/>
     ```
     
-    Earlier versions of the IdP were using the `urn:mace:shibboleth:2.0:resolver:dc` namespace for connector definitions, and this type definition required a strict order of elements - e.g., the `dc:LDAPProperty` had to come after `FilterTemplate`.
-    
-    As of IdP 3.3.0, the definitions moved into the main resolver namespace, `urn:mace:shibboleth:2.0:resolver` - and at the same time, switched to the convention of not using explicit XML namespace prefixes (instead relying on the default namespace being set to this single namespace).  This new type definition permits arbitrary order of the elements.
-    
-    The examples here have been updated to the new syntax.
+    > **Note**  
+    > Earlier versions of the IdP were using the `urn:mace:shibboleth:2.0:resolver:dc` namespace for connector definitions, and this type definition required a strict order of elements - e.g., the `dc:LDAPProperty` had to come after `FilterTemplate`.
+    >
+    > As of IdP 3.3.0, the definitions moved into the main resolver namespace, `urn:mace:shibboleth:2.0:resolver` - and at the same time, switched to the convention of not using explicit XML namespace prefixes (instead relying on the default namespace being set to this single namespace).  This new type definition permits arbitrary order of the elements.
+    >
+    > The examples here have been updated to the new syntax.
     
 
 For completeness, the definition to copy from `attribute-resolver-ldap.xml` is:
@@ -621,45 +640,47 @@ IdPV3 provides two additional files that can be used as an example, `attribute-r
 
 Edit the file and implement the following changes:
 
-Earlier versions of the IdP were using several namespaces under `urn:mace:shibboleth:2.0:resolver` (`urn:mace:shibboleth:2.0:resolver:ad`, `urn:mace:shibboleth:2.0:resolver:dc`, and also neighbouring `urn:mace:shibboleth:2.0:attribute:encoder`).
+> **Note**  
+> Earlier versions of the IdP were using several namespaces under `urn:mace:shibboleth:2.0:resolver` (`urn:mace:shibboleth:2.0:resolver:ad`, `urn:mace:shibboleth:2.0:resolver:dc`, and also neighbouring `urn:mace:shibboleth:2.0:attribute:encoder`).
+>
+> As of IdP 3.3.0, the definitions moved into the main resolver namespace, `urn:mace:shibboleth:2.0:resolver` - and at the same time, switched to the convention of not using explicit XML namespace prefixes (instead relying on the default namespace being set to this single namespace).  This new type definition permits arbitrary order of the elements.
+>
+> This also applies to the XSI types - these are now also specified without prefixes, and some have had their name changed (namely: `ad:Script` changed to `ScriptedAttribute`).
+>
+> One exception is the `SharedToken` connector, which is a custom extension to the IdP and is defined in a separate namespace - the recommended sharedToken definition now uses the `st:` prefix for its custom namespace.
+>
+> All other attribute definitions in this section here have been updated to the new syntax.
 
-As of IdP 3.3.0, the definitions moved into the main resolver namespace, `urn:mace:shibboleth:2.0:resolver` - and at the same time, switched to the convention of not using explicit XML namespace prefixes (instead relying on the default namespace being set to this single namespace).  This new type definition permits arbitrary order of the elements.
-
-This also applies to the XSI types - these are now also specified without prefixes, and some have had their name changed (namely: `ad:Script` changed to `ScriptedAttribute`).
-
-One exception is the `SharedToken` connector, which is a custom extension to the IdP and is defined in a separate namespace - the recommended sharedToken definition now uses the `st:` prefix for its custom namespace.
-
-All other attribute definitions in this section here have been updated to the new syntax.
-
-IdP 3.4.0 replaces **Dependencies** of Attribute Definitions and Data Connectors on other Attribute Definitions and Data Connectors with instead declaring them as **inputs** - and also shifts the `sourceAttributeID` from the attribute definition into the input specification.  This has strong implications only for very specific edge cases (where multiple dependencies produced attributes of the same name) - and otherwise is a syntactic change only.
-
-The syntactic change is trivial: as per the [upstream instructions](https://wiki.shibboleth.net/confluence/display/IDP30/Dependency#Dependency-deprecated):
-
-*   replace a `Dependency` referencing an attributes with an `InputAttributeDefinition` referencing the same attribute.
-*   replace a `Dependency` referencing a data connector in a definition with a `sourceAttributeID` with an `InputDataConnector` referencing the same connector and selecting the attribute from the `sourceAttributeID` definition:
-    
-    *   e.g., turn
-        
-        ```
-            <AttributeDefinition id="commonName" xsi:type="Simple" sourceAttributeID="cn">
-                <Dependency ref="myLDAP" />
-        ```
-        
-    *   into
-        
-        ```
-            <AttributeDefinition id="commonName" xsi:type="Simple">
-                <InputDataConnector ref="myLDAP" attributeNames="cn" />
-        ```
-        
-*   replace a `Dependency` referencing a data connector in a definition with no `sourceAttributeID` with an `InputDataConnector` referencing the same connector and selecting all attributes:
-    
-    ```
-    <InputDataConnector ref="myLDAP" allAttributes="true" />
-    ```
-    
-
-This documentation has already been updated to this new syntax - but existing attribute resolver configuration files will need to be transformed accordingly.  Version 3.4 will work with legacy configuration, but would produce deprecation warnings.  And support for legacy configuration will be removed in V4.
+> **Note**  
+> IdP 3.4.0 replaces **Dependencies** of Attribute Definitions and Data Connectors on other Attribute Definitions and Data Connectors with instead declaring them as **inputs** - and also shifts the `sourceAttributeID` from the attribute definition into the input specification.  This has strong implications only for very specific edge cases (where multiple dependencies produced attributes of the same name) - and otherwise is a syntactic change only.
+>
+> The syntactic change is trivial: as per the [upstream instructions](https://wiki.shibboleth.net/confluence/display/IDP30/Dependency#Dependency-deprecated):
+>
+> *   replace a `Dependency` referencing an attributes with an `InputAttributeDefinition` referencing the same attribute.
+> *   replace a `Dependency` referencing a data connector in a definition with a `sourceAttributeID` with an `InputDataConnector` referencing the same connector and selecting the attribute from the `sourceAttributeID` definition:
+>     
+>     *   e.g., turn
+>         
+>         ```
+>             <AttributeDefinition id="commonName" xsi:type="Simple" sourceAttributeID="cn">
+>                 <Dependency ref="myLDAP" />
+>         ```
+>         
+>     *   into
+>         
+>         ```
+>             <AttributeDefinition id="commonName" xsi:type="Simple">
+>                 <InputDataConnector ref="myLDAP" attributeNames="cn" />
+>         ```
+>         
+> *   replace a `Dependency` referencing a data connector in a definition with no `sourceAttributeID` with an `InputDataConnector` referencing the same connector and selecting all attributes:
+>     
+>     ```
+>     <InputDataConnector ref="myLDAP" allAttributes="true" />
+>     ```
+>     
+>
+> This documentation has already been updated to this new syntax - but existing attribute resolver configuration files will need to be transformed accordingly.  Version 3.4 will work with legacy configuration, but would produce deprecation warnings.  And support for legacy configuration will be removed in V4.
 
   
 
@@ -699,19 +720,20 @@ eduPersonScopedAffiliation
     For LDAP systems other than Active Directory, define these attributes with the sources as applicable to your deployment.  
       
     
-    CommonName definition
-    
-    The `attribute-resolver-full.xml` file is unfortunately missing a sample definition of the commonName attribute.  Please use the following snippet - or customize as necessary:
-    
-    ```
-        <AttributeDefinition id="commonName" xsi:type="Simple" >
-            <InputDataConnector ref="myLDAP" attributeNames="cn" />
-            <AttributeEncoder xsi:type="SAML1String" name="urn:mace:dir:attribute-def:cn" />
-            <AttributeEncoder xsi:type="SAML2String" name="urn:oid:2.5.4.3" friendlyName="cn" />
-        </AttributeDefinition>
-    ```
-    
-    The key part to preserver is the attribute `id` (`"commonName"`) and the encoders (SAML1 and SAML2 attribute names).  The `sourceAttributeID`, `Dependency` and  even `type` can be customized as needed...
+    > **Note**  
+    > CommonName definition
+    >
+    > The `attribute-resolver-full.xml` file is unfortunately missing a sample definition of the commonName attribute.  Please use the following snippet - or customize as necessary:
+    >
+    > ```
+    >     <AttributeDefinition id="commonName" xsi:type="Simple" >
+    >         <InputDataConnector ref="myLDAP" attributeNames="cn" />
+    >         <AttributeEncoder xsi:type="SAML1String" name="urn:mace:dir:attribute-def:cn" />
+    >         <AttributeEncoder xsi:type="SAML2String" name="urn:oid:2.5.4.3" friendlyName="cn" />
+    >     </AttributeDefinition>
+    > ```
+    >
+    > The key part to preserver is the attribute `id` (`"commonName"`) and the encoders (SAML1 and SAML2 attribute names).  The `sourceAttributeID`, `Dependency` and  even `type` can be customized as needed...
     
 
 *   Define `eduPersonPrincipalName` define based on the attribute containing the username (typically, `uid` or `cn` or `sAMAccountName`) with your institution's _scope_ (in the form **_institution.domain.ac.nz_**).  IdPV3 allows setting the scope by expanding the `%{idp.scope}` property, so set the scope with:
@@ -892,17 +914,18 @@ The shared token value **MUST** be stored in either the LDAP server itself (pref
 
 In this section, some instructions are specific to storing the shared token values in an LDAP server, some are specific to storing the values in a local MySQL server - please choose accordingly.
 
-The arcs-shib-ext module versions 1.5.x and older are only compatible with IdP v2.x - and are not compatible with IdP V3.
-
-The most recent version is 1.9.1 (as of July 2020) and this version is compatible only with IdP 3.4.0.
-
-For IdP 3.2.x and 3.3.x, use version 1.8.4.
-
-Please note that earlier versions (up to and including 1.8.2) break with Tomcat 7.0.66+, so to avoid issues with Tomcat updates (as they appear in the RHEL7 update stream as of January 2017), please update the plugin to the latest version suitable for your IdP version).
-
-Older versions compatible with older 3.x releases are 1.7.x for IdP 3.1.x+ and 1.6.x for IdP 3.0.x
-
-Please see [https://github.com/REANNZ/arcs-shibext/releases](https://github.com/REANNZ/arcs-shibext/releases) for up-to-date information.
+> **Note**  
+> The arcs-shib-ext module versions 1.5.x and older are only compatible with IdP v2.x - and are not compatible with IdP V3.
+>
+> The most recent version is 1.9.1 (as of July 2020) and this version is compatible only with IdP 3.4.0.
+>
+> For IdP 3.2.x and 3.3.x, use version 1.8.4.
+>
+> Please note that earlier versions (up to and including 1.8.2) break with Tomcat 7.0.66+, so to avoid issues with Tomcat updates (as they appear in the RHEL7 update stream as of January 2017), please update the plugin to the latest version suitable for your IdP version).
+>
+> Older versions compatible with older 3.x releases are 1.7.x for IdP 3.1.x+ and 1.6.x for IdP 3.0.x
+>
+> Please see [https://github.com/REANNZ/arcs-shibext/releases](https://github.com/REANNZ/arcs-shibext/releases) for up-to-date information.
 
   
 
@@ -979,7 +1002,8 @@ Please see [https://github.com/REANNZ/arcs-shibext/releases](https://github.com/
         *   If storing the sharedToken value in an attribute other than `auEduPersonSharedToken`, set this name in `storedAttributeName`.
         *   Set the **ldapConnectorId** attribute to the ID of the connector (this is required to identify it among the dependencies).
             
-            Please note that when storing the sharedToken values in LDAP, the sharedToken module would be accessing the LDAP server from the connector specified in the dependency - so the same LDAP server as used for retrieving all other attributes, **with the same credentials**. Therefore, in order for this module to succeed in storing the generated sharedToken values, the account specified in the LDAP connector needs to have the permissions to write into the `auEduPersonSharedToken` attribute (or the attribute set in `storedAttributeName`).
+            > **Note**  
+            > Please note that when storing the sharedToken values in LDAP, the sharedToken module would be accessing the LDAP server from the connector specified in the dependency - so the same LDAP server as used for retrieving all other attributes, **with the same credentials**. Therefore, in order for this module to succeed in storing the generated sharedToken values, the account specified in the LDAP connector needs to have the permissions to write into the `auEduPersonSharedToken` attribute (or the attribute set in `storedAttributeName`).
             
     *   The connector definition is:
         
@@ -1024,9 +1048,10 @@ Please see [https://github.com/REANNZ/arcs-shibext/releases](https://github.com/
 *   Note also that the SharedToken value depends on the IdP entityID - which could be picked up from the environment, but is better set in the configuration.
 *   Database reconnection
     
-    Earlier versions of this documentation were instructing to adjust the JdbcURL to set the `"autoReconnect=true"` option and the `wait_timeout` session variable.
-    
-    Version 1.8.2 of arcs-shib-ext, released on August 1st, 2016, introduces settings for configuring connection testing on checkout in the DataSource.  These are now included in the example above - and with these settings in place, it is no longer necessary to set the increased wait\_timeout OR the autoReconnect option.
+    > **Note**  
+    > Earlier versions of this documentation were instructing to adjust the JdbcURL to set the `"autoReconnect=true"` option and the `wait_timeout` session variable.
+    >
+    > Version 1.8.2 of arcs-shib-ext, released on August 1st, 2016, introduces settings for configuring connection testing on checkout in the DataSource.  These are now included in the example above - and with these settings in place, it is no longer necessary to set the increased wait\_timeout OR the autoReconnect option.
     
 
 *   Add attribute definition to attribute-resolver.xml (auEduPersonSharedToken)
@@ -1058,11 +1083,12 @@ However, as IdPv3 deprecates eduPersonTargetedID ( see [ComputedIdConnector](htt
 
 As part of the IdPv3 upgrade, we strongly encourage all IdPs to switch to SAML2 Persitent Name ID.
 
-Earlier versions of this manual were instructing when performing an upgrade from a 2.x IdP that was using ComputedIdConnector for eduPersonTargetedID (i.e., not storing the values in a database), to first follow the instructions at [Configuring an 2.x IdP to use StoredID Connector](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815539873/Configuring+an+2.x+IdP+to+use+StoredID+Connector).
-
-While it is still strongly recommended to store the values in a database, it is no longer deemed necessary to change the configuration of the version 2 IdP, as the version 3 IdP would be producing the same values.
-
-However, if the existing persistent ID values are not stored in a database, it is crucial to use the identical salt value on the old 2.x and the new 3.x IdP.
+> **Note**  
+> Earlier versions of this manual were instructing when performing an upgrade from a 2.x IdP that was using ComputedIdConnector for eduPersonTargetedID (i.e., not storing the values in a database), to first follow the instructions at [Configuring an 2.x IdP to use StoredID Connector](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815539873/Configuring+an+2.x+IdP+to+use+StoredID+Connector).
+.
+> While it is still strongly recommended to store the values in a database, it is no longer deemed necessary to change the configuration of the version 2 IdP, as the version 3 IdP would be producing the same values.
+>
+> However, if the existing persistent ID values are not stored in a database, it is crucial to use the identical salt value on the old 2.x and the new 3.x IdP.
 
   
 
@@ -1081,20 +1107,22 @@ To configure SAML2 Persistent NameID (based on [https://wiki.shibboleth.net/conf
         
     *   `idp.persistentId.encoding = BASE64`
         
-        IdP version 3.3.x introduces a new property, `idp.persistentId.encoding`, which defaults to `BASE32`.  While this default has the intention to improve interoperability (with SPs which do not preserve case), it would break transition from a 2.x IdP which did not store the generated values.  If upgrading from a V2 IdP, please change this new property to `BASE64` to preserve the same values.
+        > **Note**  
+        > IdP version 3.3.x introduces a new property, `idp.persistentId.encoding`, which defaults to `BASE32`.  While this default has the intention to improve interoperability (with SPs which do not preserve case), it would break transition from a 2.x IdP which did not store the generated values.  If upgrading from a V2 IdP, please change this new property to `BASE64` to preserve the same values.
         
     *   `idp.persistentId.dataSource = shibboleth.JPAStorageService.DataSource`  
         (this selects the `DataSource` bean that will be defined in `conf/global.xml` when configuring database storage)
         
-        Please note that `conf/saml-nameid.properties` also allows to set `idp.persistentId.store = PersistentIdStore` (and this is what earlier versions of this document recommended).  However, this strategy does not work well with enabling the reverse lookup, so we now recommend to use `idp.persistentId.dataSource`, for linking `StoredPersistentIDGenerator` to the database.  With having `idp.persistentId.store` set as above, it is not necessary to set `idp.persistentId.dataSource`
-        
-        The earlier instructions were also including defining the persistent store bean: also assuming the JPA Storage Service will be configured further below, the instructions were define the PersistentIdStore just as a reference to the JPAStorageService DataSource:
-        
-        ```
-            <bean id="PersistentIdStore" parent="shibboleth.JDBCPersistentIdStore"
-                p:dataSource-ref="shibboleth.JPAStorageService.DataSource"
-                p:queryTimeout="PT2S" />
-        ```
+        > **Note**  
+        > Please note that `conf/saml-nameid.properties` also allows to set `idp.persistentId.store = PersistentIdStore` (and this is what earlier versions of this document recommended).  However, this strategy does not work well with enabling the reverse lookup, so we now recommend to use `idp.persistentId.dataSource`, for linking `StoredPersistentIDGenerator` to the database.  With having `idp.persistentId.store` set as above, it is not necessary to set `idp.persistentId.dataSource`
+        >
+        > The earlier instructions were also including defining the persistent store bean: also assuming the JPA Storage Service will be configured further below, the instructions were define the PersistentIdStore just as a reference to the JPAStorageService DataSource:
+        >
+        > ```
+        >     <bean id="PersistentIdStore" parent="shibboleth.JDBCPersistentIdStore"
+        >         p:dataSource-ref="shibboleth.JPAStorageService.DataSource"
+        >         p:queryTimeout="PT2S" />
+        > ```
         
 *   Edit `conf/saml-nameid.xml` and:
     *   In the definition of `shibboleth.SAML2NameIDGenerators`, uncomment the reference to `shibboleth.SAML2PersistentGenerator`: 
@@ -1137,36 +1165,37 @@ To configure SAML2 Persistent NameID (based on [https://wiki.shibboleth.net/conf
             </AttributeDefinition>
         ```
         
-        No longer needed
-        
-        Earlier versions of this documentation were also instructing to explicitly release this attribute to make it visible to the PersistentID generator.  This was necessary for older versions of IdPv3, but for 3.2.0 and newer is no longer needed - see the last line in the ComputedID section of the upstream [PersistentNameID documentation](https://wiki.shibboleth.net/confluence/display/IDP30/PersistentNameIDGenerationConfiguration#PersistentNameIDGenerationConfiguration-ComputedIDs).
-        
-        The original instructions were:
-        
-        *   Edit `conf/attribute-filter.xml` and add a rule to release the source Attribute:
-            
-            ```
-                <!-- release uid to all SPs, so we can calculate Persistent NameID.
-                     As we do not use an encoder in that definition, 
-                     the attribute will not really be released. -->
-                <AttributeFilterPolicy id="uid2all">
-                    <PolicyRequirementRule xsi:type="ANY" />
-            
-                    <AttributeRule attributeID="uid">
-                        <PermitValueRule xsi:type="ANY" />
-                    </AttributeRule>
-                </AttributeFilterPolicy>
-            ```
-            
-              
-            
-              
-            
-        *   If the attribute is not released as per above, the IdP would log a message:
-            
-            ```
-            2015-05-05 14:49:27,360 - INFO [net.shibboleth.idp.saml.nameid.impl.PersistentSAML2NameIDGenerator:218] - Attribute sources [uid] did not produce a usable source identifier
-            ```
+        > **Note**  
+        > No longer needed
+        >
+        > Earlier versions of this documentation were also instructing to explicitly release this attribute to make it visible to the PersistentID generator.  This was necessary for older versions of IdPv3, but for 3.2.0 and newer is no longer needed - see the last line in the ComputedID section of the upstream [PersistentNameID documentation](https://wiki.shibboleth.net/confluence/display/IDP30/PersistentNameIDGenerationConfiguration#PersistentNameIDGenerationConfiguration-ComputedIDs).
+        >
+        > The original instructions were:
+        >
+        > *   Edit `conf/attribute-filter.xml` and add a rule to release the source Attribute:
+        >     
+        >     ```
+        >         <!-- release uid to all SPs, so we can calculate Persistent NameID.
+        >              As we do not use an encoder in that definition, 
+        >              the attribute will not really be released. -->
+        >         <AttributeFilterPolicy id="uid2all">
+        >             <PolicyRequirementRule xsi:type="ANY" />
+        >     
+        >             <AttributeRule attributeID="uid">
+        >                 <PermitValueRule xsi:type="ANY" />
+        >             </AttributeRule>
+        >         </AttributeFilterPolicy>
+        >     ```
+        >     
+        >       
+        >     
+        >       
+        >     
+        > *   If the attribute is not released as per above, the IdP would log a message:
+        >     
+        >     ```
+        >     2015-05-05 14:49:27,360 - INFO [net.shibboleth.idp.saml.nameid.impl.PersistentSAML2NameIDGenerator:218] - Attribute sources [uid] did not produce a usable source identifier
+        >     ```
             
         
     *   See [https://issues.shibboleth.net/jira/browse/IDP-714](https://issues.shibboleth.net/jira/browse/IDP-714) for further information.
@@ -1186,7 +1215,8 @@ To configure SAML2 Persistent NameID (based on [https://wiki.shibboleth.net/conf
 <details markdown="1">
 <summary>Historical eduPersonTargetedID documentation</summary>
 
-For historical purposes, we also include the original documentation on setting up eduPersonTargetedID.  However, as per above, we strongly encourage the migration to SAML2 Persistent NameID.
+> **Note**  
+> For historical purposes, we also include the original documentation on setting up eduPersonTargetedID.  However, as per above, we strongly encourage the migration to SAML2 Persistent NameID.
 
   
 
@@ -1431,18 +1461,19 @@ The steps to configure the database storage are:
      GRANT ALL PRIVILEGES ON idp_db.* TO 'idp_admin'@'localhost';
     ```
     
-    It is strongly encouraged to create the databases with `utf8` character encoding and `utf8_bin` collation (sorting).
-    
-    Earlier versions of this document did not specify these settings and the database (and all tables) would be created with the default system encoding and collation.
-    
-    To convert these to `utf8` / `utf8_bin`, please run:
-    
-    ```
-    ALTER DATABASE idp_db DEFAULT CHARACTER SET = utf8 COLLATE = utf8_bin;
-    ALTER TABLE tb_st CONVERT TO CHARACTER SET utf8 COLLATE utf8_bin;
-    ALTER TABLE StorageRecords CONVERT TO CHARACTER SET utf8 COLLATE utf8_bin;
+    > **Note**  
+    > It is strongly encouraged to create the databases with `utf8` character encoding and `utf8_bin` collation (sorting).
+    >
+    > Earlier versions of this document did not specify these settings and the database (and all tables) would be created with the default system encoding and collation.
+    >
+    > To convert these to `utf8` / `utf8_bin`, please run:
+    >
+    > ```
+    > ALTER DATABASE idp_db DEFAULT CHARACTER SET = utf8 COLLATE = utf8_bin;
+    > ALTER TABLE tb_st CONVERT TO CHARACTER SET utf8 COLLATE utf8_bin;
+    > ALTER TABLE StorageRecords CONVERT TO CHARACTER SET utf8 COLLATE utf8_bin;
     ALTER TABLE shibpid CONVERT TO CHARACTER SET utf8 COLLATE utf8_bin;
-    ```
+    > ```
     
 *   Create the `StorageRecords` table.  This part can be tricky, as different versions of IdP ship with different versions of Hibernate, which use different database mapping / field names.  IdP 3.0.0 used column names `key` (and `expiration`) instead of`id` (and `expires`).  The key issue with that was `key` is a reserved word in MySQL - and therefore, the column name then must be quoted in all SQL statements.  IdP 3.1.1 reverts back to `id` (and `expires`), avoiding the clash with MySQL reserved words.  For IdP 3.1.1+, create the table with:
     
@@ -1458,7 +1489,8 @@ The steps to configure the database storage are:
     
 *   Add the following beans to `$IDP_HOME/conf/global.xml` - instead of duplicating them here, please use the MySQL versions from the [IdPv3 Storage documentation](https://wiki.shibboleth.net/confluence/display/IDP30/StorageConfiguration#StorageConfiguration-Installation) (section Installation, unfold the snippets under **DB-independent Configuration** and **MySQL Configuration**). 
     
-    As of September 2022, the snippets in the linked IdPv3 documentation may fail to unfold.  As an alternative, get the snippets intead from the [IdPv4 documentation](https://wiki.shibboleth.net/confluence/display/IDP4/StorageConfiguration#Storage-Implementations) (unfold JPAStorageService under Storage Implementations).
+    > **Note**  
+    > As of September 2022, the snippets in the linked IdPv3 documentation may fail to unfold.  As an alternative, get the snippets intead from the [IdPv4 documentation](https://wiki.shibboleth.net/confluence/display/IDP4/StorageConfiguration#Storage-Implementations) (unfold JPAStorageService under Storage Implementations).
     
       
     The beans to add are:
@@ -1583,12 +1615,13 @@ Alternatively, set up the fetching via an external script and configure the IdP 
 
   
 
-For both federations, please note:
-
-*   The attribute names used in the download policy file must match the local attribute names. Check that the attribute names in the downloaded attribute filter against their names in existing configuration files:
-    *   **attribute-resolver.xml** (attribute definitions, match against the ID in the AttributeDefinition element)
-    *   **attribute-filter.xml** (local attribute filter)
-*   But please note that no attributes need to be renamed with the Federation Registry since December 2010 (current as of April 2015).
+> **Note**  
+> For both federations, please note:
+>
+> *   The attribute names used in the download policy file must match the local attribute names. Check that the attribute names in the downloaded attribute filter against their names in existing configuration files:
+>     *   **attribute-resolver.xml** (attribute definitions, match against the ID in the AttributeDefinition element)
+>     *   **attribute-filter.xml** (local attribute filter)
+> *   But please note that no attributes need to be renamed with the Federation Registry since December 2010 (current as of April 2015).
 
 ## ECP support
 
@@ -1643,11 +1676,12 @@ To allow your IdP to be used with the [ECP](https://reannz.atlassian.net/wiki/sp
     
 {% include identity_providers/idp_excerpt_idp-register-ecp.md indent="    " %}
 
-In order for the ECP handler (running as part of the IdP web application inside Tomcat) to receive the REMOTE\_USER variable set by Apache, the AJP connector in Tomcat must have the `tomcatAuthentication="false"` as instructed above.
-
-ECP will not work if the AJP connector is left with the default settings.
-
-For information on protecting the ECP endpoint from within Tomcat instead, please see [https://wiki.shibboleth.net/confluence/display/IDP30/ECPConfiguration](https://wiki.shibboleth.net/confluence/display/IDP30/ECPConfiguration)
+> **Note**  
+> In order for the ECP handler (running as part of the IdP web application inside Tomcat) to receive the REMOTE\_USER variable set by Apache, the AJP connector in Tomcat must have the `tomcatAuthentication="false"` as instructed above.
+>
+> ECP will not work if the AJP connector is left with the default settings.
+>
+> For information on protecting the ECP endpoint from within Tomcat instead, please see [https://wiki.shibboleth.net/confluence/display/IDP30/ECPConfiguration](https://wiki.shibboleth.net/confluence/display/IDP30/ECPConfiguration)
 
 ## Configuring Single Logout
 
@@ -1715,7 +1749,8 @@ The software side of the SLO implementation comes enabled out of the box on IdPV
     ```
     </details>
     
-    If you enable Single Logout without customizing your Logout page (i.e., leaving in the original default page), users utilizing the Logout functionality will see an unflattering page saying: **"This page is an example and should be customized."**
+    > **Note**  
+    > If you enable Single Logout without customizing your Logout page (i.e., leaving in the original default page), users utilizing the Logout functionality will see an unflattering page saying: **"This page is an example and should be customized."**
     
 *   Optionally, also add additional notices to the landing logout pages: (`$IDP_HOME/views/logout-propagate.vm`  and `$IDP_HOME/views/logout-complete.vm`).  You may wish to inform the users that sessions derived by the applications on the SPs might not have been terminated and that the only safe way to terminate the session is to close the browser.  Expand here to see our suggestion at the wording:
     
@@ -1761,35 +1796,36 @@ The software side of the SLO implementation comes enabled out of the box on IdPV
 | urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST | https://idp.example.org/idp/profile/SAML2/POST/SLO |
 | urn:oasis:names:tc:SAML:2.0:bindings:SOAP | https://idp.example.org:8443/idp/profile/SAML2/SOAP/SLO |
 
-On IdP 3.2.1 only, it may be necessary to apply a fix to the Logout webflow.  The issue has already been fixed upstream and the fix will be included with IdP 3.3.0 once released - this patch is to be applied to 3.2.1 only.
-
-To avoid getting a NullPointerException from stale HttpRequest objects, make the following change to `/opt/shibboleth-idp/system/flows/logout/logout-flow.xml`:
-
-```
---- /root/inst/shibboleth-identity-provider-3.2.1/system/flows/logout/logout-flow.xml      2015-12-19 21:48:00.000000000 +1300
-+++ system/flows/logout/logout-flow.xml    2016-09-13 12:53:04.632080786 +1200
-@@ -70,21 +70,21 @@
-         <transition on="proceed" to="NextRelyingPartyContext" />
-     </action-state>
-     <view-state id="LogoutView" view="logout">
--        <on-entry>
-+        <on-render>
-             <evaluate expression="WriteAuditLog" />
-             <evaluate expression="environment" result="viewScope.environment" />
-             <evaluate expression="opensamlProfileRequestContext" result="viewScope.profileRequestContext" />
-             <evaluate expression="opensamlProfileRequestContext.getSubcontext(T(net.shibboleth.idp.session.context.LogoutContext))" result="viewScope.logoutContext" />
-             <evaluate expression="opensamlProfileRequestContext.getSubcontext(T(net.shibboleth.idp.profile.context.MultiRelyingPartyContext))" result="viewScope.multiRPContext" />
-             <evaluate expression="T(net.shibboleth.utilities.java.support.codec.HTMLEncoder)" result="viewScope.encoder" />
-             <evaluate expression="flowRequestContext.getExternalContext().getNativeRequest()" result="viewScope.request" />
-             <evaluate expression="flowRequestContext.getExternalContext().getNativeResponse()" result="viewScope.response" />
-             <evaluate expression="flowRequestContext.getActiveFlow().getApplicationContext().containsBean('shibboleth.CustomViewContext') ? flowRequestContext.getActiveFlow().getApplicationContext().getBean('shibboleth.CustomViewContext') : null" result="viewScope.custom" />
--        </on-entry>
-+        </on-render>
-         <transition on="propagate" to="LogoutPropagateView" />
-         <transition on="end" to="LogoutCompleteView" />
-     </view-state>
-     <!-- Terminus -->
-```
+> **Note**  
+> On IdP 3.2.1 only, it may be necessary to apply a fix to the Logout webflow.  The issue has already been fixed upstream and the fix will be included with IdP 3.3.0 once released - this patch is to be applied to 3.2.1 only.
+>
+> To avoid getting a NullPointerException from stale HttpRequest objects, make the following change to `/opt/shibboleth-idp/system/flows/logout/logout-flow.xml`:
+>
+> ```
+> --- /root/inst/shibboleth-identity-provider-3.2.1/system/flows/logout/logout-flow.xml      2015-12-19 21:48:00.000000000 +1300
+> +++ system/flows/logout/logout-flow.xml    2016-09-13 12:53:04.632080786 +1200
+> @@ -70,21 +70,21 @@
+>          <transition on="proceed" to="NextRelyingPartyContext" />
+>      </action-state>
+>      <view-state id="LogoutView" view="logout">
+> -        <on-entry>
+> +        <on-render>
+>              <evaluate expression="WriteAuditLog" />
+>              <evaluate expression="environment" result="viewScope.environment" />
+>              <evaluate expression="opensamlProfileRequestContext" result="viewScope.profileRequestContext" />
+>              <evaluate expression="opensamlProfileRequestContext.getSubcontext(T(net.shibboleth.idp.session.context.LogoutContext))" result="viewScope.logoutContext" />
+>              <evaluate expression="opensamlProfileRequestContext.getSubcontext(T(net.shibboleth.idp.profile.context.MultiRelyingPartyContext))" result="viewScope.multiRPContext" />
+>              <evaluate expression="T(net.shibboleth.utilities.java.support.codec.HTMLEncoder)" result="viewScope.encoder" />
+>              <evaluate expression="flowRequestContext.getExternalContext().getNativeRequest()" result="viewScope.request" />
+>              <evaluate expression="flowRequestContext.getExternalContext().getNativeResponse()" result="viewScope.response" />
+>              <evaluate expression="flowRequestContext.getActiveFlow().getApplicationContext().containsBean('shibboleth.CustomViewContext') ? flowRequestContext.getActiveFlow().getApplicationContext().getBean('shibboleth.CustomViewContext') : null" result="viewScope.custom" />
+> -        </on-entry>
+> +        </on-render>
+>          <transition on="propagate" to="LogoutPropagateView" />
+>          <transition on="end" to="LogoutCompleteView" />
+>      </view-state>
+>      <!-- Terminus -->
+> ```
 
 Please see [https://issues.shibboleth.net/jira/browse/IDP-956](https://issues.shibboleth.net/jira/browse/IDP-956) for further information.
 
@@ -1875,31 +1911,33 @@ The consent module is turned on by default and can be used as it is, we however 
         </util:list>
     ```
     
-    Note: if setting this list, we recommend it includes all attributes defined by the IdP.  If some attributes are not included, they'd be displayed in random order after the attributes included in the list - which would not be a consistent user experience.
+    > **Note**  
+    > Note: if setting this list, we recommend it includes all attributes defined by the IdP.  If some attributes are not included, they'd be displayed in random order after the attributes included in the list - which would not be a consistent user experience.
     
-    No longer needed
-    
-    Earlier versions of this documentation were instructing to explicitly release the attribute used for calculating the persistentNameID  to make it visible to the PersistentID generator - and to hide this attribute from the consent screen. This was necessary for older versions of IdPv3, but for 3.2.0 and newer is no longer needed - see the last line in the ComputedID section of the upstream [PersistentNameID documentation](https://wiki.shibboleth.net/confluence/display/IDP30/PersistentNameIDGenerationConfiguration#PersistentNameIDGenerationConfiguration-ComputedIDs).
-    
-    This documentation has been updated (in December 2016) in the [configuring Persistent NameID](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815538813/Installing+a+Shibboleth+3.x+IdP#InstallingaShibboleth3.xIdP-eduPersonTargetedID/PersistentNameID) section above to no longer add rules to explicitly release the attributes.  As long as these rules are not present, it is also no longer necessary to hide the attribute from the consent screen as the original documentation was instructing here.
-    
-    For completeness, the original instructions were:
-    
-    *   Edit `/opt/shibboleth-idp/dist/conf/intercept/consent-intercept-config.xml.dist`, locate the `shibboleth.consent.attribute-release.BlacklistedAttributeIDs` and add the `uid` attribute to the list:
-        
-        ```
-        --- /opt/shibboleth-idp/dist/conf/intercept/consent-intercept-config.xml.dist   2016-07-28 11:44:39.060776510 +1200
-        +++ consent-intercept-config.xml        2016-07-29 14:56:08.804113011 +1200
-        @@ -55,6 +55,7 @@
-             </util:list>
-        
-             <util:list id="shibboleth.consent.attribute-release.BlacklistedAttributeIDs">
-        +        <value>uid</value>
-                 <value>transientId</value>
-                 <value>persistentId</value>
-                 <value>eduPersonTargetedID</value>
-        
-        ```
+    > **Note**  
+    > No longer needed
+    >
+    > Earlier versions of this documentation were instructing to explicitly release the attribute used for calculating the persistentNameID  to make it visible to the PersistentID generator - and to hide this attribute from the consent screen. This was necessary for older versions of IdPv3, but for 3.2.0 and newer is no longer needed - see the last line in the ComputedID section of the upstream [PersistentNameID documentation](https://wiki.shibboleth.net/confluence/display/IDP30/PersistentNameIDGenerationConfiguration#PersistentNameIDGenerationConfiguration-ComputedIDs).
+    >
+    > This documentation has been updated (in December 2016) in the [configuring Persistent NameID](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815538813/Installing+a+Shibboleth+3.x+IdP#InstallingaShibboleth3.xIdP-eduPersonTargetedID/PersistentNameID) section above to no longer add rules to explicitly release the attributes.  As long as these rules are not present, it is also no longer necessary to hide the attribute from the consent screen as the original documentation was instructing here.
+    >
+    > For completeness, the original instructions were:
+    >
+    > *   Edit `/opt/shibboleth-idp/dist/conf/intercept/consent-intercept-config.xml.dist`, locate the `shibboleth.consent.attribute-release.BlacklistedAttributeIDs` and add the `uid` attribute to the list:
+    >     
+    >     ```
+    >     --- /opt/shibboleth-idp/dist/conf/intercept/consent-intercept-config.xml.dist   2016-07-28 11:44:39.060776510 +1200
+    >     +++ consent-intercept-config.xml        2016-07-29 14:56:08.804113011 +1200
+    >     @@ -55,6 +55,7 @@
+    >          </util:list>
+    >     
+    >          <util:list id="shibboleth.consent.attribute-release.BlacklistedAttributeIDs">
+    >     +        <value>uid</value>
+    >              <value>transientId</value>
+    >              <value>persistentId</value>
+    >              <value>eduPersonTargetedID</value>
+    >     
+    >     ```
         
     
 
@@ -2088,7 +2126,8 @@ To enable this service, please make the following changes (based on upstream ins
         idp.fticks.loghost=logs.tuakiri.ac.nz
         ```
         
-        Earlier versions of this document were instructing to set `idp.fticks.loghost` in `$IDP_HOME/conf/logback.xml` - it is easier and simpler to have all logging configuration in `idp.properties`.
+        > **Note**  
+        > Earlier versions of this document were instructing to set `idp.fticks.loghost` in `$IDP_HOME/conf/logback.xml` - it is easier and simpler to have all logging configuration in `idp.properties`.
         
 *   Optionally, if your IdP has non-Tuakiri traffic (such as bilateral arrangements with individual service providers) that should not be sent to the centralized log collection servers (if it is, it would still get discarded in subsequent processing), please follow these instructions: 
     
@@ -2150,7 +2189,8 @@ To enable this service, please make the following changes (based on upstream ins
     
 *   And restart the IdP - by restarting Tomcat, `service tomcat restart`
 
-`Please make sure the firewall permits outgoing UDP packets to port 514 (at least for the Tuakiri log collection server)`
+> **Note**  
+> `Please make sure the firewall permits outgoing UDP packets to port 514 (at least for the Tuakiri log collection server)`
 
   
 
@@ -2411,7 +2451,8 @@ index 5daabeed0..a5b6313b3 100644
      margin-top: 50px;
 ```
 
-Earlier versions of this documentation were recommending to aid with developing the branding by temporarily serving the CSS and image files out of the `/opt/shibboleth-idp/webapp` directory directly.  However, since Shibboleth IdP 3.4.0, the `webapp` directory is considered a temporary artififact of the build process and the build script deletes it after building the WAR file.  (And this technique was also getting more complicated with Apache and Tomcat being in different SELinux containers).  Therefore, these instructions have been removed.
+> **Note**  
+> Earlier versions of this documentation were recommending to aid with developing the branding by temporarily serving the CSS and image files out of the `/opt/shibboleth-idp/webapp` directory directly.  However, since Shibboleth IdP 3.4.0, the `webapp` directory is considered a temporary artififact of the build process and the build script deletes it after building the WAR file.  (And this technique was also getting more complicated with Apache and Tomcat being in different SELinux containers).  Therefore, these instructions have been removed.
 
 When done with changes to the images and css directories, remember to rebuild the WAR file and restart Tomcat:
 
@@ -2433,13 +2474,14 @@ For all of these functions, the IdP uses a (configurable) access control mechani
 
 The policy in use can be configured in the `$IDP_HOME/conf/admin/general-admin.xml` file.
 
-The policy selection used to be in `$IDP_HOME/conf/idp.properties` with the below properties - but this has been removed in 3.3.x.  Now the policy selection is done in `$IDP_HOME/conf/admin/general-admin.xml` directly:
-
-```
-idp.status.accessPolicy= AccessByIPAddress
-idp.resolvertest.accessPolicy= AccessByIPAddress
-idp.reload.accessPolicy= AccessByIPAddress
-```
+> **Note**  
+> The policy selection used to be in `$IDP_HOME/conf/idp.properties` with the below properties - but this has been removed in 3.3.x.  Now the policy selection is done in `$IDP_HOME/conf/admin/general-admin.xml` directly:
+>
+> ```
+> idp.status.accessPolicy= AccessByIPAddress
+> idp.resolvertest.accessPolicy= AccessByIPAddress
+> idp.reload.accessPolicy= AccessByIPAddress
+> ```
 
 The policy itself is configured in `$IDP_HOME/conf/access-control.xml` and we recommend adding at least the external address of the IdP itself to allow resolver testing to work. And it would be also recommended to add the IP address of the local monitoring system to permit monitoring access, and possibly also the IP address of a management console from where an admin could trigger the reload of the services (this can be the IdP itself the administrator is able to run a browser there).
 
@@ -2465,7 +2507,8 @@ After configuring access, the administrative functions can be accessed with eith
 *   Metadata Reload: https://idp.institution.ac.nz/idp/profile/admin/reload-metadata?id=TuakiriMetadata , where id is the ID of the MetadataProvider definition (as in metadata-providers.xml) to be reloaded
 *   Service Reload: https://idp.institution.ac.nz/idp/profile/admin/reload-service?id=shibboleth.AttributeFilterService , where id is the ID of the service to be reloaded - see `$IDP_HOME/system/conf/services-system.xml` for the full list of services (or the ouput of the status page above)
 
-Earlier versions of the IdP (2.x) had a publicly accessible URL /idp/profile/Status that would return simple "ok".  This URL was long marked as deprecated and has been removed in IdPV3...
+> **Note**  
+> Earlier versions of the IdP (2.x) had a publicly accessible URL /idp/profile/Status that would return simple "ok".  This URL was long marked as deprecated and has been removed in IdPV3...
 
 # Testing
 
