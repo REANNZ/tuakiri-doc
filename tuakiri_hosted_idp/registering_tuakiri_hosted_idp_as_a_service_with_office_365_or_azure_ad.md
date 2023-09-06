@@ -1,6 +1,6 @@
 ---
 redirect_from: Registering+Tuakiri+Hosted+IdP+as+a+Service+with+Office+365+or+Azure+AD
-id: tuakiri_hosted_idp/registering_tuakiri_hosted_idp_as_a_service_with_office_365_or_azure_ad.md
+id: tuakiri_hosted_idp/registering_tuakiri_hosted_idp_as_a_service_with_office_365_or_azure_ad
 ---
 # Registering Tuakiri Hosted IdP as a Service with Office 365 or Azure AD
 

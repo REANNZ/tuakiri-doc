@@ -47,7 +47,7 @@ sidebar:
       - tuakiri_openid_connect_bridge
       - tuakiri_hosted_idp
       - tuakiri_hosted_idp/registering_tuakiri_hosted_idp_as_a_service_with_google_apps_or_gsuite
-      - tuakiri_hosted_idp/registering_tuakiri_hosted_idp_as_a_service_with_office_365_or_azure_ad.md
+      - tuakiri_hosted_idp/registering_tuakiri_hosted_idp_as_a_service_with_office_365_or_azure_ad
   - label: Federation Management
     children:
       - federation_management/adding_a_service_provider_to_the_Tuakiri_federation
