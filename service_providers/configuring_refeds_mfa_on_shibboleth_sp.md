@@ -69,7 +69,7 @@ The following example extends the above sample code requesting MFA to also check
 
 When a SAML SSO request asking for REFEDS MFA (via an `authContextClassRef` ) is sent to an IdP not supporting the specific authentication method, the IdP will send back a SAML response indicating a login failure, which will be rendered by the SP as a generic error message.
 
-![](ShibbolethSP-sessionError-generic.png)
+> ![](ShibbolethSP-sessionError-generic.png)
 
 To improve the user experience, we recommend to customise the error handler.  The easiest way is to replace the `/etc/shibboleth/sessionError.html` template with a customised one provided here: [https://raw.githubusercontent.com/REANNZ/Tuakiri-public/master/shibboleth-sp/mfa/sessionError.html](https://raw.githubusercontent.com/REANNZ/Tuakiri-public/master/shibboleth-sp/mfa/sessionError.html)
 
@@ -79,7 +79,7 @@ This template customises the original one by:
 *   recommending to contact the user's organisation IT service desk
 *   providing contact details for the IdP (if available in the IdP's metadata)
 
-![](ShibbolethSP-sessionError-MFA.png)
+> ![](ShibbolethSP-sessionError-MFA.png)
 
 Replacing `/etc/shibboleth/sessionError.html` will work well for simple sites that request REFEDS MFA for all sessions.  The missing support for MFA will be the most likely cause for an IdP to report an error back to the SP.
 
