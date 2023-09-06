@@ -1,0 +1,65 @@
+title: Tuakiri Documentation
+owner_name: Tuakiri
+owner_url: https://tuakiri.ac.nz/
+
+plugins:
+  - jekyll-redirect-from
+
+remote_theme: zendesk/jekyll-theme-zendesk-garden@v0.7.3
+
+version: false
+
+sidebar:
+  - index
+  - label: Tuakiri Core Documents
+    children:
+      - attributes
+      - attributes/schacHomeOrganizationType
+      - federation_management/tuakiri_metadata
+  - label: Identity Providers
+    children:
+      - identity_providers/installing_a_shibboleth_3_x_idp
+      - identity_providers/configuring_an_idp_for_edugain
+      - identity_providers/upgrading_a_3_x_idp_to_4_x
+      - identity_providers/upgrading_a_shibboleth_3_x_idp
+      - identity_providers/configuring_a_shibboleth_identity_provider_to_join_the_Tuakiri_federation
+      - identity_providers/adding_samlSubjectID_and_samlPairwiseID_attributes
+      - identity_providers/configuring_refeds_mfa_on_shibboleth_idp
+      - identity_providers/fetching_metadata_and_attribute_filter_and_caching_them_locally
+      - identity_providers/idp_3_x_username_normalization
+      - identity_providers/replacing_back-channel_certificate_and_key_on_an_idp
+  - label: Service Providers
+    children:
+      - service_providers/installing_shibboleth_sp_on_redhat_based_linux
+      - service_providers/install_shibboleth_sp_on_debian_based_linux
+      - service_providers/installing_a_simplesamlphp_sp
+      - service_providers/configuring_an_sp_for_edugain
+      - service_providers/configuring_refeds_mfa_on_shibboleth_sp
+      - service_providers/replacing_back-channel_certificate_and_key_on_an_sp
+      - service_providers/recommendations
+  - label: eduGAIN resources
+    children:
+      - edugain_resources/process_for_joining_edugain
+      - edugain_resources/edugain_information_pack
+      - edugain_resources/index
+  - label: Services
+    children:
+      - tuakiri_openid_connect_bridge
+      - tuakiri_hosted_idp
+      - tuakiri_hosted_idp/registering_tuakiri_hosted_idp_as_a_service_with_google_apps_or_gsuite
+      - tuakiri_hosted_idp/registering_tuakiri_hosted_idp_as_a_service_with_office_365_or_azure_ad.md
+  - label: Federation Management
+    children:
+      - federation_management/adding_a_service_provider_to_the_Tuakiri_federation
+      - federation_management/creating_an_organization_in_the_Tuakiri_federation
+  - label: Advanced Concepts
+    children:
+      - multi-factor_authentication_with_refeds_mfa_profile
+      - single_log_out_slo
+      - ecp
+      - levels_of_assurance
+  - label: Tuakiri Virtual Home
+    children:
+      - virtual_home
+      - virtual_home/virtual_home_administrator_guide
+      - virtual_home/virtual_home_user_guide
