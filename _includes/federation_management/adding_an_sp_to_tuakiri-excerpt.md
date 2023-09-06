@@ -12,13 +12,13 @@ Otherwise, click **Login** and login using your IdP. Start the registration by c
 
 The registration form first displays a check-list of required information.  Please check that you have all the information the check-list asks for readily available, otherwise the registration form may time out while you gather missing information.
 
-Please note that on the registration form, you'll be asked to select the organization you are registering the SP under.  If you have not registered your organization into Tuakiri (or Tuakiri-TEST) yet, please complete that process first, following our instructions for [Creating an Organization in the Tuakiri Federation](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815539860/Creating+an+Organization+in+the+Tuakiri+Federation).
+Please note that on the registration form, you'll be asked to select the organization you are registering the SP under.  If you have not registered your organization into Tuakiri (or Tuakiri-TEST) yet, please complete that process first, following our instructions for [Creating an Organization in the Tuakiri Federation]({{ 'federation_management/creating_an_organization_in_the_Tuakiri_federation' | relative_url }}).
 
 1.  If you are filling this form without having logged in, you'll have to enter your details: **Given Name**, **Surname** and **Email** (otherwise, these are prefilled). (Do not use a shared mailbox, alias or mailing list when entering an email address because the confirmation email contains a single-use link and may cause some confusion should more than one person attempt to use it.)  
       
     
 2.  Enter the information that describes the Service Provider being registered:
-    *   Select your **Organization**; if the organization you wish to host the Service Provider under does not exist, follow this [procedure to create one](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815539860/Creating+an+Organization+in+the+Tuakiri+Federation). (_Required_)
+    *   Select your **Organization**; if the organization you wish to host the Service Provider under does not exist, follow this [procedure to create one]({{ 'federation_management/creating_an_organization_in_the_Tuakiri_federation' | relative_url }}). (_Required_)
     *   Enter a **Display Name** and **Description** for your Service Provider. (_Required_)
     *   Enter a **Service URL** for accessing your Service Provider in the form `[http://sp.example.org](http://sp.example.org)`. The service URL is typically the base URL for accessing the Service Provider. (_Required_)
     *   Optionally enter a URL in the **Service Logo URL** to a image or logo representing the service the Service Provider is authenticating. (_Optional_)
@@ -53,7 +53,7 @@ Please note that on the registration form, you'll be asked to select the organiz
     > **Note**  
     > Persistent NameID
     >
-    > Please note that with the [IdPv3 upgrade](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815539009/Upgrading+a+2.x+IdP+to+3.x), Tuakiri is moving from passing Persistent NameIDs in the eduPersonTargetedID attribute to passing them as a Persistent SAML2 NameID.  When registering a new SP requesting a persistent NameID, please request both the eduPersonTargetedID attribute (for interoperability with existing V2 IdPs), as well as NameID of Persistent format.  You will be able to add the SAML 2.0 Persistent NameIDFormat after your SP registration is approved - or please get in touch with the [Tuakiri Support](mailto:reannz@tuakiri.ac.nz).
+    > Please note that with the [IdPv3 upgrade]({{ 'identity_providers/installing_a_shibboleth_3_x_idp' | relative_url}}), Tuakiri is moving from passing Persistent NameIDs in the eduPersonTargetedID attribute to passing them as a Persistent SAML2 NameID.  When registering a new SP requesting a persistent NameID, please request both the eduPersonTargetedID attribute (for interoperability with existing V2 IdPs), as well as NameID of Persistent format.  You will be able to add the SAML 2.0 Persistent NameIDFormat after your SP registration is approved - or please get in touch with the [Tuakiri Support](mailto:reannz@tuakiri.ac.nz).
     
     > **Note**  
     > schac attributes
@@ -81,7 +81,7 @@ Please note that on the registration form, you'll be asked to select the organiz
 
 ## ECP support
 
-If your SP should support [ECP](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815538794/ECP) (access via non-browser clients), then also register support for ECP:
+If your SP should support [ECP]({{ 'ECP' | relative_url }}) (access via non-browser clients), then also register support for ECP:
 
 *   After your SP registration is complete, log into the Federation Registry again (in the same way as above)
 *   Open the entry for your SP (under Subscribers -> Service Providers or directly from the Dashboard)
@@ -89,5 +89,5 @@ If your SP should support [ECP](https://reannz.atlassian.net/wiki/spaces/Tuakiri
     *   Select Binding: `urn:oasis:names:tc:SAML:2.0:bindings:PAOS`
     *   Enter Location: `[https://sp.example.org/Shibboleth.sso/SAML2/ECP](https://sp.example.org/Shibboleth.sso/SAML2/ECP)` (substituting `sp.example.org` with your SP hostname)
     *   Enter Index: `4` (value `4` matches the value in the Shibboleth SP internal metadata in the default configuration)
-*   Remember to also [configure support for ECP](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815538788/Installing+Shibboleth+SP+on+RedHat+based+Linux#InstallingShibbolethSPonRedHatbasedLinux-ECP) in your `/etc/shibboleth/shibboleth2.xml` file.
+*   Remember to also [configure support for ECP]({{ 'service_providers/installing_shibboleth_sp_on_redhat_based_linux' | relative_url}}#ecp) in your `/etc/shibboleth/shibboleth2.xml` file.
 
