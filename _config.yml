@@ -61,5 +61,5 @@ sidebar:
   - label: Tuakiri Virtual Home
     children:
       - virtual_home
-      - virtual_home/virtual_home_administrator_guide
       - virtual_home/virtual_home_user_guide
+      - virtual_home/virtual_home_administrator_guide
