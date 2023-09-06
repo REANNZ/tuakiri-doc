@@ -60,7 +60,8 @@ There are many blog posts providing instructions for manual one-off installs.Â Â
 {% include infra_tasks/tomcat8_5.md %}
 </details>
 
-Only proceed further after upgrading the application container to a compatible version - Tomcat 8.5 or later or Jetty 9.4
+> **Warning**  
+> Only proceed further after upgrading the application container to a compatible version - Tomcat 8.5 or later or Jetty 9.4
 
   
 

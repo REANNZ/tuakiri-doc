@@ -2158,31 +2158,32 @@ To enable this service, please make the following changes (based on upstream ins
         idp.fticks.condition = TuakiriFTicksCondition
         ```
         
-        This property was only introduced in [IdP 4.1.0](https://issues.shibboleth.net/jira/browse/IDP-1643).  If your IdP is running on an earlier version (4.0.x), you can still activate this setting by directly modifying the activationCondition of the `WriteFTICKSLog` bean in `$IDP_HOME/``system/flows/saml/saml-abstract-beans.xml` , but changes to files under `system/` should be avoided - and will be overwritten on IdP upgrades. 
-        
-        However, if this change gets lost in an upgrade, the IdP will not break, just the behavior would return to default - send all FTICKS messages. 
-        
-        Preserving these instructions for historical reference (and for sites still on 4.0.x).
-        
-        <details markdown="1">
-        <summary>Click here to expand the instructions for filtering usage logs on IdP 4.0.x</summary>
-        
-        *   Edit the definition of `WriteFTICKSLog`  bean in `$IDP_HOME/system/flows/saml/saml-abstract-beans.xml` and instead of the default in-line activation condition, pass a reference to the bean defined above:
-            
-            ```
-            --- system/flows/saml/saml-abstract-beans.xml.dist	2020-07-14 18:02:32.742299470 +1200
-            +++ system/flows/saml/saml-abstract-beans.xml	2020-07-21 17:06:41.030977466 +1200
-            @@ -337,7 +337,7 @@
-                     p:httpServletRequest-ref="shibboleth.HttpServletRequest" />
-            
-                 <bean id="WriteFTICKSLog" class="net.shibboleth.idp.saml.audit.impl.WriteFTICKSLog" scope="prototype"
-            -        p:activationCondition="#{'%{idp.fticks.federation:null}' != 'null'}"
-            +        p:activationCondition-ref="TuakiriFTicksCondition"
-                     p:federationId="#{'%{idp.fticks.federation:Undefined}'.trim()}"
-                     p:digestAlgorithm="#{'%{idp.fticks.algorithm:SHA-256}'.trim()}" p:salt="%{idp.fticks.salt:}" />
-            
-            ```
-        </details>
+        > **Warning**  
+        > This property was only introduced in [IdP 4.1.0](https://issues.shibboleth.net/jira/browse/IDP-1643).  If your IdP is running on an earlier version (4.0.x), you can still activate this setting by directly modifying the activationCondition of the `WriteFTICKSLog` bean in `$IDP_HOME/``system/flows/saml/saml-abstract-beans.xml` , but changes to files under `system/` should be avoided - and will be overwritten on IdP upgrades. 
+        >
+        > However, if this change gets lost in an upgrade, the IdP will not break, just the behavior would return to default - send all FTICKS messages. 
+        >
+        > Preserving these instructions for historical reference (and for sites still on 4.0.x).
+        >
+        > <details markdown="1">
+        > <summary>Click here to expand the instructions for filtering usage logs on IdP 4.0.x</summary>
+        >
+        > *   Edit the definition of `WriteFTICKSLog`  bean in `$IDP_HOME/system/flows/saml/saml-abstract-beans.xml` and instead of the default in-line activation condition, pass a reference to the bean defined above:
+        >     
+        >     ```
+        >     --- system/flows/saml/saml-abstract-beans.xml.dist	2020-07-14 18:02:32.742299470 +1200
+        >     +++ system/flows/saml/saml-abstract-beans.xml	2020-07-21 17:06:41.030977466 +1200
+        >     @@ -337,7 +337,7 @@
+        >              p:httpServletRequest-ref="shibboleth.HttpServletRequest" />
+        >     
+        >          <bean id="WriteFTICKSLog" class="net.shibboleth.idp.saml.audit.impl.WriteFTICKSLog" scope="prototype"
+        >     -        p:activationCondition="#{'%{idp.fticks.federation:null}' != 'null'}"
+        >     +        p:activationCondition-ref="TuakiriFTicksCondition"
+        >              p:federationId="#{'%{idp.fticks.federation:Undefined}'.trim()}"
+        >              p:digestAlgorithm="#{'%{idp.fticks.algorithm:SHA-256}'.trim()}" p:salt="%{idp.fticks.salt:}" />
+        >     
+        >     ```
+        > </details>
             
     </details>
         

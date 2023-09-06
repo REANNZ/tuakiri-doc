@@ -141,7 +141,8 @@ To configure the attribute release:
     wget -O /opt/shibboleth-idp/conf/metadata-based-attribute-filter.xml https://github.com/REANNZ/Tuakiri-public/raw/master/shibboleth-idp/idp/metadata-based-attribute-filter.xml
     ```
     
-    If deploying these rules on a TEST IdP connected to Tuakiri-TEST, edit the downloaded `metadata-based-attribute-filter.xml`  and change the `PoliceRequirementRule`  at the top of the file as per the instructions in the file.
+    > **Warning**  
+    > If deploying these rules on a TEST IdP connected to Tuakiri-TEST, edit the downloaded `metadata-based-attribute-filter.xml`  and change the `PoliceRequirementRule`  at the top of the file as per the instructions in the file.
     
 *   add the files to the list of attribute filters in `/opt/shibboleth-idp/conf/services.xml` stored in the `shibboleth.AttributeFilterResources` list:
     
