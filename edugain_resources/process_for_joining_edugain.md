@@ -8,7 +8,7 @@ Please see the [eduGAIN Information Pack](edugain_information_pack) for full det
 
 The steps in the process to join eduGAIN (as either IdP or SP) are:
 
-*   Organisation signs the **[Connect to eduGAIN form](https://reannz.atlassian.net/wiki/download/attachments/3815539015/Connect-to-eduGAIN-form-Tuakiri.pdf?version=5&modificationDate=1599133146510&cacheVersion=1&api=v2)**
+*   Organisation signs the **[Connect to eduGAIN form](Connect-to-eduGAIN-form-Tuakiri.pdf)**
 *   For an IdP to join eduGAIN:
     *   Run the latest IdP software
     *   Declare support for R&S

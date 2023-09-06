@@ -38,7 +38,7 @@ By connecting to eduGAIN, your organisation will benefit from:
 
 ### How to connect
 
-*   Step 1: Complete the **[Connect to eduGAIN form](https://reannz.atlassian.net/wiki/download/attachments/3815539015/Connect-to-eduGAIN-form-Tuakiri.pdf?version=5&modificationDate=1599133146510&cacheVersion=1&api=v2)** (linked [here](https://reannz.atlassian.net/wiki/download/attachments/3815539015/Connect-to-eduGAIN-form-Tuakiri.pdf?version=5&modificationDate=1599133146510&cacheVersion=1&api=v2)) to indicate your organisation’s intent to connect to eduGAIN.
+*   Step 1: Complete the **[Connect to eduGAIN form](Connect-to-eduGAIN-form-Tuakiri.pdf)** (linked [here](Connect-to-eduGAIN-form-Tuakiri.pdf)) to indicate your organisation’s intent to connect to eduGAIN.
     *   The Primary Representative for your organisation’s Tuakiri Subscription must complete this form.
 *   Step 2: Complete the requirements to connect to eduGAIN.
     *   Refer to the **Requirements to connect to eduGAIN** table above

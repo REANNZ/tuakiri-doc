@@ -62,6 +62,6 @@ Alongside the registration steps linked above, you will need to provide us with 
         *   Explicit confirmation if the attributes are not being reassigned.  (I.e. a new user never gets the identifier of a previous different user).
         *   What types of users get access to the IdP (via your Cloud-based IdMS).  Is access restricted to staff only?  If not, how can staff and other users be distinguished?
         *   In case your organisation also has students, an attribute that would allow to tell students apart from staff.
-*   We strongly recommend also joining eduGAIN - and  including the [Connect to eduGAIN form](https://reannz.atlassian.net/wiki/download/attachments/3815539015/Connect-to-eduGAIN-form-Tuakiri.pdf?version=5&modificationDate=1599133146510&cacheVersion=1&api=v2) with your request (available in the [eduGAIN Information Pack](edugain_resources/edugain_information_pack)).
+*   We strongly recommend also joining eduGAIN - and  including the [Connect to eduGAIN form](edugain_resources/Connect-to-eduGAIN-form-Tuakiri.pdf) with your request (available in the [eduGAIN Information Pack](edugain_resources/edugain_information_pack)).
 
 After testing (first deploying an instance in the Tuakiri-TEST environment), we should be in a position to turn your Production instance on.

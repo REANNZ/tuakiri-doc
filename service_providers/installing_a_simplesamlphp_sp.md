@@ -397,7 +397,7 @@ The Tuakiri Federation Registry (FR) has in the initial setup only pre-configure
 
 As a reference point, the metadata for your SP can be accessed at [https://sp.example.org/simplesaml/module.php/saml/sp/metadata.php/default-sp?output=xhtml](https://sp.example.org/simplesaml/module.php/saml/sp/metadata.php/default-sp?output=xhtml)
 
-For reference, please also see the [attached image mapping SimpleSAMLphp metadata to Federation Registry form](https://reannz.atlassian.net/wiki/download/attachments/3815538802/Tuakiri%20Endpoint%20config%20from%20SimpleSAMLphp%20metadata.png?version=3&modificationDate=1596808229172&cacheVersion=1&api=v2) (credits: Bevan Rudge, University of Auckland).
+For reference, please also see the [attached image mapping SimpleSAMLphp metadata to Federation Registry form](SimpleSAMLphp-metadata-Tuakiri-Endpoint-config.png) (credits: Bevan Rudge, University of Auckland).
 
 Access the Federation Registry at the correct URL for the respective federation:
 
