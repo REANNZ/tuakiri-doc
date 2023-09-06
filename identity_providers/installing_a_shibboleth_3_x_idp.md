@@ -5,13 +5,11 @@ id: identity_providers/installing_a_shibboleth_3_x_idp
 # Installing a Shibboleth 3.x IdP
 {:.no_toc}
 
-This page is a guide to installing a Shibboleth 3.x IdP - based on the [Installing a Shibboleth 2.x IdP](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815538790/Installing+a+Shibboleth+2.x+IdP) page, but updated for Shibboleth IdP version 3. This page assumes the IdP would be installed on a minimal-OS-install-only Linux system (typically a _virtual machine_) and follows from that point on. The IdP will be installed with the [Shibboleth IdP](http://shibboleth.internet2.edu/) application.
+This page is a guide to installing a Shibboleth 3.x IdP - based on the Installing a Shibboleth 2.x IdP page, but updated for Shibboleth IdP version 3. This page assumes the IdP would be installed on a minimal-OS-install-only Linux system (typically a _virtual machine_) and follows from that point on. The IdP will be installed with the [Shibboleth IdP](http://shibboleth.internet2.edu/) application.
 
 This guide is periodically updated as new versions of the software installed become available. This guide is current for IdP 3.4.0, the latest versions available as of October 2018. The guide assumes the Linux distribution would be CentOS/RHEL 7 with Tomcat7 (required). It should be possible to also use this for other Linux distribution / other operating systems, varying as needed.
 
 If you are interested in upgrading an existing IdP to the latest release, please see [Upgrading a Shibboleth 3.x IdP](upgrading_a_shibboleth_3_x_idp).
-
-For instructions on upgrading a 2.x IdP to 3.x, please see [Upgrading a 2.x IdP to 3.x](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815539009/Upgrading+a+2.x+IdP+to+3.x).
 
 If you are interested in linking an existing IdP into Tuakiri, please see [Configuring a Shibboleth Identity Provider to join the Tuakiri Federation](configuring_a_shibboleth_identity_provider_to_join_the_Tuakiri_federation).
 
@@ -181,7 +179,7 @@ We assume a standard install of either CentOS or RHEL, version 7. The IdP web ap
     ```
     
     > **Note**  
-    > Historically, this document was recommending to install Tomcat7 from JPackage.  As this document is being updated for CentOS/RHEL 7, and the default tomcat on these systems is version 7, this is no longer needed.  (Also, the JPackage repository appears to be no longer maintained).  And even for CentOS/RHEL 6, EPEL now provides Tomcat7. The original instructions are at [Install Tomcat 7 on CentOS 6](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815539013/Install+Tomcat+7+on+CentOS+6)
+    > Historically, this document was recommending to install Tomcat7 from JPackage.  As this document is being updated for CentOS/RHEL 7, and the default tomcat on these systems is version 7, this is no longer needed.  (Also, the JPackage repository appears to be no longer maintained).
     
 
 ## Local configuration
@@ -1084,7 +1082,7 @@ However, as IdPv3 deprecates eduPersonTargetedID ( see [ComputedIdConnector](htt
 As part of the IdPv3 upgrade, we strongly encourage all IdPs to switch to SAML2 Persitent Name ID.
 
 > **Note**  
-> Earlier versions of this manual were instructing when performing an upgrade from a 2.x IdP that was using ComputedIdConnector for eduPersonTargetedID (i.e., not storing the values in a database), to first follow the instructions at [Configuring an 2.x IdP to use StoredID Connector](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815539873/Configuring+an+2.x+IdP+to+use+StoredID+Connector).
+> Earlier versions of this manual were instructing when performing an upgrade from a 2.x IdP that was using ComputedIdConnector for eduPersonTargetedID (i.e., not storing the values in a database), to first follow the instructions to Configuring an 2.x IdP to use StoredID Connector.
 .
 > While it is still strongly recommended to store the values in a database, it is no longer deemed necessary to change the configuration of the version 2 IdP, as the version 3 IdP would be producing the same values.
 >
