@@ -4,7 +4,7 @@ id: tuakiri_hosted_idp/registering_tuakiri_hosted_idp_as_a_service_with_google_a
 ---
 # Registering Tuakiri Hosted IdP as a Service with Google Apps or GSuite
 
-The [Tuakiri Hosted IdP](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815538725/Tuakiri+Hosted+IdP) runs a SAML Identity Provider (IdP) as a SAML proxy, facing Tuakiri as an IdP and facing an upstream IdP as a Service Provider (SP).
+The [Tuakiri Hosted IdP](../tuakiri_hosted_idp)) runs a SAML Identity Provider (IdP) as a SAML proxy, facing Tuakiri as an IdP and facing an upstream IdP as a Service Provider (SP).
 
 A Tuakiri Hosted IdP instance needs to be registered with the upstream IdP as a Service Provider - and also needs the metadata of the upstream IdP.
 
@@ -84,4 +84,4 @@ Please repeat this process twice, separately for TEST and PROD registration.
     *   Click **User access**.
     *   Click **On for everyone** and then click **Save**.
 
-Once the registration is complete, confirm this to [Tuakiri support](mailto:tuakiri@reannz.co.nz) and send through your IdP metadata - alongside with other information required on the [Tuakiri Hosted IdP](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815538725/Tuakiri+Hosted+IdP) page.
+Once the registration is complete, confirm this to [Tuakiri support](mailto:tuakiri@reannz.co.nz) and send through your IdP metadata - alongside with other information required on the [Tuakiri Hosted IdP](../tuakiri_hosted_idp) page.

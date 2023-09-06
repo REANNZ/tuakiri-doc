@@ -10,7 +10,7 @@ These instructions are strongly based on the [Shibboleth Project IdP Key Rollove
 
 The steps are:
 
-1.  Generate the new keypair on IdP.  This can be done by re-running the IdP installer with the `renew-cert` argument.  The command generates new certificate and private key into separate files (with the `.new` suffix); these can be deployed on the IdP as needed.  So run the following (assuming the same directory naming convention as in the [IdP Installing manual](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815538790/Installing+a+Shibboleth+2.x+IdP)):
+1.  Generate the new keypair on IdP.  This can be done by re-running the IdP installer with the `renew-cert` argument.  The command generates new certificate and private key into separate files (with the `.new` suffix); these can be deployed on the IdP as needed.  So run the following (assuming the same directory naming convention as in the [IdP Installing manual](installing_a_shibboleth_3_x_idp)):
     
     ```
     cd /root/inst/shibboleth-identityprovider-${IDP_VERSION}

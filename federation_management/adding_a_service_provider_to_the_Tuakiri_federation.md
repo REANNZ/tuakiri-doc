@@ -25,7 +25,7 @@ This document will cover adding a Service Provider to the Tuakiri or Tuakiri-TES
 
 # Configuring Shibboleth SP
 
-For full information (including setup instructions for a new install), please see [Installing Shibboleth SP on RedHat based Linux](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815538788/Installing+Shibboleth+SP+on+RedHat+based+Linux)
+For full information (including setup instructions for a new install), please see [Installing Shibboleth SP on RedHat based Linux](../service_providers/installing_shibboleth_sp_on_redhat_based_linux)
 
 The key part of it (relevant for an already setup SP just joining Tuakiri) is:
 

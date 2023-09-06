@@ -4,7 +4,7 @@ id: edugain_resources/index
 ---
 # eduGAIN resources
 
-*   [eduGAIN Information Pack](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815539015/eduGAIN+Information+Pack)
-*   [Configuring an IdP for eduGAIN](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815539032/Configuring+an+IdP+for+eduGAIN)
-*   [Configuring an SP for eduGAIN](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815538743/Configuring+an+SP+for+eduGAIN)
-*   Summary of the [Process for joining eduGAIN](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815539060/Process+for+joining+eduGAIN)
+*   [eduGAIN Information Pack](edugain_information_pack)
+*   [Configuring an IdP for eduGAIN](../identity_providers/configuring_an_idp_for_edugain)
+*   [Configuring an SP for eduGAIN](../service_providers/configuring_an_sp_for_edugain)
+*   Summary of the [Process for joining eduGAIN](process_for_joining_edugain)

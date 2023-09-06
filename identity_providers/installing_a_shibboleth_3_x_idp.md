@@ -9,11 +9,11 @@ This page is a guide to installing a Shibboleth 3.x IdP - based on the [Installi
 
 This guide is periodically updated as new versions of the software installed become available. This guide is current for IdP 3.4.0, the latest versions available as of October 2018. The guide assumes the Linux distribution would be CentOS/RHEL 7 with Tomcat7 (required). It should be possible to also use this for other Linux distribution / other operating systems, varying as needed.
 
-If you are interested in upgrading an existing IdP to the latest release, please see [Upgrading a Shibboleth 3.x IdP](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815539011/Upgrading+a+Shibboleth+3.x+IdP).
+If you are interested in upgrading an existing IdP to the latest release, please see [Upgrading a Shibboleth 3.x IdP](upgrading_a_shibboleth_3_x_idp).
 
 For instructions on upgrading a 2.x IdP to 3.x, please see [Upgrading a 2.x IdP to 3.x](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815539009/Upgrading+a+2.x+IdP+to+3.x).
 
-If you are interested in linking an existing IdP into Tuakiri, please see [Configuring a Shibboleth Identity Provider to join the Tuakiri Federation](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815538798/Configuring+a+Shibboleth+Identity+Provider+to+join+the+Tuakiri+Federation).
+If you are interested in linking an existing IdP into Tuakiri, please see [Configuring a Shibboleth Identity Provider to join the Tuakiri Federation](configuring_a_shibboleth_identity_provider_to_join_the_Tuakiri_federation).
 
 1. TOC
 {:toc}
@@ -57,7 +57,7 @@ Your Identity Management System (IdMS) will very likely have most of the attribu
     ```
     
     > **Note**  
-    > This attribute can also be defined as a static attribute. If you would prefer not to modify your IdMS schema and do not have any eduPersonEntitlement values to release, it is OK to initially only define the attribute as static inside the IdP. For more information on this option, please see the notes on [configuring eduPersonEntitlement as a static attribute](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815538813/Installing+a+Shibboleth+3.x+IdP#InstallingaShibboleth3.xIdP-eduPersonEntitlement) further below in this document.
+    > This attribute can also be defined as a static attribute. If you would prefer not to modify your IdMS schema and do not have any eduPersonEntitlement values to release, it is OK to initially only define the attribute as static inside the IdP. For more information on this option, please see the notes on [configuring eduPersonEntitlement as a static attribute](#edupersonentitlement) further below in this document.
     
 
 *   **auEduPersonSharedToken**: The auEduPersonSharedToken uniquely identifies users when accessing certain resources - particularly within the _computational grid_ and _data grid_. The values should be **opaque**, **non-reassignable** and **persistent** - and **transferrable** when a user moves between institutions. Even though the values are typically created as hash-values on first use, they MUST be stored and each institution must be ready to accept values users already have when coming from another institution. The attribute can be stored in either the IdMS directly (preferred) or in a database. The attribute definition details are (source: [Attribute Recommendation 2.1 (PDF)](http://www.aaf.edu.au/wp-content/uploads/2012/05/auEduPerson_attribute_vocabulary_v02-1-0.pdf), pages 9-10, with OID updated to correct value):
@@ -74,10 +74,10 @@ Your Identity Management System (IdMS) will very likely have most of the attribu
     *   See also the [auEduPerson LDAP Schema Definition](http://www.aaf.edu.au/wp-content/uploads/2012/05/auEduPerson_attribute_vocabulary_v02-1-0.pdf) (pages 45-52) for exact LDAP definition snippets.
         
         > **Note**  
-        > This auEduPersonSharedToken values can also be stored locally in a MySQL database. If you would prefer not to modify your IdMS schema, you can also choose the local database option - at the cost of not having all of your primary identity information in your IdMS. Please see the instructions on [defining the sharedToken attribute](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815538813/Installing+a+Shibboleth+3.x+IdP#InstallingaShibboleth3.xIdP-DefinesharedToken) further below for more detail.
+        > This auEduPersonSharedToken values can also be stored locally in a MySQL database. If you would prefer not to modify your IdMS schema, you can also choose the local database option - at the cost of not having all of your primary identity information in your IdMS. Please see the instructions on [defining the sharedToken attribute](#define-sharedtoken) further below for more detail.
         
 
-*   **eduPersonAssurance**: This attribute represents the [Levels of Assurance](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815539863/Levels+of+Assurance). Either add the attribute into the IdMS directly, or start collecting enough information to synthesize the values later in a _scripted attribute definition_ (like done for Affiliation below).  The attribute definition details are (source: [Attribute Recommendation 2.1 (PDF)](http://www.aaf.edu.au/wp-content/uploads/2012/05/auEduPerson_attribute_vocabulary_v02-1-0.pdf), page 13):
+*   **eduPersonAssurance**: This attribute represents the [Levels of Assurance](../levels_of_assurance). Either add the attribute into the IdMS directly, or start collecting enough information to synthesize the values later in a _scripted attribute definition_ (like done for Affiliation below).  The attribute definition details are (source: [Attribute Recommendation 2.1 (PDF)](http://www.aaf.edu.au/wp-content/uploads/2012/05/auEduPerson_attribute_vocabulary_v02-1-0.pdf), page 13):
     
     ```
     Origin/ObjectClass:   eduPerson
@@ -92,7 +92,7 @@ Your Identity Management System (IdMS) will very likely have most of the attribu
     *   For detailed information on the requirements, please refer to the [NIST SP 800-63-1\* standard](http://csrc.nist.gov/publications/nistpubs/800-63-1/SP-800-63-1.pdf)
         
         > **Note**  
-        > As the federation is moving to centralized management of Levels-Of-Assurance, it is recommend to at this moment only define the attribute as a static attribute releasing the floor-of-trust values. Please see the notes on [configuring eduPersonAssurance as a static attribute](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815538813/Installing+a+Shibboleth+3.x+IdP#InstallingaShibboleth3.xIdP-eduPersonAssurance) further below in this document.
+        > As the federation is moving to centralized management of Levels-Of-Assurance, it is recommend to at this moment only define the attribute as a static attribute releasing the floor-of-trust values. Please see the notes on [configuring eduPersonAssurance as a static attribute](#edupersonassurance) further below in this document.
         
 
 # Preliminaries
@@ -233,7 +233,7 @@ We assume a standard install of either CentOS or RHEL, version 7. The IdP web ap
 >
 > As of late 2017 (RHEL/CentOS 7.4), Tomcat runs in a confined domain.  This has serious impact on operating an IdP - as the IdP web application running inside Tomcat now runs under SELinux restrictions, it now needs all actions explicitly permitted.
 >
-> We still recommend running with SELinux in enforcing mode.  A new section ([Configuring SELinux for Tomcat](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815538813/Installing+a+Shibboleth+3.x+IdP#InstallingaShibboleth3.xIdP-ConfiguringSELinuxforTomcat)) further below details the steps needed.  Please follow the instructions carefully - otherwise, the IdP would fail to start.
+> We still recommend running with SELinux in enforcing mode.  A new section ([Configuring SELinux for Tomcat](#configuring-selinux-for-tomcat)) further below details the steps needed.  Please follow the instructions carefully - otherwise, the IdP would fail to start.
 
   
 
@@ -947,7 +947,7 @@ In this section, some instructions are specific to storing the shared token valu
 
 ### Configuring a MySQL database for storing sharedToken values
 
-*   If configuring with a MySQL database, make sure the MySQL JDBC driver is present. As it would be later (in section [Configure Database Storage](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815538813/Installing+a+Shibboleth+3.x+IdP#InstallingaShibboleth3.xIdP-ConfigureDatabaseStorage)) used with a JDBC Pool DataSource (loaded as part of Tomcat outside of the IdP web application), the JDBC driver has to be loaded outside of the application as well.  The correct way (repeated also below) is: 
+*   If configuring with a MySQL database, make sure the MySQL JDBC driver is present. As it would be later (in section [Configure Database Storage](#configure-database-storage)) used with a JDBC Pool DataSource (loaded as part of Tomcat outside of the IdP web application), the JDBC driver has to be loaded outside of the application as well.  The correct way (repeated also below) is: 
     
     ```
     yum install mysql-connector-java
@@ -1428,14 +1428,14 @@ The `eduPersonEntitlement` attribute is a multivalued container for arbitrary st
 
 # Register the IdP into the federation
 
-Please follow the instructions on [registering an IdP into the Tuakiri federation](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815538798/Configuring+a+Shibboleth+Identity+Provider+to+join+the+Tuakiri+Federation#ConfiguringaShibbolethIdentityProvidertojointheTuakiriFederation-RegisteringanIdPintotheFederationRegistry) (using Federation Registry URL [https://registry.tuakiri.ac.nz/federationregistry/](https://registry.tuakiri.ac.nz/federationregistry/) for the Tuakiri federation or [https://registry.test.tuakiri.ac.nz/federationregistry/](https://registry.test.tuakiri.ac.nz/federationregistry/) for Tuakiri-TEST)
+Please follow the instructions on [registering an IdP into the Tuakiri federation](configuring_a_shibboleth_identity_provider_to_join_the_Tuakiri_federation#registering-an-idp-into-the-federation-registry) (using Federation Registry URL [https://registry.tuakiri.ac.nz/federationregistry/](https://registry.tuakiri.ac.nz/federationregistry/) for the Tuakiri federation or [https://registry.test.tuakiri.ac.nz/federationregistry/](https://registry.test.tuakiri.ac.nz/federationregistry/) for Tuakiri-TEST)
 
 For IdP version 3, these instructions need to be slightly adjusted, as IdPv3 generates three certificates/keypairs: signing, encryption and back-channel:
 
 *   On the initial registration form, paste the certificate from `$IDP_HOME/credentials/idp-signing.crt`.
 *   Afterwards, update the registration and add the back-channel certificate `$IDP_HOME/credentials/idp-backchannel.crt` as an additional certificate for **signing** and `$IDP_HOME/credentials/idp-encryption.crt` as an **encryption** certificate.
 *   Otherwise, proceed as with an IdPV2 (2.4.x) registration - and select that version if the Federation Registry is not listing 3.0.0 as an explicit choice.
-*   Also, when updating the registration entry, add the Single Log Out (SLO) endpoints as documented in the [Configuring Single Logout](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815538813/Installing+a+Shibboleth+3.x+IdP#InstallingaShibboleth3.xIdP-ConfiguringSingleLogout) section.
+*   Also, when updating the registration entry, add the Single Log Out (SLO) endpoints as documented in the [Configuring Single Logout](#configuring-single-logout) section.
 
 {% include identity_providers/idp_excerpt_register-idp-into-FR.md %}
 
@@ -1577,7 +1577,7 @@ If registering the IdP into multiple federations (such as into Tuakiri and AAF),
 To configure each additional attribute filter, follow these steps:
 
 *   First, determine the URL of your remote filter.  
-    For **Tuakiri**: please follow the instructions at [Configuring a Shibboleth Identity Provider to join the Tuakiri Federation#Configure attribute release/filtering through the federation](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815538798/Configuring+a+Shibboleth+Identity+Provider+to+join+the+Tuakiri+Federation#ConfiguringaShibbolethIdentityProvidertojointheTuakiriFederation-Configureattributerelease/filteringthroughthefederation) (this process would provide you with a custom URL to download the metadata from).
+    For **Tuakiri**: please follow the instructions at [Configuring a Shibboleth Identity Provider to join the Tuakiri Federation#Configure attribute release/filtering through the federation](configuring_a_shibboleth_identity_provider_to_join_the_Tuakiri_federation.html#configure-attribute-releasefiltering-through-the-federation) (this process would provide you with a custom URL to download the metadata from).
 
 {% include identity_providers/idp_excerpt_idp3-load-attribute-filter.md %}
 
@@ -1625,7 +1625,7 @@ Alternatively, set up the fetching via an external script and configure the IdP 
 
 ## ECP support
 
-To allow your IdP to be used with the [ECP](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815538794/ECP) profile (access via non-browser clients) to let your users access ECP-enabled services in the federation:
+To allow your IdP to be used with the [ECP](../ecp) profile (access via non-browser clients) to let your users access ECP-enabled services in the federation:
 
 *   In IdPV3, no configuration effort on the IdP side is needed - ECP is enabled by default.
     
@@ -1919,7 +1919,7 @@ The consent module is turned on by default and can be used as it is, we however 
     >
     > Earlier versions of this documentation were instructing to explicitly release the attribute used for calculating the persistentNameID  to make it visible to the PersistentID generator - and to hide this attribute from the consent screen. This was necessary for older versions of IdPv3, but for 3.2.0 and newer is no longer needed - see the last line in the ComputedID section of the upstream [PersistentNameID documentation](https://wiki.shibboleth.net/confluence/display/IDP30/PersistentNameIDGenerationConfiguration#PersistentNameIDGenerationConfiguration-ComputedIDs).
     >
-    > This documentation has been updated (in December 2016) in the [configuring Persistent NameID](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815538813/Installing+a+Shibboleth+3.x+IdP#InstallingaShibboleth3.xIdP-eduPersonTargetedID/PersistentNameID) section above to no longer add rules to explicitly release the attributes.  As long as these rules are not present, it is also no longer necessary to hide the attribute from the consent screen as the original documentation was instructing here.
+    > This documentation has been updated (in December 2016) in the [configuring Persistent NameID](#edupersontargetedid--persistentnameid) section above to no longer add rules to explicitly release the attributes.  As long as these rules are not present, it is also no longer necessary to hide the attribute from the consent screen as the original documentation was instructing here.
     >
     > For completeness, the original instructions were:
     >
@@ -2538,9 +2538,9 @@ where the parameters are:
 *   requester: the entityID of the target SP (we recommend the Tuakiri Attribute Validator - use https://attributes.tuakiri.ac.nz/shibboleth for Tuakiri Production environment and https://attributes.test.tuakiri.ac.nz/shibboleth for Tuakiri Staging environment (Test Federation).
 *   url: the base URL of the IdP (externally facing https URL)
 
-Alternatively, it is also possible to access the resolvertest URL directly via a browser (as documented above in [Administrative Interface](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815538813/Installing+a+Shibboleth+3.x+IdP#InstallingaShibboleth3.xIdP-AdministrativeInterface)).   These URLs are subject to access control (by default accessible only from localhost); the options for gaining access include:
+Alternatively, it is also possible to access the resolvertest URL directly via a browser (as documented above in [Administrative Interface](#administrative-interface)).   These URLs are subject to access control (by default accessible only from localhost); the options for gaining access include:
 
-*   Explicitly adding an entry to the AccessByIPAddress bean as per the instructions above in the  section  [Administrative Interface](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815538813/Installing+a+Shibboleth+3.x+IdP#InstallingaShibboleth3.xIdP-AdministrativeInterface).
+*   Explicitly adding an entry to the AccessByIPAddress bean as per the instructions above in the  section  [Administrative Interface](#administrative-interface).
     *   This would be required even for running the `aacli.sh` command locally - by default, only localhost is on the ACL, so even the external IP address of the IdP host would have to be explicitlly added for connections going via the external hostname.
 *   Running the browser on the IdP
     *   Note that by default, only `localhost` is in the `AccessByIPAddress` ACL, so it would be required to either add the external address of the IdP host to the ACL, or connect via `localhost`

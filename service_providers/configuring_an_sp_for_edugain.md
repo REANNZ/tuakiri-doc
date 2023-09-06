@@ -5,7 +5,7 @@ id: service_providers/configuring_an_sp_for_edugain
 # Configuring an SP for eduGAIN
 {:.no_toc}
 
-After meeting the [organisational requirements for joining eduGAIN](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815539060/Process+for+joining+eduGAIN), the SP needs to meet the following technical requirements:
+After meeting the [organisational requirements for joining eduGAIN](../edugain_resources/process_for_joining_edugain), the SP needs to meet the following technical requirements:
 
 *   Run up-to-date software
 *   Declare R&S (recommended if applicable)
@@ -16,9 +16,9 @@ After meeting the [organisational requirements for joining eduGAIN](https://rean
 *   Request attributes needed
 *   Use eduGAIN-enabled Discovery Service
 
-The final step is to send the [Request to Join eduGAIN](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815539015/eduGAIN+Information+Pack#eduGAINInformationPack-RequesttojoineduGAIN) to Tuakiri/REANNZ.
+The final step is to send the [Request to Join eduGAIN](../edugain_resources/edugain_information_pack.html#request-to-join-edugain) to Tuakiri/REANNZ.
 
-This page provides further details on these technical requirements.  For the details of the full process of joining eduGAIN, please see  the [eduGAIN Information Pack](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815539015/eduGAIN+Information+Pack).
+This page provides further details on these technical requirements.  For the details of the full process of joining eduGAIN, please see  the [eduGAIN Information Pack](../edugain_resources/edugain_information_pack.html).
 
 1. TOC
 {:toc}
@@ -29,7 +29,7 @@ The SP MUST run a supported SAML implementation with all security updates applie
 
 # Declaring R&S
 
-Please see the [eduGAIN Information Pack](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815539015/eduGAIN+Information+Pack#eduGAINInformationPack-ResearchandScholarship(R&S)EntityCategory) and the [REFEDS Research and Scholarship Category](https://refeds.org/category/research-and-scholarship) definition for full details.
+Please see the [eduGAIN Information Pack](../edugain_resources/edugain_information_pack.html#research-and-scholarship-rs-entity-category) and the [REFEDS Research and Scholarship Category](https://refeds.org/category/research-and-scholarship) definition for full details.
 
 In essence:
 
@@ -38,7 +38,7 @@ In essence:
 
 If an SP declares it meets the SP R&S requirements (the purpose of the SP is to support Research and Scholarship activities), the SP can expect that IdPs supporting R&S will release the attributes defined in the R&S attribute bundle.
 
-The actual declaration of support for R&S will be part of the joining request sent to Tuakiri as per the instructions in the [eduGAIN Information Pack](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815539015/eduGAIN+Information+Pack#eduGAINInformationPack-RequesttojoineduGAIN).
+The actual declaration of support for R&S will be part of the joining request sent to Tuakiri as per the instructions in the [eduGAIN Information Pack](../edugain_resources/edugain_information_pack.html#request-to-join-edugain).
 
 # SIRTFI
 
@@ -47,9 +47,9 @@ SIRTFI (Security Incident Response Trust Framework for Federated Identity) is a 
 For SPs, SIRTFI is highly recommended for joining eduGAIN.  Organisations self-assess against the SIRTFI criteria and then self-assert SIRTFI.  They also have to provide a security contact - which should be a role-based email address, not personal.
 
 *   The security contact should be provided by adding the contact as a `security` contact of the IdP in the Tuakiri Federation Registry.
-*   The step of self-asserting SIRTFI is included in the request to join eduGAIN as per the instructions in the [eduGAIN Information Pack](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815539015/eduGAIN+Information+Pack#eduGAINInformationPack-RequesttojoineduGAIN).
+*   The step of self-asserting SIRTFI is included in the request to join eduGAIN as per the instructions in the [eduGAIN Information Pack](../edugain_resources/edugain_information_pack.html#request-to-join-edugain).
 
-For more information, please see the [eduGAIN Information Pack](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815539015/eduGAIN+Information+Pack#eduGAINInformationPack-SIRTFI) and the [REFEDS SIRTFI documentation](https://refeds.org/sirtfi).
+For more information, please see the [eduGAIN Information Pack](../edugain_resources/edugain_information_pack.html#sirtfi) and the [REFEDS SIRTFI documentation](https://refeds.org/sirtfi).
 
 # Logo
 
@@ -121,7 +121,7 @@ Your SP should have the list of requested attributes recorded in the Federation 
 
 The same list of requested attributes will be used for Tuakiri and for eduGAIN - the list of requested attributes will be included in the SP metadata published into eduGAIN.  But please be aware that not all IdPs in eduGAIN will be supporting (and releasing) the same set of attributes in Tuakiri. 
 
-Attributes in the [R&S Attribute bundle](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815539015/eduGAIN+Information+Pack#eduGAINInformationPack-R&SAttributeBundle) should be released by all IdPs supporting R&S.  Other attributes may be released depending on the IdP configuration.
+Attributes in the [R&S Attribute bundle](../edugain_resources/edugain_information_pack.html#rs-attribute-bundle) should be released by all IdPs supporting R&S.  Other attributes may be released depending on the IdP configuration.
 
 # Configuring Discovery Service to use
 

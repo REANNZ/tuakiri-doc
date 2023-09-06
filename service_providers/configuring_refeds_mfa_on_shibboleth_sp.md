@@ -5,7 +5,7 @@ id: service_providers/configuring_refeds_mfa_on_shibboleth_sp
 # Configuring REFEDS MFA on Shibboleth SP
 {:.no_toc}
 
-The REFEDS MFA Profile: [https://refeds.org/profile/mfa](https://refeds.org/profile/mfa) is the vendor-agnostic approach to [signalling Multi-Factor Authentication](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815538745/Multi-Factor+Authentication+with+REFEDS+MFA+profile) in R&E identity federations like Tuakiri (and among such federations when connected to [eduGAIN](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815539055/eduGAIN+resources)).
+The REFEDS MFA Profile: [https://refeds.org/profile/mfa](https://refeds.org/profile/mfa) is the vendor-agnostic approach to [signalling Multi-Factor Authentication](../multi-factor_authentication_with_refeds_mfa_profile) in R&E identity federations like Tuakiri (and among such federations when connected to [eduGAIN](edugain_resources/index)).
 
 A Service Provider (SP) can signal the MFA requirement by including an AuthnContextClassRef with value of `[https://refeds.org/profile/mfa](https://refeds.org/profile/mfa)` in the SAML SSO requests.
 

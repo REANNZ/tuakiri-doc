@@ -27,7 +27,7 @@ Tuakiri Hosted IdP is a scalable service - in multiple dimensions:
 *   REANNZ designed the service to make it easy to add new members to this service.
 *   When a new service gets added into Tuakiri, it becomes automatically visible to all Tuakiri IdPs.  
     This would not work easily with cloud-based Identity Management Systems, where each service has to be configured manually.
-*   For institutions using the Tuakiri Hosted IdP service, it is also easy to [join eduGAIN](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815539015/eduGAIN+Information+Pack) - as the platform meets all the technical requirements.  
+*   For institutions using the Tuakiri Hosted IdP service, it is also easy to [join eduGAIN](edugain_resources/edugain_information_pack) - as the platform meets all the technical requirements.  
     And that means easy access to a much higher number of services available via [eduGAIN](https://edugain.org/).
 
 # How do I get started with a Tuakiri Hosted IdP?
@@ -43,8 +43,8 @@ After the initial conversation, we will give you details of your Tuakiri Hosted 
 
 Please see the specific details here:
 
-*   [Registering Tuakiri Hosted IdP as a Service with Google Apps / GSuite](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815538709/Registering+Tuakiri+Hosted+IdP+as+a+Service+with+Google+Apps+or+GSuite)
-*   [Registering Tuakiri Hosted IdP as a Service with Office 365 / Azure AD](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815538723/Registering+Tuakiri+Hosted+IdP+as+a+Service+with+Office+365+or+Azure+AD)
+*   [Registering Tuakiri Hosted IdP as a Service with Google Apps / GSuite](tuakiri_hosted_idp/registering_tuakiri_hosted_idp_as_a_service_with_google_apps_or_gsuite)
+*   [Registering Tuakiri Hosted IdP as a Service with Office 365 / Azure AD](tuakiri_hosted_idp/registering_tuakiri_hosted_idp_as_a_service_with_office_365_or_azure_ad)
 
 Alongside the registration steps linked above, you will need to provide us with the following information:
 
@@ -62,6 +62,6 @@ Alongside the registration steps linked above, you will need to provide us with 
         *   Explicit confirmation if the attributes are not being reassigned.  (I.e. a new user never gets the identifier of a previous different user).
         *   What types of users get access to the IdP (via your Cloud-based IdMS).  Is access restricted to staff only?  If not, how can staff and other users be distinguished?
         *   In case your organisation also has students, an attribute that would allow to tell students apart from staff.
-*   We strongly recommend also joining eduGAIN - and  including the [Connect to eduGAIN form](https://reannz.atlassian.net/wiki/download/attachments/3815539015/Connect-to-eduGAIN-form-Tuakiri.pdf?version=5&modificationDate=1599133146510&cacheVersion=1&api=v2) with your request (available in the [eduGAIN Information Pack](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815539015/eduGAIN+Information+Pack)).
+*   We strongly recommend also joining eduGAIN - and  including the [Connect to eduGAIN form](https://reannz.atlassian.net/wiki/download/attachments/3815539015/Connect-to-eduGAIN-form-Tuakiri.pdf?version=5&modificationDate=1599133146510&cacheVersion=1&api=v2) with your request (available in the [eduGAIN Information Pack](edugain_resources/edugain_information_pack)).
 
 After testing (first deploying an instance in the Tuakiri-TEST environment), we should be in a position to turn your Production instance on.

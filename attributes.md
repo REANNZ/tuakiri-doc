@@ -10,7 +10,7 @@ Tuakiri Identity Providers need to collect or generate core attributes about the
 
 The attributes are used by the Service Provider to make authorisation decisions and to manage the user’s experience with the service. Service Providers should consider which attributes they need in order to provide the service effectively and only request those attributes that are needed. The list of core attributes may evolve over time in response to the needs of Tuakiri members.
 
-This page provides background information on how to map Tuakiri/AAF attributes to your own Identity Management System (IdMS). For detailed instructions, refer to [Installing a Shibboleth 3.x IdP](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815538813/Installing+a+Shibboleth+3.x+IdP).
+This page provides background information on how to map Tuakiri/AAF attributes to your own Identity Management System (IdMS). For detailed instructions, refer to [Installing a Shibboleth 3.x IdP](identity_providers/installing_a_shibboleth_3_x_idp).
 
 # Attributes Overview
 

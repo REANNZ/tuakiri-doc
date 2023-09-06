@@ -29,7 +29,7 @@ Please start the process by contacting us at [tuakiri@reannz.co.nz](mailto:tuaki
 *   A descriptive name of the service
 *   The redirect\_uri the OpenIDConnect RP on the service will use
     *   the redirect\_uri must use HTTPS - and must use a host name properly registered in DNS; an IP address would not be accepted
-*   Which of the Tuakiri [Attributes](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815538694/Attributes) the service will need access to (and what scopes the service will be requesting - see below)
+*   Which of the Tuakiri [Attributes](attributes) the service will need access to (and what scopes the service will be requesting - see below)
 *   Whether for authenticating to the service, a _targeted_ (_pairwise_) subject identifier will be sufficient, or whether the service needs _public_ (non-targeted) subject identifier.  
     (The latter would only be the case when multiple services connected to the bridge independently need to receive matching subject identifiers).
 *   Name of the organisation operating the service

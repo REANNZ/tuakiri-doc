@@ -4,7 +4,7 @@ id: tuakiri_hosted_idp/registering_tuakiri_hosted_idp_as_a_service_with_office_3
 ---
 # Registering Tuakiri Hosted IdP as a Service with Office 365 or Azure AD
 
-The [Tuakiri Hosted IdP](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815538725/Tuakiri+Hosted+IdP) runs a SAML Identity Provider (IdP) as a SAML proxy, facing Tuakiri as an IdP and facing an upstream IdP as a Service Provider (SP).
+The [Tuakiri Hosted IdP](../tuakiri_hosted_idp) runs a SAML Identity Provider (IdP) as a SAML proxy, facing Tuakiri as an IdP and facing an upstream IdP as a Service Provider (SP).
 
 A Tuakiri Hosted IdP instance needs to be registered with the upstream IdP as a Service Provider - and also needs the metadata of the upstream IdP.
 
@@ -59,7 +59,7 @@ Please repeat this process twice, separately for TEST and PROD registration.
     *   Leave blank Sign on URL, Relay State, Logout URL
     *   User Attributes and Claims: the attributes selected by default are OK for minimum viable set of attributes
         *   Assuming these include givenname, surname, emailaddress, name
-        *   If available and desired, include also other attributes that map to [Tuakiri Attributes](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815538694/Attributes) - such as phoneNumber and address.
+        *   If available and desired, include also other attributes that map to [Tuakiri Attributes](../attributes) - such as phoneNumber and address.
     *   Download Federation Metadata XML from SAML Signing Certificate section
 
-Once the registration is complete, confirm this to [Tuakiri support](mailto:tuakiri@reannz.co.nz) and send through your IdP metadata - alongside with other information required on the [Tuakiri Hosted IdP](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815538725/Tuakiri+Hosted+IdP) page.
+Once the registration is complete, confirm this to [Tuakiri support](mailto:tuakiri@reannz.co.nz) and send through your IdP metadata - alongside with other information required on the [Tuakiri Hosted IdP](../tuakiri_hosted_idp) page.

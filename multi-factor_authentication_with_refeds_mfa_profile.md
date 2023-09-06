@@ -19,8 +19,8 @@ This profile can be:
 
 The following pages provide documentation for:
 
-*   [IdPs to configure support for MFA](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815538737/Configuring+REFEDS+MFA+on+Shibboleth+IdP) (enforcing and asserting)
-*   [SPs to configure support for MFA](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815538751/Configuring+REFEDS+MFA+on+Shibboleth+SP) (requesting and checking)
+*   [IdPs to configure support for MFA](identity_providers/configuring_refeds_mfa_on_shibboleth_idp) (enforcing and asserting)
+*   [SPs to configure support for MFA](service_providers/configuring_refeds_mfa_on_shibboleth_sp) (requesting and checking)
 
 To test the overall experience, the following links initiate a login to the Tuakiri Attribute Validator with MFA requested and checked (and will thus fail with IdPs not supporting MFA):
 

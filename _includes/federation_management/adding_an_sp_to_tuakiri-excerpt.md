@@ -81,7 +81,7 @@ Please note that on the registration form, you'll be asked to select the organiz
 
 ## ECP support
 
-If your SP should support [ECP]({{ 'ECP' | relative_url }}) (access via non-browser clients), then also register support for ECP:
+If your SP should support [ECP]({{ 'ecp' | relative_url }}) (access via non-browser clients), then also register support for ECP:
 
 *   After your SP registration is complete, log into the Federation Registry again (in the same way as above)
 *   Open the entry for your SP (under Subscribers -> Service Providers or directly from the Dashboard)

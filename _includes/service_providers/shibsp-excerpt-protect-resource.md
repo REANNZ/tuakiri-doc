@@ -61,7 +61,7 @@ Applying lazy sessions (making the Shibboleth sessions visible) to the whole app
   
 
 Note that in this case, to actually trigger a login, the application would have to redirect the user to a Session Initiator - a default one is located at `/Shibboleth.sso/Login`  (see the links below for more details).  
-You are welcome to use the Tuakiri logo with the Login link - please visit our [Logos](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815538811/Logos) page to get a suitably sized Tuakiri logo.
+You are welcome to use the Tuakiri logo with the Login link - please visit our [integration documentation page](https://rapidconnect.tuakiri.ac.nz/developers#logo-images) to get a suitably sized Tuakiri logo.
 
 For further information, please see the following pages in the Shibboleth SP documentation:
 

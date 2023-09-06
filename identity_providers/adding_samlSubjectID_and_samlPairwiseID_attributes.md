@@ -184,7 +184,7 @@ Log into the appropriate instance of the Attribute Validator to confirm the attr
 
 # Documentation
 
-This guide assumes the IdP was installed as per the [Tuakiri IdP Installation Manual](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815538813/Installing+a+Shibboleth+3.x+IdP).
+This guide assumes the IdP was installed as per the [Tuakiri IdP Installation Manual](installing_a_shibboleth_3_x_idp).
 
 The following links into the upstream [Shibboleth IdP documentation](https://wiki.shibboleth.net/confluence/display/IDP4/Configuration) may be helpful:
 

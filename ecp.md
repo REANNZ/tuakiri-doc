@@ -8,9 +8,9 @@ The Enhanced Client/Proxy profile is an extension to the SAML 2.0 protocol suite
 
 Enabling ECP sessions requires several steps to be completed:
 
-1.  [Enable ECP in the Shibboleth SP configuration](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815538788/Installing+Shibboleth+SP+on+RedHat+based+Linux#InstallingShibbolethSPonRedHatbasedLinux-ECP) on the service to be accessed via ECP
-2.  [Register ECP support for this SP in the Federation Registry](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815539065/Adding+a+Service+Provider+to+the+Tuakiri+Federation#AddingaServiceProvidertotheTuakiriFederation-ECPsupport)
-3.  [Enable ECP on all IdPs accessing this service](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815538790/Installing+a+Shibboleth+2.x+IdP#InstallingaShibboleth2.xIdP-ECPsupport)
+1.  [Enable ECP in the Shibboleth SP configuration](service_providers/installing_shibboleth_sp_on_redhat_based_linux#ecp) on the service to be accessed via ECP
+2.  [Register ECP support for this SP in the Federation Registry](federation_management/adding_a_service_provider_to_the_Tuakiri_federation#ecp-support)
+3.  [Enable ECP on all IdPs accessing this service](identity_providers/installing_a_shibboleth_3_x_idp#ecp-support)
 
 For testing ECP, there is a bash and python implementation of ECP at [https://wiki.shibboleth.net/confluence/display/SHIB2/Contributions#Contributions-Other%2CRelated%2CContributions](https://wiki.shibboleth.net/confluence/display/SHIB2/Contributions#Contributions-Other%2CRelated%2CContributions)
 

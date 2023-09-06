@@ -5,7 +5,7 @@ id: identity_providers/configuring_an_idp_for_edugain
 # Configuring an IdP for eduGAIN
 {:.no_toc}
 
-After meeting the [organisational requirements for joining eduGAIN](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815539060/Process+for+joining+eduGAIN), the IdP needs to meet the following technical requirements:
+After meeting the [organisational requirements for joining eduGAIN](../edugain_resources/process_for_joining_edugain), the IdP needs to meet the following technical requirements:
 
 *   Run up-to-date software
 *   Declare support for R&S
@@ -15,20 +15,20 @@ After meeting the [organisational requirements for joining eduGAIN](https://rean
 *   Configure attribute release
 *   Configure page layout for Service Provider logos (optional)
 
-The final step is to send the [Request to Join eduGAIN](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815539015/eduGAIN+Information+Pack#eduGAINInformationPack-RequesttojoineduGAIN) to Tuakiri/REANNZ.
+The final step is to send the [Request to Join eduGAIN](../edugain_resources/edugain_information_pack#request-to-join-edugain) to Tuakiri/REANNZ.
 
-This page provides further details on these technical requirements.  For the details of the full process of joining eduGAIN, please see  the [eduGAIN Information Pack](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815539015/eduGAIN+Information+Pack).
+This page provides further details on these technical requirements.  For the details of the full process of joining eduGAIN, please see  the [eduGAIN Information Pack](../edugain_resources/edugain_information_pack).
 
 1. TOC
 {:toc}
 
 # Running up-to-date IdP software
 
-The IdP MUST run Shibboleth IdP 3.x, if possible the latest version.  Please follow the instructions at [Upgrading a Shibboleth 3.x IdP](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815539011/Upgrading+a+Shibboleth+3.x+IdP).
+The IdP MUST run Shibboleth IdP 3.x, if possible the latest version.  Please follow the instructions at [Upgrading a Shibboleth 3.x IdP](upgrading_a_shibboleth_3_x_idp).
 
 # Declaring support for R&S
 
-Please see the [eduGAIN Information Pack](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815539015/eduGAIN+Information+Pack#eduGAINInformationPack-ResearchandScholarship(R&S)EntityCategory) and the [REFEDS Research and Scholarship Category](https://refeds.org/category/research-and-scholarship) definition for full details.
+Please see the [eduGAIN Information Pack](../edugain_resources/edugain_information_pack##research-and-scholarship-rs-entity-category)EntityCategory) and the [REFEDS Research and Scholarship Category](https://refeds.org/category/research-and-scholarship) definition for full details.
 
 In essence:
 
@@ -37,7 +37,7 @@ In essence:
 
 To meet the requirements of R&S, an IdP MUST load the `rns-attribute-filter.xml` as per instructions below.
 
-The actual declaration of support for R&S will be part of the joining request sent to Tuakiri as per the instructions in the [eduGAIN Information Pack](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815539015/eduGAIN+Information+Pack#eduGAINInformationPack-RequesttojoineduGAIN).
+The actual declaration of support for R&S will be part of the joining request sent to Tuakiri as per the instructions in the [eduGAIN Information Pack](../edugain_resources/edugain_information_pack.html#request-to-join-edugain).
 
 # SIRTFI
 
@@ -46,9 +46,9 @@ SIRTFI (Security Incident Response Trust Framework for Federated Identity) is a 
 For IdPs, SIRTFI is a requirement for joining eduGAIN.  Organisations self-assess against the SIRTFI criteria and then self-assert SIRTFI.  They also have to provide a security contact - which should be a role-based email address, not personal.
 
 *   The security contact should be provided by adding the contact as a `security` contact of the IdP in the Tuakiri Federation Registry.
-*   The step of self-asserting SIRTFI is included in the request to join eduGAIN as per the instructions in the [eduGAIN Information Pack](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815539015/eduGAIN+Information+Pack#eduGAINInformationPack-RequesttojoineduGAIN).
+*   The step of self-asserting SIRTFI is included in the request to join eduGAIN as per the instructions in the [eduGAIN Information Pack](../edugain_resources/edugain_information_pack.html#request-to-join-edugain).
 
-For more information, please see the [eduGAIN Information Pack](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815539015/eduGAIN+Information+Pack#eduGAINInformationPack-SIRTFI) and the [REFEDS SIRTFI documentation](https://refeds.org/sirtfi).
+For more information, please see the [eduGAIN Information Pack](../edugain_resources/edugain_information_pack.html#sirtfi) and the [REFEDS SIRTFI documentation](https://refeds.org/sirtfi).
 
 # Logo
 
@@ -163,7 +163,7 @@ To configure the attribute release:
     > idp.service.attribute.filter.checkInterval = PT5S
     > ```
     >
-    > Note that if the Tuakiri-generated attribute filter was loaded from a local file [refreshed by an external script](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815538813/Installing+a+Shibboleth+3.x+IdP#InstallingaShibboleth3.xIdP-LoadAttributeFilter) (cron job), when no longer loaded this file, the cron job can be (and should be) removed.
+    > Note that if the Tuakiri-generated attribute filter was loaded from a local file [refreshed by an external script](installing_a_shibboleth_3_x_idp.html#load-attribute-filter) (cron job), when no longer loaded this file, the cron job can be (and should be) removed.
     
 *   and restart the IdP to pick up the change:
     

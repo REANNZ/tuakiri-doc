@@ -35,7 +35,7 @@ If supporting ECP, advertise also your ECP SSO EndPoint:
 
 {% include identity_providers/idp_excerpt_idp-register-ecp.md indent="" %}
 
-The IdP also needs to be [configured to support ECP](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815538790/Installing+a+Shibboleth+2.x+IdP#InstallingaShibboleth2.xIdP-ECPsupport).
+The IdP also needs to be [configured to support ECP](installing_a_shibboleth_3_x_idp#ecp-support).
 
 # Configuring your IdP to load the federation metadata
 
@@ -126,7 +126,7 @@ After requesting the attribute filter:
     >
     > ```
     
-*   We also strongly recommend you configure your IdP to periodically reload this file - we recommend at 2 hour intervals. This is documented in detail in the [IdP Install Manual: Reloading configuration section](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815538790/Installing+a+Shibboleth+2.x+IdP#InstallingaShibboleth2.xIdP-Enablingautomaticreload) and [Load Attribute Filter](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815538790/Installing+a+Shibboleth+2.x+IdP#InstallingaShibboleth2.xIdP-LoadAttributeFilter) sections. The simple step is to add the `configurationResourcePollingFrequency="PT2H0M0.000S"` and `configurationResourcePollingRetryAttempts="10"` attributes to the `<srv:Service id="shibboleth.AttributeFilterEngine"`element. If you already have these attributes set for reloading the local configuration file - with a shorter interval, please adjust them accordingly to 2 hours for the remotely loaded attribute filter:
+*   We also strongly recommend you configure your IdP to periodically reload this file - we recommend at 2 hour intervals. This is documented in detail in the [IdP Install Manual: Reloading configuration section](installing_a_shibboleth_3_x_idp) and [Load Attribute Filter](installing_a_shibboleth_3_x_idp.html#load-attribute-filter) sections. The simple step is to add the `configurationResourcePollingFrequency="PT2H0M0.000S"` and `configurationResourcePollingRetryAttempts="10"` attributes to the `<srv:Service id="shibboleth.AttributeFilterEngine"`element. If you already have these attributes set for reloading the local configuration file - with a shorter interval, please adjust them accordingly to 2 hours for the remotely loaded attribute filter:
     
     ```
         <srv:Service id="shibboleth.AttributeFilterEngine"

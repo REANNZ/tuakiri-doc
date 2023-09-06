@@ -240,7 +240,7 @@ Note that while this page uses Apache as the web server SimpleSAMLphp is deploye
         >     *   Tuakiri-PROD: `06:85:C5:89:2F:38:83:98:77:1B:A4:5D:58:A4:06:3A:A4:C1:CE:45`
         >     *   Tuakiri-TEST: `5E:90:2D:F9:D9:5A:5A:95:BF:58:4D:02:AD:29:35:64:CC:BF:76:45`
         > *   To calculate the fignerprint yourself:
-        >     *   Download the metadata signing certificate (for Tuakiri-PROD and Tuakiri-TEST, they are linked from the [instructions on registering an SP into Tuakiri](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815539065/Adding+a+Service+Provider+to+the+Tuakiri+Federation))
+        >     *   Download the metadata signing certificate (for Tuakiri-PROD and Tuakiri-TEST, they are linked from the [instructions on registering an SP into Tuakiri](../federation_management/adding_a_service_provider_to_the_Tuakiri_federation))
         >     *   and get the fingerprint value with:
         >         
         >         ```

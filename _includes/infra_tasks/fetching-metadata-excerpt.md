@@ -57,7 +57,7 @@ To deploy this solution without XmlSecTool:
             </MetadataProvider>
         ```
         
-        *   Please see the notes in the main instructions for [Configuring an IdP to load the Tuakiri metadata](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815538798/Configuring+a+Shibboleth+Identity+Provider+to+join+the+Tuakiri+Federation#ConfiguringaShibbolethIdentityProvidertojointheTuakiriFederation-ConfiguringyourIdPtoloadthefederationmetadata) for additional information about the parameters in this snippet.
+        *   Please see the notes in the main instructions for [Configuring an IdP to load the Tuakiri metadata]({{ 'identity_providers/configuring_a_shibboleth_identity_provider_to_join_the_Tuakiri_federation' | relative_url }}#configuring-your-idp-to-load-the-federation-metadata) for additional information about the parameters in this snippet.
     
       
     *   Edit `$IDP_HOME/conf/services.xml` and add the additional attribute filter as an additional value in the `shibboleth.AttributeFilterResources` `[util:list](http://utillist)` bean:

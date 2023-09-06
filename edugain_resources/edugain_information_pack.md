@@ -77,7 +77,7 @@ All Tuakiri Subscribers are required to observe good practice in relation to the
 
 # Technical connection requirements
 
-There are a number of technical requirements your organisation’s IdP and SPs must follow to connect to eduGAIN. Requirements cover metadata consumption, attribute release for IdPs, attribute consumption and discovery for SPs. Specific information about the [technical requirements to connect to eduGAIN](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815539032/Configuring+an+IdP+for+eduGAIN) is available in the Tuakiri [Documentation](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815538696/Documentation) or by contacting [tuakiri@reannz.co.nz](mailto:tuakiri@reannz.co.nz).
+There are a number of technical requirements your organisation’s IdP and SPs must follow to connect to eduGAIN. Requirements cover metadata consumption, attribute release for IdPs, attribute consumption and discovery for SPs. Specific information about the [technical requirements to connect to eduGAIN](../identity_providers/configuring_an_idp_for_edugain) is available in the Tuakiri [Documentation](../index) or by contacting [tuakiri@reannz.co.nz](mailto:tuakiri@reannz.co.nz).
 
 ## eduGAIN metadata
 

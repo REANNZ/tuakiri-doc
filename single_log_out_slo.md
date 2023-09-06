@@ -14,7 +14,7 @@ However, there is a number of gotchas in SLO - including issues like temporarily
 
 No configuration is necessary and on Shibboleth SP implementations version 2.5.0+, SLO works out of the box.
 
-The only work required for basic functionality to work is adding a Logout button to the application pointing to the initiator (see the section on [Initiating Single Logout](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815539051#SingleLogOut(SLO)-InitiatingSingleLogout) below).
+The only work required for basic functionality to work is adding a Logout button to the application pointing to the initiator (see the section on [Initiating Single Logout](#initiating-single-logout)-InitiatingSingleLogout) below).
 
 The only configuration work to be done would be tweaking the Logout Initiator for advanced deployment scenarios:
 
@@ -38,7 +38,7 @@ For further information, please see the following documentation from the Shibbol
 
 # SLO configuration on an Identity Provider
 
-Please see the [relevant section in the IdP installation manual](https://reannz.atlassian.net/wiki/spaces/Tuakiri/pages/3815538790/Installing+a+Shibboleth+2.x+IdP#InstallingaShibboleth2.xIdP-ConfiguringSingleLogout).
+Please see the [relevant section in the IdP installation manual](identity_providers/installing_a_shibboleth_3_x_idp.html#configuring-single-logout).
 
 Please note that if the above steps have NOT been done for an IdP, then:
 
