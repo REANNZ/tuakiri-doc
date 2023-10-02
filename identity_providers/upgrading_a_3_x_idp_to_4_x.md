@@ -1,5 +1,7 @@
 ---
-redirect_from: Upgrading+a+3.x+IdP+to+4.x
+redirect_from:
+  - Upgrading+a+3.x+IdP+to+4.x
+  - Upgrading+a+3x+IdP+to+4x
 id: identity_providers/upgrading_a_3_x_idp_to_4_x
 ---
 # Upgrading a 3.x IdP to 4.x

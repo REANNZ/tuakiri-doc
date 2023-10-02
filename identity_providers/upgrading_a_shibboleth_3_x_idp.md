@@ -1,5 +1,7 @@
 ---
-redirect_from: Upgrading+a+Shibboleth+3.x+IdP
+redirect_from:
+  - Upgrading+a+Shibboleth+3.x+IdP
+  - Upgrading+a+Shibboleth+3x+IdP
 id: identity_providers/upgrading_a_shibboleth_3_x_idp
 ---
 # Upgrading a Shibboleth 3.x IdP
