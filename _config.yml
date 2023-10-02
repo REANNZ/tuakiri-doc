@@ -1,4 +1,5 @@
 title: Tuakiri Documentation
+permalink: :title # avoid .html suffix on canonical page URLs
 owner_name: Tuakiri
 owner_url: https://tuakiri.ac.nz/
 
