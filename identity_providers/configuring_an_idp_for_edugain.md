@@ -87,7 +87,7 @@ To load the metadata, add the following snippet in `/opt/shibboleth-idp/conf/met
         metadataURL="https://directory.tuakiri.ac.nz/metadata/tuakiri-edugain-verified.xml">
 
   <MetadataFilter xsi:type="SignatureValidation"
-          certificateFile="${idp.home}/credentials/tuakiri-metadata-cert.pem"
+          certificateFile="%{idp.home}/credentials/tuakiri-metadata-cert.pem"
           requireSignedRoot="true">
   </MetadataFilter>
   <MetadataFilter xsi:type="EntityRoleWhiteList">
@@ -110,7 +110,7 @@ To load the metadata, add the following snippet in `/opt/shibboleth-idp/conf/met
         metadataURL="https://directory.test.tuakiri.ac.nz/metadata/tuakiri-test-edugain-verified.xml">
 
   <MetadataFilter xsi:type="SignatureValidation"
-          certificateFile="${idp.home}/credentials/tuakiri-test-metadata-cert.pem"
+          certificateFile="%{idp.home}/credentials/tuakiri-test-metadata-cert.pem"
           requireSignedRoot="true">
   </MetadataFilter>
   <MetadataFilter xsi:type="EntityRoleWhiteList">

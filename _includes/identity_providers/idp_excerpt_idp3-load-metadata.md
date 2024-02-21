@@ -10,7 +10,7 @@
                       metadataURL="https://directory.tuakiri.ac.nz/metadata/tuakiri-metadata-signed.xml">
     
                 <MetadataFilter xsi:type="SignatureValidation"
-                        certificateFile="${idp.home}/credentials/tuakiri-metadata-cert.pem"
+                        certificateFile="%{idp.home}/credentials/tuakiri-metadata-cert.pem"
                         requireSignedRoot="true">
                 </MetadataFilter>
                 <MetadataFilter xsi:type="EntityRoleWhiteList">
@@ -49,7 +49,7 @@
     >                   metadataURL="https://directory.test.tuakiri.ac.nz/metadata/tuakiri-test-metadata-signed.xml">
     >
     >             <MetadataFilter xsi:type="SignatureValidation"
-    >                     certificateFile="${idp.home}/credentials/tuakiri-test-metadata-cert.pem"
+    >                     certificateFile="%{idp.home}/credentials/tuakiri-test-metadata-cert.pem"
     >                     requireSignedRoot="true">
     >             </MetadataFilter>
     >             <MetadataFilter xsi:type="EntityRoleWhiteList">
