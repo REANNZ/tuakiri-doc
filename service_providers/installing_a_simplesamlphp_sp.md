@@ -96,7 +96,7 @@ Note that while this page uses Apache as the web server SimpleSAMLphp is deploye
     *   Set technical contact name and email address.
     *   Optionally, set timezone to `'Pacific/Auckland'` - or leave as `NULL` to rely on OS
 
-*   Configure a SQL session store to store sessions in a local database (even if just a sqlite3 file) instead of PHPsessions.
+*   Configure a SQL session store to store sessions in a local database (even if just a sqlite3 file) instead of PHPsessions in order to support SLO via backchannel (SOAP).
 *   Edit `config.php` and set the following:
     
     ```
