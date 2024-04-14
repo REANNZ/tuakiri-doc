@@ -59,11 +59,11 @@ There are many blog posts providing instructions for manual one-off installs.Â Â
 <details markdown="1">
 <summary>Click here to expand instructions to install newer version of Tomcat on RedHat-based systems.</summary>
 
-{% include infra_tasks/tomcat8_5.md %}
+{% include infra_tasks/tomcat10_1.md %}
 </details>
 
 > **Warning**  
-> Only proceed further after upgrading the application container to a compatible version - Tomcat 8.5 or later or Jetty 9.4
+> Only proceed further after upgrading the application container to a compatible version - Tomcat 10.1 (or later) or Jetty 11 (or later).
 
   
 
