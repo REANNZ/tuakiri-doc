@@ -3,7 +3,7 @@ The following instructions cover the installation of Tomcat 8 (8.5) on CentOS 7 
 
 The instructions are designed to work either when the Tomcat 7 RPM is already installed or not - and are designed to make future updates to newer Tomcat version easier - e.g., while there are per-version directories for Tomcat distribution, the directory for application context-descriptor files is shared across the multiple Tomcat versions.
 
-To install Tomcat7:
+To install Tomcat8.5:
 
 *   Stop Tomcat if it's currently running:
     
