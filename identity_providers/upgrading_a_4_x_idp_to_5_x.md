@@ -1,36 +1,33 @@
 ---
-redirect_from:
-  - Upgrading+a+3.x+IdP+to+4.x
-  - Upgrading+a+3x+IdP+to+4x
-id: identity_providers/upgrading_a_3_x_idp_to_4_x
+id: identity_providers/upgrading_a_4_x_idp_to_5_x
 ---
-# Upgrading a 3.x IdP to 4.x
+# Upgrading a 4.x IdP to 5.x
 {:.no_toc}
 
-IdP 4.0.0 was released in March 2020 and IdP 3.x will be declared End-Of-Life on December 31st, 2020.   All production IdPs thus have to be upgraded to 4.x.
+IdP 5.0.0 was released in September 2023 and IdP 4.x will be declared End-Of-Life on September 1st, 2024.   All production IdPs thus have to be upgraded to 5.x.
 
-The [upstream upgrade documentation](https://wiki.shibboleth.net/confluence/display/IDP4/Upgrading) strongly recommends doing an in-place upgrade to 4.x - and given the amount of changes in 4.x, we follow this recommendation and recommend Tuakiri members do the upgrade in-place.
+The [upstream upgrade documentation](https://shibboleth.atlassian.net/wiki/spaces/IDP5/pages/3199500925/Upgrading) strongly recommends doing an in-place upgrade to 5.x - and given the upgrade is mostly smooth (while a fresh install would require significant changes to attribute configuration), we follow this recommendation and recommend Tuakiri members do the upgrade in-place.
 
-Already in 3.x, the process for in-place upgrades has been well tuned - and the upgrade to 4.x should be seamless as well, as long as prior to the 4.x upgrade, the IdP runs the latest 3.x (3.4.8 or 3.4.7) with no **Deprecation warnings**.
+Already in 3.x and 4.x, the process for in-place upgrades has been well tuned - and the upgrade to 5.x should be seamless as well, as long as prior to the 5.x upgrade, the IdP runs the latest 4.x (4.3.2 or 4.3.1) with no **Deprecation warnings**.
 
 1. TOC
 {:toc}
 
 # Background
 
-IdP 3.x introduced a simplified upgrade process for in-place upgrades - where essentially, just running the installer from the new version distribution directory is sufficient.  The installer keeps the existing local configuration (primarily the `conf` directory, but also e.g. `credentials`  and `metadata` ), while updating the system files (primarily the `system` directory), replacing them with newer versions.  This highlights the fact that any local configuration should be done in the `conf` directory only, not touching files under `system` , as any changes made in the `system` directory are lost on upgrades.  But also makes the upgrades very easy to run.
+IdP 3.x introduced a simplified upgrade process for in-place upgrades - where essentially, just running the installer from the new version distribution directory is sufficient.  The installer keeps the existing local configuration (primarily the `conf` directory, but also e.g. `credentials`  and `metadata` ), while updating the system files.  This highlights the fact that any local configuration should be done in the `conf` directory only, not touching files under the `system` directory - which is actually removed in 5.x.  This also makes the upgrades very easy to run.
 
-Any new configuration files that do not exist in the `conf` directory yet are copied there.
+Any new configuration files that do not exist in the `conf` directory yet are copied there.  New versions of existing files are stored in the same location with `.idpnew-<version>` added to the file name (e.g., `conf/idp.properties.idpnew-511`).  (This convention replaces the earlier approach where `dist/conf`  directory contained a pristine copy of each configuration file as of the release being upgraded to, and all configuration files from the previous version were kept in `/opt/shibboleth-idp/old-<timestamp>`.
 
-After completing the upgrade, the `dist/conf`  directory contains a pristine copy of each configuration file as of the release being upgraded to.  And all files modified in the upgrade are kept under `/opt/shibboleth-idp/old-<timestamp>` , (including the `dist/conf`  directory), allowing to compare configuration files against the pristine versions they were based on.
+However, an upgrade between major version (such as 4.x to 5.x) is more involved and may require some manual changes and may require different versions of Java and of the web application container - see below for details.
 
 ## In-place upgrade vs. new install
 
-The [upstream upgrade documentation](https://wiki.shibboleth.net/confluence/display/IDP4/Upgrading) strongly recommends doing an in-place upgrade to 4.x - and given the amount of changes in 4.x, we follow this recommendation and recommend Tuakiri members do the upgrade in-place.
+The [upstream upgrade documentation](https://shibboleth.atlassian.net/wiki/spaces/IDP5/pages/3199500925/Upgrading) strongly recommends doing an in-place upgrade to 5.x.  For Tuakiri IdPs installed initially with 3.x, significant changes to attribute configuration would be required in a new install and we follow the upstream recommendation and recommend Tuakiri members do the upgrade in-place.
 
-There are significant changes in how the IdP 4.x is configured.  When an IdP is upgraded from an 3.x install, the configuration retains the "3.x style" and is compatible with 3.x-style configuration files.
+Most of the changes to new installs already came in IdP 4.x.  IdP upgraded from a 3.x install retains the "3.x style" and is compatible with 3.x-style configuration files.
 
-A fresh 4.x install would not activate the 3.x style and just copying 3.x-style configuration files (such as `attribute-resolver.xml` ) into a 4.x install will not work.
+A fresh 4.x or 5.x install would not activate the 3.x style and just copying 3.x-style configuration files (such as `attribute-resolver.xml` ) into a 5.x install will not work correctly.
 
 The differences between 3.x and 4.x include:
 
@@ -38,21 +35,77 @@ The differences between 3.x and 4.x include:
 *   4.x uses a new default for encryption of SAML Assertions (GCM), which may cause issues with some SPs (not being able to decrypt).  Rolling out the change of encryption ciphersuite should be separate from the IdP upgrade.
 *   4.x stores all secrets in a separate file, `credentials/secrets.properties` and other configuration files that need the secrets refer to the properties defined in this file.  (This includes LDAP connection credentials).
 
-We will later provide also an installation manual for a clean 4.x install - but for now, we recommend proceeding with an upgrade from the existing 3.x installation.
+We will later provide also an installation manual for a clean 5.x install - but for now, we recommend proceeding with an upgrade from the existing installation.
 
-# Prerequisites
+## Key aspects of 5.x upgrade
+
+As a new major release, 5.0.0 rolls out breaking changes that could not have been done in minor releases.
+
+These include:
+*   Dropping support for Java 11 and requiring Java 17.  As IdP 4.x (4.2.x+) supports Java 17, the Java upgrade can be done ahead of actual IdP upgrade.
+*   Switching from Java Servlet API 4.0 to 5.0.  As these are mutually incompatible, each servlet container implementation supports either 4.0 or 5.0, but not both.  This means the servlet container will have to be upgraded at the same time as the IdP itself.  In case of Tomcat, this means upgrading from 8.5 or 9.0 to 10.1.
+*   The system directory (`/opt/shibboleth-idp/system`) is no longer supported and all of its contents has been migrated to jars that are included in the IdP WAR file.  Before running the IdP installer to upgrade to 5.x, the system directory will have to be removed.
+*   Because of the above removal of the `system` directory (and also other changes done in 5.x), the web.xml file (`/opt/shibboleth-idp/edit-webapp/WEB-INF/web.xml)`), if present,  will have to be updated - or removed.  Unless there is a need to have customisations applied to this file, the best approach is to remove this file altogether (if present).  If customisations are required, we still recommend making a new copy of `/opt/shibboleth-idp/dist/webapp/WEB-INF/web.xml` into `/opt/shibboleth-idp/edit-webapp/WEB-INF/web.xml` and reapplying the customisations there.
+
+There are further changes required, but the above key points should provide sufficient basis for planning the upgrade.
+
+## Upgrade planning
+
+While the above recommendation is to perform an in-place upgrade of the IdP application, this may not be directly acceptable because:
+* this would cause an outage on a production system
+* the operating system of the host is due for a refresh (migrating to next major version of the OS)
+
+While the exact upgrade sequence will depend on specifics of the local deployment, our recommendation in case the OS refresh is needed is to:
+* create a new VM with preferred OS
+* install dependencies / pre-requisites of the IdP application (incl. Tomcat as per below)
+* copy over `/opt/shibboleth-idp` (and local database if used) to the new system
+* upgrade the IdP to 5.x.
+* confirm new IdP operates correctly
+* cut-over to replace original IdP (at either IP or DNS level)
+
+If no OS upgrade is needed, we recommend making a clone of the existing VM instead of creating a new VM and proceeding with the above sequence.
+
+# Preparing for upgrade
 
 ## Java
 
-While Shibboleth IdP 3.x was primarily targetting Java8 (and accepting Java7 as well), Shibboleth IdP requires Java 11.
+While Shibboleth IdP 4.x was primarily targetting Java 11, Shibboleth IdP 5.x requires Java 17.
 
-We recommend OpenJDK 11, on CentOS available as: `java-11-openjdk-devel` 
+We recommend OpenJDK 17, on RHEL-like systems available as: `java-17-openjdk-devel` .
+
+Latest IdP 4.x also supports Java 17, so it is possible to upgrade Java first in an isolated step, reducing the amount of change in the actual IdP 5.x upgrade.
+
+## Shibboleth IdP versions
+
+The upstream documentation states very clearly that 5.x upgrades are supported only from latest 4.x, running with no Deprecation warnings (for both startup and regular operation).
+
+So first, [upgrade to the latest 4.x](upgrading_a_shibboleth_3_x_idp) (4.3.2 as of April 2024, but 4.3.1 will be sufficient - 4.3.2 did not introduce any new deprecation warnings).
+
+After the upgrade, watch the logs while restarting the IdP and logging into the Attribute Validator ( [https://attributes.tuakiri.ac.nz/](https://attributes.tuakiri.ac.nz/) or [https://attributes.test.tuakiri.ac.nz/](https://attributes.test.tuakiri.ac.nz/) )
+
+Please contact us if you need help removing any other Deprecation warnings.
+
+Proceed further only after the IdP restart + Attribute Validator cycle comes through clean with no Deprecation warnings (checking both the IdP log in `/opt/shibboleth-idp/logs/idp-process.log` and the servlet container log, likely either in `/var/log/tomcat9/catalina.out` or `/opt/tomcat/current/logs/catalina.out`).
+
+Please note that one specific deprecation is the removal of JPAStorageService, replacing it with JDBCStorageService.  Please see the [relevant section in the 3.x-to-4.x upgrade instructions](upgrading_a_4_x_idp_to_5_x#migrating-from-jpastorageservice-to-jdbcstorageservice).
+
+## Fix metadata configuration
+
+Earlier versions of the [IdP Install Manual](installing_a_shibboleth_3_x_idp) used incorrect syntax in the configuration snippet for loading Tuakiri (and eduGAIN) metadata.  While the incorrect syntax worked with IdP 3.x and 4.x, it does not work with IdP 5.x and needs to be corrected before the upgrade.
+
+In `/opt/shibboleth-idp/conf/metadata-providers.xml`, the `certificateFile` attribute of the `SignatureValidation` `MetadataFilter` incorrectly used the `$` character in Spring property reference, while the correct syntax is using the `%` character.
+
+The change in our documentation was from `certificateFile="${idp.home}/credentials/tuakiri-metadata-cert.pem"` to `certificateFile="%{idp.home}/credentials/tuakiri-metadata-cert.pem"`.
+
+Please check all occurrences of `certificateFile` and if they use `${idp.home}`, replace it with `%{idp.home}`.
+
+# Upgrading to IdP 5.x
 
 ## Application Container
 
-The Shibboleth IdP web application runs in an Application Container, typically Tomcat or Jetty.  IdPv4 requires a newer version of the application container - Tomcat7 which was frequently used for IdP 3.x deployments will not work with IdP 4, Tomcat 8.5 is confirmed to work (though official requirements asks for Tomcat 9).  For Jetty, the required version is 9.4.
+The Shibboleth IdP web application runs in an Application Container, typically Tomcat or Jetty.  IdP 5.x requires a newer version of the application container - Tomcat 8.5 and 9.0 which was frequently used for IdP 4.x deployments will not work with IdP 5.x; Tomcat 10.1 is required.  For Jetty, the required version is 11.
 
-Unfortunately, on CentOS 7, only Tomcat 7 is available in the base OS repository.  And CentOS 8 does not come with any Tomcat version at all. Neither do any community-run repositories provide RPM packages for up-to-date releases of neither Tomcat nor Jetty.
+Unfortunately, even on RHEL 9, only Tomcat 9 is available in the base OS repository.  Neither do any community-run repositories provide RPM packages for up-to-date releases of neither Tomcat nor Jetty.
 
 There are many blog posts providing instructions for manual one-off installs.   We provide a set of instructions here as convenience - with the aim to make future updates to newer Tomcat version easier (using separate per-version directories for Tomcat binary distribution, but a shared directory for application context-descriptor files).  Feel free to use these - but also to install Tomcat or Jetty via other means.
 
@@ -67,156 +120,59 @@ There are many blog posts providing instructions for manual one-off installs. �
 
   
 
-## Shibboleth IdP versions
+## JSTL API module
 
-The upstream documentation states very clearly that 4.x upgrades are supported only from latest 3.x, running with no Deprecation warnings.  The IdP 3.x documentation provides the full list of [IdPv4 deprecations](https://wiki.shibboleth.net/confluence/display/IDP30/DeprecatedIdPV4), and this page also links to documentation covering how to deal with these deprecations.
-
-So first, [upgrade to the latest 3.x](upgrading_a_shibboleth_3_x_idp) (3.4.8 as of December 2020, but 3.4.7 will be sufficient - 3.4.8 did not introduce any new deprecation warnings).
-
-After the upgrade, watch the logs while restarting the IdP and logging into the Attribute Validator ( [https://attributes.tuakiri.ac.nz/](https://attributes.tuakiri.ac.nz/) or [https://attributes.test.tuakiri.ac.nz/](https://attributes.test.tuakiri.ac.nz/) )
-
-If the IdP is loading the Attribute Filter files generated by Tuakiri, you will get a Deprecation warning for the attribute filter.  We recommend switching to the new static attribute filter files ( `metadata-based-attribute-filter.xml`  and  `rns-attribute-filter.xml`  ), developed for eduGAIN connectivity.  Follow the instructions for configuring Attribute Release at [Configuring an IdP for eduGAIN](configuring_an_idp_for_edugain.html#configuring-attribute-release).  This will get your IdP ready for eduGAIN (together with loading the eduGAIN metadata), and will provide the same functionality for existing Tuakiri SPs as the previously used Attribute Filter file.  (A very special exception is if your IdP relied on rules for releasing individual `eduPersonEntitlement` values with a regular expression filter - please contact us if this is the case for your IdP).
-
-Please contact us if you need help removing any other Deprecation warnings.
-
-Proceed further only after the IdP restart + Attribute Validator cycle comes through clean with no Deprecation warnings.
+The [IdP Install Manual](installing_a_shibboleth_3_x_idp) instructs to install the JSTL API module - which is needed for rendering the IdP status page.  As Tomcat 10.1 switches to Servlet API 5.0, it also needs a newer version of the JSTL API module, 3.0.0.   The Tomcat 10.1 installation instructions above include installing the correct JSTL API module.  Note that in this version, only the API module has to be installed (and the second jar file is no longer needed).
 
 ## SharedToken module
 
-The IdP plugin module that generates the auEduPersonSharedToken attribute also has to be upgraded - the version released earlier for IdP 3.4.x is not compatible with IdP 4.x.  A new version, 2.0.x (2.0.3 as of February 3rd, 2021), has been released for IdP 4.x.
+The IdP plugin module that generates the auEduPersonSharedToken attribute also has to be upgraded - the version released for IdP 4.x is not compatible with IdP 5.x.  A new version, 2.1.x (2.1.0 as of April 2024), has been released for IdP 5.x.
 
-However, this new version, 2.0.x, is only compatible with 4.x but not 3.x - so the module will have to be upgraded as part of the IdP upgrade and not earlier.
+However, this new version, 2.1.0, is only compatible with 5.x but not 4.x - so the module will have to be upgraded as part of the IdP upgrade and not earlier.
 
-The new version can be downloaded from [https://github.com/REANNZ/arcs-shibext/releases/download/2.0.3/arcs-shibext-2.0.3.jar](https://github.com/REANNZ/arcs-shibext/releases/download/2.0.3/arcs-shibext-2.0.3.jar)
-
-The new version also introduces syntax changes in how it is configured - the single but significant change is replacing the custom `DatabaseConnection` element with a reference to a `DataSource` defined in other parts of the IdP configuration.
+The new version can be downloaded from [https://github.com/REANNZ/arcs-shibext/releases/download/2.1.0/arcs-shibext-2.1.0.jar](https://github.com/REANNZ/arcs-shibext/releases/download/2.1.0/arcs-shibext-2.1.0.jar)
 
 Please see the next section for detailed instructions.
 
-## Migrating from JPAStorageService to JDBCStorageService
-
-IdP 4.1.0 introduced support for IdP Plugins, which are versioned independently of the IdP itself.
-
-IdP 4.3.0 marks built-in JPAStorageService as deprecated and offers JDBCStorageService as a suitable replacement.  The [Installing a Shibboleth 3.x IdP](installing_a_shibboleth_3_x_idp) manual (that this guide recommends to upgrade from) gives instructions for configuring Database Storage based on the JPAStorageService.
-
-After upgrading to 4.3.0, the IdP (if using JPAStorageService) will start emitting deprecation warnings (surprisingly, in Tomcat log, not IdP log): 
-
-```
-[ WARN] : DEPRECATED: Java class 'JPAStorageService': This will be removed in the next major version of this software; replacement is JDBCStorageService
-```
-
-This will have to be resolved before upgrading to next major version, so IdP 5.
-
-The steps, as per in the [JDBCStorageService documentation](https://shibboleth.atlassian.net/wiki/spaces/IDPPLUGINS/pages/2989096970/JDBCStorageService), are:
-
-*   Install the JDBCStorageService plugin with: 
-    
-    ```
-    /opt/shiboleth-idp/bin/plugin.sh -I net.shibboleth.plugin.storage.jdbc
-    ```
-    
-*   Make sure your database uses case sensitive primary key for the `StorageRecords` table.  On MySQL, when using `utf8` CHARACTER SET, it is crucial to set COLLATION to utf8\_bin.  
-    This got added to the [Installing a Shibboleth 3.x IdP](installing_a_shibboleth_3_x_idp) manual only in a later revision.  The SQL command to ensure the correct collation is: 
-    
-    ```
-    ALTER TABLE StorageRecords CONVERT TO CHARACTER SET utf8 COLLATE utf8_bin;
-    ```
-    
-*   Change the configuration in `/opt/shibboleth-idp/conf/global.xml` to:
-    *   remove the shibboleth.JPAStorageService.EntityManagerFactory and shibboleth.JPAStorageService.JPAVendorAdapter beans
-    *   change the definition of the StorageService bean from  
-        `class="org.opensaml.storage.impl.JPAStorageService"`    
-        to  
-        `parent="shibboleth.JDBCStorageService"` 
-    *   replace the constructor parameter  
-        `c:factory-ref="shibboleth.JPAStorageService.EntityManagerFactory"`   
-        with DataSource reference:  
-        `p:dataSource-ref="shibboleth.JPAStorageService.DataSource"` 
-*   After the change, the remaining database storage config should look like: 
-    
-    ```
-        <bean id="shibboleth.JPAStorageService"
-            parent="shibboleth.JDBCStorageService"
-            p:cleanupInterval="%{idp.storage.cleanupInterval:PT10M}"
-            p:dataSource-ref="shibboleth.JPAStorageService.DataSource" />
-    
-        <bean id="shibboleth.JPAStorageService.DataSource"
-            ....
-        />
-    ```
-    
-
-# Upgrade
+## Upgrading IdP itself
 
 *   Get the new version:
     
     ```
-    NEW_IDP_VERSION=4.0.1
+    NEW_IDP_VERSION=5.1.1
     cd /root/inst
     wget http://shibboleth.net/downloads/identity-provider/${NEW_IDP_VERSION}/shibboleth-identity-provider-${NEW_IDP_VERSION}.tar.gz
     tar xzf shibboleth-identity-provider-${NEW_IDP_VERSION}.tar.gz
     cd shibboleth-identity-provider-${NEW_IDP_VERSION}
     ```
     
-*   Start the upgrade: stop Tomcat:
+*   Remove IdP `system` directory - and also the web.xml file (see above for options):
     
     ```
-    service tomcat stop
+    cd /opt/shibboleth-idp
+    rm -rf system/ edit-webapp/WEB-INF/web.xml
     ```
     
 *   Run the installer (with the correct JDK) - and also fix permissions right after running the installer:
     
     ```
-    JAVA_HOME=/usr/lib/jvm/java-11-openjdk ./bin/install.sh
+    JAVA_HOME=/usr/lib/jvm/java-17-openjdk ./bin/install.sh
     chown -R tomcat.tomcat /opt/shibboleth-idp/
     # and for SELinux:
     restorecon -R /opt/shibboleth-idp
     ```
     
-*   Update LDAP connector definition.  Besides the settings deprecated in IdP 3.x and removed in IdP 4.x, there are also settings deprecated in IdP 4.x to be removed in a future version (possibly 5.x).  Now is a good time to make the changes and have the IdP running without any deprecation warnings.  In `/opt/shibboleth-idp/conf/attribute-resolver.xml` , make the following changes:
-    *   Check the `ConnectionPool` element inside the `LDAPDirectory` `DataConnector` element - and remove any **failFastInitialize** attribute it might have.
-    *   Check the `LDAPDirectory` `DataConnector` element for any `LDAPProperty` elements.  These elements have been deprecated without a generic replacement, but some specific properties can be mapped to `LDAPDirectory` element attributes.  See the [LDAPDirectory element documentation](https://wiki.shibboleth.net/confluence/display/IDP4/LDAPConnector) for further information.  
-        *   Replace `java.naming.ldap.attributes.binary` property with the `BinaryAttributes` element, with the space-delimited list of LDAP attribute names as the text inside the element - e.g.:
-            
-            ```
-            <BinaryAttributes>object GUID objectSid<BinaryAttributes/>
-            ```
-            
-        *   Remove/comment-out `<LDAPProperty name="java.naming.referral" value="follow"/>` .  This property can be replaced with the boolean attribute `followReferrals` on the LDAPDirectory element.  However, this property was only needed with IdP software up to and including 2.x - and has been ignored by IdP 3.x and 4.x.  
-            Actually turning the referral following on might have undesired side-effects (IdP attempting to connect to other trees in the AD forest, potentially failing - and reporting a warning) - unless it is needed for the IdP operation, we recommend leaving it off.
-            
-            <details markdown="1">
-            <summary>Click here to expand the instructions to turn followReferrals on...</summary>
-            
-            ```
-            <DataConnector id="myLDAP" xsi:type="LDAPDirectory"
-                followReferrals="true"
-                ...
-            />
-            ```
-            </details>
-            
 *   Upgrade SharedToken module:
     *   Download new version:
         
         ```
-        wget -P /opt/shibboleth-idp/edit-webapp/WEB-INF/lib https://github.com/REANNZ/arcs-shibext/releases/download/2.0.3/arcs-shibext-2.0.3.jar
+        wget -P /opt/shibboleth-idp/edit-webapp/WEB-INF/lib https://github.com/REANNZ/arcs-shibext/releases/download/2.1.0/arcs-shibext-2.1.0.jar
         ```
         
     *   Remove old version(s):
         
         ```
-        rm /opt/shibboleth-idp/edit-webapp/WEB-INF/lib/arcs-shibext-1.*.jar
-        ```
-        
-    *   Update definition: in `/opt/shibboleth-idp/conf/attribute-resolver.xml` , locate the `SharedToken` `DataConnector` and replace the `DatabaseConnection` element with a DataConnector attribute `databaseConnectionID` referening to a DataSource defined in `/opt/shibboleth-idp/conf/global.xml` (as part of the [IdP 3.x installation Database Storage setup](installing_a_shibboleth_3_x_idp.html#configure-database-storage)).  So assuming the DataSource is named `shibboleth.JPAStorageService.DataSource` , this would be:
-        
-        ```
-        <DataConnector xsi:type="st:SharedToken" xmlns:st="urn:mace:arcs.org.au:shibboleth:2.0:resolver:dc"
-            id="sharedToken"
-            databaseConnectionID="shibboleth.JPAStorageService.DataSource"
-            ...
-        />
+        rm /opt/shibboleth-idp/edit-webapp/WEB-INF/lib/arcs-shibext-2.0.*.jar
         ```
         
 *   Rebuild IdP WAR file (with new sharedToken module version) and start Tomcat
