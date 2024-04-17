@@ -43,6 +43,8 @@ As a new major release, 5.0.0 rolls out breaking changes that could not have bee
 
 These include:
 *   Dropping support for Java 11 and requiring Java 17.  As IdP 4.x (4.2.x+) supports Java 17, the Java upgrade can be done ahead of actual IdP upgrade.
+    * Java 17 however drops support for the Nashorn scripting engine used to construct values of scripted attributes.
+    * The Shibboleth IdP project provides an IdP plugin that provides this functionality (`net.shibboleth.idp.plugin.nashorn`), however, this plugin will have to be explicitly installed (see below).
 *   Switching from Java Servlet API 4.0 to 5.0.  As these are mutually incompatible, each servlet container implementation supports either 4.0 or 5.0, but not both.  This means the servlet container will have to be upgraded at the same time as the IdP itself.  In case of Tomcat, this means upgrading from 8.5 or 9.0 to 10.1.
 *   The system directory (`/opt/shibboleth-idp/system`) is no longer supported and all of its contents has been migrated to jars that are included in the IdP WAR file.  Before running the IdP installer to upgrade to 5.x, the system directory will have to be removed.
 *   Because of the above removal of the `system` directory (and also other changes done in 5.x), the web.xml file (`/opt/shibboleth-idp/edit-webapp/WEB-INF/web.xml)`), if present,  will have to be updated - or removed.  Unless there is a need to have customisations applied to this file, the best approach is to remove this file altogether (if present).  If customisations are required, we still recommend making a new copy of `/opt/shibboleth-idp/dist/webapp/WEB-INF/web.xml` into `/opt/shibboleth-idp/edit-webapp/WEB-INF/web.xml` and reapplying the customisations there.
@@ -71,9 +73,29 @@ If no OS upgrade is needed, we recommend making a clone of the existing VM inste
 
 While Shibboleth IdP 4.x was primarily targetting Java 11, Shibboleth IdP 5.x requires Java 17.
 
-We recommend OpenJDK 17, on RHEL-like systems available as: `java-17-openjdk-devel` .
+We recommend OpenJDK 17, on RHEL-like systems available as: `java-17-openjdk-devel`.
 
 Latest IdP 4.x also supports Java 17, so it is possible to upgrade Java first in an isolated step, reducing the amount of change in the actual IdP 5.x upgrade.
+
+Note that as Java 17 drops support for the Nashorn scripting engine, if using scripted attribute definitions in `attribute-resolver.xml` (very likely yes, e.g. for `eduPersonAffiliation`), it is necessary to install the [`net.shibboleth.idp.plugin.nashorn` IdP plugin](https://shibboleth.atlassian.net/wiki/spaces/IDPPLUGINS/pages/1374027996/Nashorn) that provides a standalone deployment of the Nashorn scripted engine.
+
+Note also that if your deployment is using a workaround to suppress the deprecation warning that Java 11 Nashorn emits on startup (passing `-Dnashorn.args=--no-deprecation-warning` to Java), this workaround would prevent startup of the Nashorn engine introduced by the IdP plugin.
+
+Therefore, the recommended sequence of steps is:
+1. Remove the workaround suppressing the Nashorn deprecation warning (`-Dnashorn.args=--no-deprecation-warning`) if present (e.g., from `JAVA_OPTS` in `/etc/sysconfig/tomcat`)
+2. Install the Nashorn plugin:
+   
+   ```
+   cd /opt/shibboleth-idp
+   ./bin/plugin.sh -I net.shibboleth.idp.plugin.nashorn
+   ```
+   
+3. Upgrade to Java 17
+   * Install `java-17-openjdk-devel`
+   * Make web application container use this Java version (selected e.g. by `JAVA_HOME` in `/etc/sysconfig/tomcat`)
+   * Restart web application container (`service tomcat restart`)
+   * Confirm the IdP initialises correctly (`/opt/shibboleth-idp/logs/idp-process.log`, web application container log - e.g. `catalina.out`)
+   * Confirm the IdP releases correct values for the scripted attributes.
 
 ## Shibboleth IdP versions
 
@@ -160,6 +182,16 @@ Please see the next section for detailed instructions.
     chown -R tomcat.tomcat /opt/shibboleth-idp/
     # and for SELinux:
     restorecon -R /opt/shibboleth-idp
+    ```
+    
+*   Update IdP plugins (likely Nashorn and JDBCStorageService)
+    
+    ```
+    # Get list of installed plugins and their status
+    JAVA_HOME=/usr/lib/jvm/java-17-openjdk ./bin/plugin.sh -l
+    # Update each plugin - e.g.:
+    JAVA_HOME=/usr/lib/jvm/java-17-openjdk ./bin/plugin.sh --update net.shibboleth.idp.plugin.nashorn
+    JAVA_HOME=/usr/lib/jvm/java-17-openjdk ./bin/plugin.sh --update net.shibboleth.plugin.storage.jdbc
     ```
     
 *   Upgrade SharedToken module:
