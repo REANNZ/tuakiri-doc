@@ -216,3 +216,81 @@ Please see the next section for detailed instructions.
     
 *   The updated version of the IdP should be running
 *   To properly record the change, edit `/etc/profile.d/shib.sh` and update `IDP_VERSION` to the new IdP version.
+
+# Post-upgrade changes
+
+## New configuration options
+
+* The IdP now detect if a new version is available: on start up, it contacts a central repository to get list of IdP versions and their statuses - and logs the result. If the local version is no longer current and an update is recommended, this is logged as a WARNING.  If this behaviour (IdP "calling home") is not desired, it can be disabled with the `idp.updateCheck.enable` - to disable the check add to `/opt/shibboleth-idp/conf/idp.properties`:
+    
+    ```
+    idp.updateCheck.enable = false
+    ```
+
+* IdP configuration is driven by property files.
+  * At startup, the IdP first loads `/opt/shibboleth-idp/conf/idp.properties`, and from there (in 3.x-style deployment) loads additional property files listed in properrty `idp.additionalProperties`.
+  * This was changed in 4.x to searching for all `.properties` files under `/opt/shibboleth-idp/conf` - and we recommend swithcing to this style.
+  * New deployments created under 4.x have one property file stored separately, `/opt/shibboleth-idp/credentials/secrets.properties` (holding sensitive values).
+  * To switch to the new way of loading property files, make the following changes to `/opt/shibboleth-idp/conf/idp.properties`::
+    * Enable loading all property files under `/opt/shibboleth-idp/conf` by adding:
+      ```
+      idp.searchForProperties=true
+      ```
+    * Comment out existing `idp.additionalProperties` property.
+    * Only if you have a `/opt/shibboleth-idp/credentials/secrets.properties` properties file (unlikely on an install originating from 3.x): add `idp.additionalProperties` pointing to this file only:
+      ```
+      idp.additionalProperties=/credentials/secrets.properties
+      ```
+
+## Dealing with new deprecations
+
+IdP 5.x deprecates some legacy config and after upgrading to 5.x, there may be new deprecation messages - for features that will be removed in 6.x.
+
+To make future upgrades easier and to reduce polution of the logs, we recommend dealing with these now.
+
+The following covers commonly encountered deprecation messages (on an IdP upgraded from an initial 3.x install).
+
+* Duo: Shibboleth IdP stopped supporting "legacy" Duo - however, the configuration files, installed by default in IdP 3.x, are still present - and trigger warning:
+  ```
+  WARN [DEPRECATED:113] - property 'idp.authn.Duo.supportedPrincipals' is no longer supported
+  ```
+  To remove the legacy Duo configuration and resolve this warning:
+  * Comment out duo-related properties (namely `idp.authn.Duo.supportedPrincipals`) in `/opt/shibboleth-idp/authn/authn.properties`
+  * Remove legacy Duo configuration files (note: it is important to first complete the above changes to how property files are loaded - in case `authn/duo.properties` is listed in `idp.additionalProperties`):
+    ```
+    rm /opt/shibboleth-idp/conf/authn/duo-authn-config.xml conf/authn/duo.properties{,.idpnew*}
+    ```
+  
+* Liberty profile, generating warning:
+  ```
+  WARN [DEPRECATED:123] - Spring bean 'Liberty.SSOS or Liberty.SSOS.MDDriven', (relying-party.xml): This will be removed in the next major version of this software; replacement is (none)
+  ```
+  This is an unused SSO profile.  Edit `opt/shibboleth-idp/conf/relying-party.xml` and remove all beans (profile instances) named `Liberty.SSOS` or `Liberty.SSOS.MDDriven`
+
+* HttpClient configuration.  The IdP has changed how it creates HttpClient instances (used for fetching data from remote locations).
+  An IdP with 3.x config may produce warning:
+  ```
+  WARN [DEPRECATED:113] - property 'idp.httpclient.filecaching.cacheDirectory' is no longer supported
+  ```
+  Just remove the `idp.httpclient.filecaching.cacheDirectory` property from `/opt/shibboleth-icp/conf/services.properties`.  It is unused, just sits there inherited from the 3.x generated config.
+
+* Changes to how X509 credentials are loaded in the IdP: the IdP may log (multiple times):
+  ```
+  WARN [DEPRECATED:130] - Java class 'net.shibboleth.idp.profile.spring.factory.BasicX509CredentialFactoryBean': This will be removed in the next major version of this software; replacement is Parent bean 'shibboleth.BasicX509CredentialFactoryBean'
+  ```
+  Edit `/opt/shibboleth-idp/conf/credentials.xml` and replace all (two) occurrences of `class="net.shibboleth.idp.profile.spring.factory.BasicX509CredentialFactoryBean"` with `parent="shibboleth.BasicX509CredentialFactoryBean"`
+  (In the Spring bean configuration, instead of specifying the class name directly, use a parent bean - that sets the correct class name internally).
+
+* Changes to login and logout templates: the IdP may generate the following warning - only after a user visits either the login or logout page:
+  ```
+  WARN [DEPRECATED:130] - Java class 'net.shibboleth.idp.profile.context.RelyingPartyContext': This will be removed in the next major version of this software; replacement is net.shibboleth.profile.context.RelyingPartyContext
+  ```
+  The templates for login and logout pages (`/opt/shibboleth-idp/views/login.vm`, `/opt/shibboleth-idp/views/logout.vm`) inherited from 3.x config refer to the RelyingPartyContext under a legacy name.
+  Edit `/opt/shibboleth-idp/views/login.vm` and `/opt/shibboleth-idp/views/logout.vm` and in both, change
+  ```
+  #set ($rpContext = $profileRequestContext.getSubcontext("net.shibboleth.idp.profile.context.RelyingPartyContext"))
+  ```
+  to
+  ```
+  #set ($rpContext = $profileRequestContext.getSubcontext("net.shibboleth.profile.context.RelyingPartyContext"))
+  ```
