@@ -22,6 +22,7 @@ sidebar:
       - identity_providers/installing_a_shibboleth_3_x_idp
       - identity_providers/configuring_an_idp_for_edugain
       - identity_providers/upgrading_a_3_x_idp_to_4_x
+      - identity_providers/upgrading_a_4_x_idp_to_5_x
       - identity_providers/upgrading_a_shibboleth_3_x_idp
       - identity_providers/configuring_a_shibboleth_identity_provider_to_join_the_Tuakiri_federation
       - identity_providers/adding_samlSubjectID_and_samlPairwiseID_attributes
