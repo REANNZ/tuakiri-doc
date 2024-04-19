@@ -21,7 +21,7 @@ To install Tomcat8.5:
     
     ```
     mkdir -p /opt/tomcat /opt/tomcat/context
-    chown -R tomcat.tomcat /opt/tomcat
+    chown -R tomcat:tomcat /opt/tomcat
     ```
     
 *   Download and deploy Tomcat binary:
@@ -32,7 +32,7 @@ To install Tomcat8.5:
     wget https://archive.apache.org/dist/tomcat/tomcat-8/v${TOMCAT_VERSION}/bin/apache-tomcat-${TOMCAT_VERSION}.tar.gz
     tar xzf apache-tomcat-${TOMCAT_VERSION}.tar.gz
     # fix up permissions overall
-    chown -R tomcat.tomcat /opt/tomcat/apache-tomcat-${TOMCAT_VERSION}
+    chown -R tomcat:tomcat /opt/tomcat/apache-tomcat-${TOMCAT_VERSION}
     chmod -R +r /opt/tomcat/apache-tomcat-${TOMCAT_VERSION}
     # fix up permissions on dirs
     chmod +rx /opt/tomcat/apache-tomcat-${TOMCAT_VERSION}/{.,bin,conf,lib,logs,temp,webapps,work}

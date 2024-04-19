@@ -168,7 +168,7 @@ The steps, as per in the [JDBCStorageService documentation](https://shibboleth.a
     
     ```
     JAVA_HOME=/usr/lib/jvm/java-11-openjdk ./bin/install.sh
-    chown -R tomcat.tomcat /opt/shibboleth-idp/
+    chown -R tomcat:tomcat /opt/shibboleth-idp/
     # and for SELinux:
     restorecon -R /opt/shibboleth-idp
     ```

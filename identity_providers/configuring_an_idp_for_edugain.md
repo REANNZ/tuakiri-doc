@@ -209,5 +209,5 @@ If no files included in the WAR File were changed, run just `service tomcat rest
 Otherwise, to restart tomcat, rebuild the WAR file (and fix file permissions on the fly), run: 
 
 ```
-service tomcat stop ; /opt/shibboleth-idp/bin/build.sh < /dev/null ; chown -R tomcat.tomcat /opt/shibboleth-idp; service tomcat start
+service tomcat stop ; /opt/shibboleth-idp/bin/build.sh < /dev/null ; chown -R tomcat:tomcat /opt/shibboleth-idp; service tomcat start
 ```

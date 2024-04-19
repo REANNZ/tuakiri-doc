@@ -32,7 +32,7 @@ The steps are:
         ```
         cd $IDP_HOME/credentials
         chmod idp.key.new idp.jks.new 600
-        chown -R tomcat.tomcat .
+        chown -R tomcat:tomcat .
         ```
         
 2.  Add the new key in the Federation Registry for the IdP:

@@ -108,7 +108,7 @@ Note that while this page uses Apache as the web server SimpleSAMLphp is deploye
     
     ```
     mkdir /opt/simplesamlphp/data
-    chown apache.apache /opt/simplesamlphp/data
+    chown apache:apache /opt/simplesamlphp/data
     # Set SELinux context to give Apache RW access - if SELinux is enabled on your system
     chcon -t httpd_sys_rw_content_t /opt/simplesamlphp/data//
     # And record the context setting in the SELinux policy database so that it goes not get lost in a SELinux relabel
@@ -132,7 +132,7 @@ Note that while this page uses Apache as the web server SimpleSAMLphp is deploye
 *   Make the private key readable only to the user SimpleSAMLphp runs as (`apache`)
     
     ```
-    chown apache.apache /opt/simplesamlphp/cert/saml.{crt,pem}
+    chown apache:apache /opt/simplesamlphp/cert/saml.{crt,pem}
     chmod 600 /opt/simplesamlphp/cert/saml.pem
     ```
     
@@ -170,7 +170,7 @@ Note that while this page uses Apache as the web server SimpleSAMLphp is deploye
     
     ```
     mkdir /opt/simplesamlphp/metadata/metarefresh-tuakiri
-    chown apache.apache /opt/simplesamlphp/metadata/metarefresh-tuakiri
+    chown apache:apache /opt/simplesamlphp/metadata/metarefresh-tuakiri
     # Set SELinux context to give Apache RW access - if SELinux is enabled on your system
     chcon -t httpd_sys_rw_content_t /opt/simplesamlphp/metadata/metarefresh-tuakiri/
     # And record the context setting in the SELinux policy database so that it goes not get lost in a SELinux relabel

@@ -2337,7 +2337,7 @@ Note that as this interim workaround is applied to a file under `$IDP_HOME/syst
 *   Make all files under /opt/shibboleth-idp owned by Tomcat:
     
     ```
-    chown -R tomcat.tomcat /opt/shibboleth-idp
+    chown -R tomcat:tomcat /opt/shibboleth-idp
     ```
     
 

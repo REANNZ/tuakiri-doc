@@ -27,7 +27,7 @@ Based on upstream [upgrade instructions](https://wiki.shibboleth.net/confluence/
     ```
     service tomcat stop
     ./bin/install.sh
-    chown -R tomcat.tomcat /opt/shibboleth-idp/
+    chown -R tomcat:tomcat /opt/shibboleth-idp/
     service tomcat start
     ```
     
@@ -37,7 +37,7 @@ Based on upstream [upgrade instructions](https://wiki.shibboleth.net/confluence/
     *   Or to run these as a single command with minimal downtime:
         
         ```
-        service tomcat stop ; ./bin/install.sh < /dev/null ; chown -R tomcat.tomcat /opt/shibboleth-idp/ ; service tomcat start
+        service tomcat stop ; ./bin/install.sh < /dev/null ; chown -R tomcat:tomcat /opt/shibboleth-idp/ ; service tomcat start
         ```
         
 *   Review changes in default configuration files between the new and previous version:
@@ -57,7 +57,7 @@ Based on upstream [upgrade instructions](https://wiki.shibboleth.net/confluence/
 *   Fix file permissions on IdP files:
     
     ```
-    chown -R tomcat.tomcat /opt/shibboleth-idp
+    chown -R tomcat:tomcat /opt/shibboleth-idp
     
     # and for SELinux:
     restorecon -R /opt/shibboleth-idp
