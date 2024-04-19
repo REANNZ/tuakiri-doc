@@ -31,7 +31,7 @@ To install Tomcat8.5:
     cd /opt/tomcat
     wget https://archive.apache.org/dist/tomcat/tomcat-8/v${TOMCAT_VERSION}/bin/apache-tomcat-${TOMCAT_VERSION}.tar.gz
     tar xzf apache-tomcat-${TOMCAT_VERSION}.tar.gz
-    # fix up permissons overall
+    # fix up permissions overall
     chown -R tomcat.tomcat /opt/tomcat/apache-tomcat-${TOMCAT_VERSION}
     chmod -R +r /opt/tomcat/apache-tomcat-${TOMCAT_VERSION}
     # fix up permissions on dirs
