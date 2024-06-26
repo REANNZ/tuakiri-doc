@@ -255,30 +255,36 @@ The following covers commonly encountered deprecation messages (on an IdP upgrad
   WARN [DEPRECATED:113] - property 'idp.authn.Duo.supportedPrincipals' is no longer supported
   ```
   To remove the legacy Duo configuration and resolve this warning:
-  * Comment out duo-related properties (namely `idp.authn.Duo.supportedPrincipals`) in `/opt/shibboleth-idp/authn/authn.properties`
+  * Comment out duo-related properties (namely `idp.authn.Duo.supportedPrincipals`) in `/opt/shibboleth-idp/conf/authn/authn.properties`.
+    Note this is a multi-line property and all parts of it need to be commented out:
+    ```
+    #idp.authn.Duo.supportedPrincipals = \
+    #    saml2/http://example.org/ac/classes/mfa, \
+    #    saml1/http://example.org/ac/classes/mfa
+    ```
   * Remove legacy Duo configuration files (note: it is important to first complete the above changes to how property files are loaded - in case `authn/duo.properties` is listed in `idp.additionalProperties`):
     ```
-    rm /opt/shibboleth-idp/conf/authn/duo-authn-config.xml conf/authn/duo.properties{,.idpnew*}
+    rm /opt/shibboleth-idp/conf/authn/duo-authn-config.xml /opt/shibboleth-idp/conf/authn/duo.properties{,.idpnew*}
     ```
   
 * Liberty profile, generating warning:
   ```
   WARN [DEPRECATED:123] - Spring bean 'Liberty.SSOS or Liberty.SSOS.MDDriven', (relying-party.xml): This will be removed in the next major version of this software; replacement is (none)
   ```
-  This is an unused SSO profile.  Edit `opt/shibboleth-idp/conf/relying-party.xml` and remove all beans (profile instances) named `Liberty.SSOS` or `Liberty.SSOS.MDDriven`
+  This is an unused SSO profile.  Edit `/opt/shibboleth-idp/conf/relying-party.xml` and remove all beans (profile instances) named `Liberty.SSOS` or `Liberty.SSOS.MDDriven`
 
 * HttpClient configuration.  The IdP has changed how it creates HttpClient instances (used for fetching data from remote locations).
   An IdP with 3.x config may produce a warning:
   ```
   WARN [DEPRECATED:113] - property 'idp.httpclient.filecaching.cacheDirectory' is no longer supported
   ```
-  Just remove the `idp.httpclient.filecaching.cacheDirectory` property from `/opt/shibboleth-icp/conf/services.properties`.  It is unused, just sits there inherited from the 3.x generated config.
+  Just remove the `idp.httpclient.filecaching.cacheDirectory` property from `/opt/shibboleth-idp/conf/services.properties`.  It is unused, just sits there inherited from the 3.x generated config.
 
 * Changes to how X509 credentials are loaded in the IdP: the IdP may log (multiple times):
   ```
   WARN [DEPRECATED:130] - Java class 'net.shibboleth.idp.profile.spring.factory.BasicX509CredentialFactoryBean': This will be removed in the next major version of this software; replacement is Parent bean 'shibboleth.BasicX509CredentialFactoryBean'
   ```
-  Edit `/opt/shibboleth-idp/conf/credentials.xml` and replace all (two) occurrences of `class="net.shibboleth.idp.profile.spring.factory.BasicX509CredentialFactoryBean"` with `parent="shibboleth.BasicX509CredentialFactoryBean"`
+  Edit `/opt/shibboleth-idp/conf/credentials.xml` and replace all (two used and one commented out) occurrences of `class="net.shibboleth.idp.profile.spring.factory.BasicX509CredentialFactoryBean"` with `parent="shibboleth.BasicX509CredentialFactoryBean"`
   (In the Spring bean configuration, instead of specifying the class name directly, use a parent bean - that sets the correct class name internally).
 
 * Changes to login and logout templates: the IdP may generate the following warning - only after a user visits either the login or logout page:
