@@ -10,6 +10,8 @@ id: index
     
     *   [Installing a Shibboleth 3.x IdP](identity_providers/installing_a_shibboleth_3_x_idp)
     *   [Upgrading a Shibboleth 3.x IdP](identity_providers/upgrading_a_shibboleth_3_x_idp) (within 3.x version range)
+    *   [Upgrading a Shibboleth 3.x IdP to 4.x](identity_providers/upgrading_a_3_x_idp_to_4_x.md)
+    *   [Upgrading a Shibboleth 4.x IdP to 5.x](identity_providers/upgrading_a_4_x_idp_to_5_x.md)
     *   [Mapping Tuakiri attributes to your own identity management system attributes](attributes)
     *   [Configuring an existing Shibboleth Identity Provider to join the Tuakiri Federation](identity_providers/configuring_a_shibboleth_identity_provider_to_join_the_Tuakiri_federation)
     *   [Replacing back-channel certificate and key on an IdP](identity_providers/replacing_back-channel_certificate_and_key_on_an_idp)
