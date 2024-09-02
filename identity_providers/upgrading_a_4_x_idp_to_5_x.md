@@ -109,7 +109,7 @@ Please contact us if you need help removing any other deprecation warnings.
 
 Proceed further only after the IdP restart + Attribute Validator cycle comes through clean with no deprecation warnings (checking both the IdP log in `/opt/shibboleth-idp/logs/idp-process.log` and the servlet container log, likely either in `/var/log/tomcat9/catalina.out` or `/opt/tomcat/current/logs/catalina.out`).
 
-Please note that one specific deprecation is the removal of JPAStorageService, replacing it with JDBCStorageService.  Please see the [relevant section in the 3.x-to-4.x upgrade instructions](upgrading_a_4_x_idp_to_5_x#migrating-from-jpastorageservice-to-jdbcstorageservice).
+Please note that one specific deprecation is the removal of JPAStorageService, replacing it with JDBCStorageService.  Please see the [relevant section in the 3.x-to-4.x upgrade instructions](upgrading_a_3_x_idp_to_4_x#migrating-from-jpastorageservice-to-jdbcstorageservice).
 
 ## Fix metadata configuration
 
