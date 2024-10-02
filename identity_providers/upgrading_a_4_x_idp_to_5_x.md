@@ -242,6 +242,18 @@ Please see the next section for detailed instructions.
       idp.additionalProperties=/credentials/secrets.properties
       ```
 
+## JDBCStorageService
+
+Earlier recommendations for configuring the JDBCStorageService (and its predecessor, the JPAStorageService) might have used the Tomcat JDBC Pooling Driver, `org.apache.tomcat.jdbc.pool.DataSource`.
+
+As of October 2024, this driver is no longer supported by the JDBCStorageService plugin (as per the [plugin documentation](https://shibboleth.atlassian.net/wiki/spaces/IDPPLUGINS/pages/2989096970/JDBCStorageService)).
+
+We recommend switching to the Apache Commons DBCP2 driver, `org.apache.commons.dbcp2.BasicDataSource`, which is included in the IdP 5.x distribution.
+
+Edit `/opt/shibboleth-idp/conf/global.xml` and change the driver class name from `org.apache.tomcat.jdbc.pool.DataSource` to `org.apache.commons.dbcp2.BasicDataSource`.
+
+The basic configuration parameters (bean properties) of the two drivers are the same, though for specialised configuration, please consult the documentation for the [Tomcat JDBC Pooling Driver](https://tomcat.apache.org/tomcat-10.0-doc/jdbc-pool.html) and [Apache Commons DBCP2 Driver](https://commons.apache.org/proper/commons-dbcp/configuration.html).
+
 ## Dealing with new deprecations
 
 IdP 5.x deprecates some legacy config and after upgrading to 5.x, there may be new deprecation messages - for features that will be removed in 6.x.
