@@ -53,7 +53,9 @@ If the session is established with a different `authnContextClassRef` value (whi
 
 We recommend customising the error response page to make it clear login was rejected because MFA was not used.
 
-The following example extends the above sample code requesting MFA to also check REFEDS MFA and overrides the 401 error message: 
+The following example extends the above sample code requesting MFA to also check REFEDS MFA and overrides the 401 error message.
+
+The custom 401 error message covers the case where the session was established without MFA, most likely because SSO was initiated without requesting MFA.  The custom page also includes a link to reauthenticate with MFA (via explicitly initiated SSO with MFA requested)
 
 ```
     <Location /auth/login>
@@ -61,7 +63,7 @@ The following example extends the above sample code requesting MFA to also check
         require authnContextClassRef https://refeds.org/profile/mfa
         ShibRequestSetting requireSession true
         ShibRequestSetting authnContextClassRef https://refeds.org/profile/mfa
-        ErrorDocument 401 "<b>Access denied</b>: Multi-Factor Authentication is required to access this resource"
+        ErrorDocument 401 "<h1>Access denied: MFA required</h1>Multi-Factor Authentication is required to access this resource, but you have logged in without MFA confirmed.<p>You can try <a href=\"/Shibboleth.sso/Login?target=/auth/login&authnContextClassRef=https://refeds.org/profile/mfa\">logging in again with MFA</a>."
     </Location>
 ```
 
