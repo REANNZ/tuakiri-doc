@@ -22,7 +22,7 @@ Before starting the process, you will need:
 *   The assertion consumer service (ACS) URL:
     *   for Tuakiri-TEST: `https://hosted-login.test.tuakiri.ac.nz/hosting/example.org/idp/profile/Authn/SAML2/POST/SSO`
     *   for Tuakiri (Production): `https://hosted-login.tuakiri.ac.nz/hosting/example.org/idp/profile/Authn/SAML2/POST/SSO`
-*   Administrator privileges in your Office 365 / Azure AD account.
+*   Application Administrator privileges in your Office 365 / Azure AD account.
     *   This means one of the following roles: Global Administrator, Cloud Application Administrator, Application Administrator
 
   
