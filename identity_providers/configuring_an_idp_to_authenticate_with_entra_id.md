@@ -108,94 +108,94 @@ Please download the [filter-idp-metadata.xslt](https://github.com/REANNZ/Tuakiri
 
 * Copy upstream metadata file into `/opt/shibboleth-idp/metadata/EntraID_Test.xml` (or `EntraID_Prod.xml`)
 * Load upstream metadata in `/opt/shibboleth-idp/conf/metadata-providers.xml`
-    
-    ```
-    <MetadataProvider id="UpstreamMetadata"  xsi:type="FilesystemMetadataProvider" metadataFile="/opt/shibboleth-idp/metadata/EntraID_Test.xml"/>
-    ```
+  
+  ```
+  <MetadataProvider id="UpstreamMetadata"  xsi:type="FilesystemMetadataProvider" metadataFile="/opt/shibboleth-idp/metadata/EntraID_Test.xml"/>
+  ```
 
 * Set upstream IdP entityId in `/opt/shibboleth-idp/conf/authn/authn.properties` (to value from the metadata downloaded after registering the applicaiton)
-    
-    ```
-    idp.authn.SAML.proxyEntityID = https://sts.windows.net/abcdefg0-1234-abcd-cdef-123456789abc/
-    ```
+  
+  ```
+  idp.authn.SAML.proxyEntityID = https://sts.windows.net/abcdefg0-1234-abcd-cdef-123456789abc/
+  ```
 
     > **Note**
     > For this setting to work, your IdP needs to be configured (in `/opt/shibboleth-idp/conf/idp.properties`) to load the `/opt/shibboleth-idp/conf/authn/auth.properies` file - either explictly in `idp.additionalProperties` or via `idp.searchForProperties=true`
 
 * Create incoming attribute mappings: create `/opt/shibboleth-idp/conf/attributes/custom/username.rule` with the following content (assuming the username attribute will be called `username` in the IdP config and `onpremiseusername` in the SAML assertion sent by Entra ID):
-    
-    ```
-    id=username
-    transcoder=SAML2StringTranscoder
-    saml2.name=onpremiseusername
-    saml2.nameFormat=
-    saml2.encodeType=False
-    ```
+  
+  ```
+  id=username
+  transcoder=SAML2StringTranscoder
+  saml2.name=onpremiseusername
+  saml2.nameFormat=
+  saml2.encodeType=False
+  ```
 
     * Similar rules should be added for any other attributes/claims sent by Entra ID
     * The `saml2.nameFormat` value should be set to blank to match how Entra ID encodes attributes (to suppress the default format of `urn:oasis:names:tc:SAML:2.0:attrname-format:uri` not used by Entra ID).
 
 * Configure attribute filter for upstream IdP to accept attributes sent by Entra ID - edit `/opt/shibboleth-idp/conf/attribute-filter.xml` and add (adjusting the Issuer value to match the entityID from your Entra ID metadata and `attributeID` to the name used in IdP config to represent the username sent by Entra ID):
-    
-    ```
-    <AttributeFilterPolicy id="proxy">
-        <PolicyRequirementRule xsi:type="Issuer" value="https://sts.windows.net/abcdefg0-1234-abcd-cdef-123456789abc/"/>
+  
+  ```
+  <AttributeFilterPolicy id="proxy">
+      <PolicyRequirementRule xsi:type="Issuer" value="https://sts.windows.net/abcdefg0-1234-abcd-cdef-123456789abc/"/>
 
-        <AttributeRule attributeID="username" permitAny="true" />
-    </AttributeFilterPolicy>
-    ```
+      <AttributeRule attributeID="username" permitAny="true" />
+  </AttributeFilterPolicy>
+  ```
 
 * Configure the IdP to set the principal name (authenticated username) based on the attribute received from Entra ID:
-    * Edit `/opt/shibboleth-idp/conf/c14n/subject-c14n.xml` and uncomment the `c14n/attribute` flow 
-    * Edit `/opt/shibboleth-idp/conf/c14n/subject-c14n.properties` and set the following:
-    
-    ```
-    # Disable c14n-stage use of attribute-resolver
-    idp.c14n.attribute.resolutionCondition = shibboleth.Conditions.FALSE
-    # Enable getting attributes from Subject (without attribute resolver)
-    idp.c14n.attribute.resolveFromSubject = true
-    # Set source attribute ID
-    idp.c14n.attribute.attributeSourceIds = onpremisessamaccountname
-    ```
+  * Edit `/opt/shibboleth-idp/conf/c14n/subject-c14n.xml` and uncomment the `c14n/attribute` flow 
+  * Edit `/opt/shibboleth-idp/conf/c14n/subject-c14n.properties` and set the following:
+  
+  ```
+  # Disable c14n-stage use of attribute-resolver
+  idp.c14n.attribute.resolutionCondition = shibboleth.Conditions.FALSE
+  # Enable getting attributes from Subject (without attribute resolver)
+  idp.c14n.attribute.resolveFromSubject = true
+  # Set source attribute ID
+  idp.c14n.attribute.attributeSourceIds = onpremisessamaccountname
+  ```
 
   * In case your IdP uses older style of configuration files (from IdP 4.0.x.), do the same also in `/opt/shibboleth-idp/conf/c14n/attribute-sourced-subject-c14n-config.xml` (bean `shibboleth.c14n.attribute.AttributeSourceIds`)
 
 * Make IdP session cookies set `sameSite=none` (to avoid issues where cookies would not be visible when being redirected back from Entra ID).
   In `/opt/shibboleth-idp/conf/idp.properties`, set:
-    
-    ```
-    idp.cookie.sameSiteCondition = shibboleth.Conditions.TRUE
-    ```
+  
+  ```
+  idp.cookie.sameSiteCondition = shibboleth.Conditions.TRUE
+  ```
 
 * Adjust logout pages:
-    * Make sure the logout pages have been adjusted as recommended in the [IdP Install Manual Configuring Single Logout section](../identity_providers/installing_a_shibboleth_3_x_idp#configuring-single-logout) (step 2, customise logout page).
-    * We also recommend adding a message instructing users to log out of their Entra ID account into the `logout.vm`, `logout-propagate.vm`, and `logout-complete.vm` templates in `/opt/shibboleth-idp/views` (into the body of each page after the main message).  The text can e.g. be:
-    
-    ```
-    <p>
-    <br>
-    We also recommend logging out of your primary account to prevent
-    a future login from reusing the existing primary account session.
-    <br>
-    <a href="https://login.microsoftonline.com/logout.srf" target="_blank">
-    <strong>
-    Click here to log out of your primary account.
-    </strong>
-    </a>
-    </p>
-    ```
+  * Make sure the logout pages have been adjusted as recommended in the [IdP Install Manual Configuring Single Logout section](../identity_providers/installing_a_shibboleth_3_x_idp#configuring-single-logout) (step 2, customise logout page).
+  * We also recommend adding a message instructing users to log out of their Entra ID account into the `logout.vm`, `logout-propagate.vm`, and `logout-complete.vm` templates in `/opt/shibboleth-idp/views` (into the body of each page after the main message).  The text can e.g. be:
+  
+  ```
+  <p>
+  <br>
+  We also recommend logging out of your primary account to prevent
+  a future login from reusing the existing primary account session.
+  <br>
+  <a href="https://login.microsoftonline.com/logout.srf" target="_blank">
+  <strong>
+  Click here to log out of your primary account.
+  </strong>
+  </a>
+  </p>
+  ```
 
 * Switch to SAML authentication flow: in `/opt/shibboleth-idp/conf/idp.properties` (or `/opt/shibboleth-idp/conf/authn/auth.properies`, depending on which IdP version your configuration files come from), change `idp.authn.flows` from `Password` to `SAML`::
-    
-    ```
-    idp.authn.flows = SAML
-    ```
+  
+  ```
+  idp.authn.flows = SAML
+  ```
 
 * Disable Artifact profile for outgoing messages (such as logout): edit `/opt/shibboleth-idp/conf/idp.properties` and set:
-    
-    ```
-    idp.artifact.enabled = false
-    ```
+  
+  ```
+  idp.artifact.enabled = false
+  ```
 
 * To prevent the IdP from exposing Entra ID as the `AuthenticatingAuthority` (which could disrupt how identity of users is seen in some services), edit `/opt/shibboleth-idp/conf/relying-party.xml` and in `shibboleth.DefaultRelyingParty` (and all beans under `RelyingPartyOverrides` beans), in the `SAML2.SSO` profile bean, add `p:suppressAuthenticatingAuthority="true"`.  (Note: requires IdP 4.2.0+)
 
