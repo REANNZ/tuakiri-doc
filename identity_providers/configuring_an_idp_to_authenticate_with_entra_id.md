@@ -190,3 +190,67 @@ Please download the [filter-idp-metadata.xslt](https://github.com/REANNZ/Tuakiri
 * Now that the IdP authenticates against Entra ID which supports MFA, it is possible to configure the IdP to support [REFEDS MFA](../multi-factor_authentication_with_refeds_mfa_profile).
   The only step required is to configure the IdP to map the Entra ID authentication context value signalling MFA (`http://schemas.microsoft.com/claims/multipleauthn`) to the REFEDS MFA value `https://refeds.org/profile/mfa` accepted by R&E Identity Federations.  Please follow the instructions in our guide for [configuring REFEDS MFA on IdP proxing to Entra ID](../identity_providers/configuring_refeds_mfa_on_shibboleth_idp#refeds-mfa-on-idp-proxying-to-azuread).
 
+
+# Configuring attributes based on Entra ID claims
+
+Entra ID can pass claims (as SAML attributes) alongside the authentication and the attribute resolver on the Tuakiri IdP can then be configured to construct user attributes based on what was received from Entra ID.  This allows eliminating the dependency of the IdP on the local LDAP.
+
+To achieve this, Entra ID would have to provide input data for all attributes defined in `/opt/shibboleth-idp/conf/attribute-resolver.xml`:
+* Consult the `attribute-resolver.xml` file to see what attributes are being used and what their inputs are.
+* Look for equivalent claims/attributes available in Entra ID that would either directly provide the value needed or the required input for constructing it.
+* Note that the attributes do not have to come in exactly the same format, as long as it is possible to derive the same outgoing values from the information received.
+* For example, if the `staff` value of `eduPersonAffiliation` was derived from presence of a specific group name in the `memberOf` attribute, a suitable alternative may be to instead pass a boolean `isStaff` attribute, or pass `staff` value in a custom affiliation attribute.  (Or completely construct `eduPersonAffiliation` in Entra ID).
+* Add all these attributes to the Entra ID SAML application representing the Tuakiri IdP and note the names they would be passed as (e.g., `givenname`, `surname`, `email` and their SAML names (e.g. `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname`).
+
+On the Tuakiri IdP, for each IdP, repeat the steps already done above for the `username` attribute, using an internal attribute ID for the rule name and `id` and the SAML2 name inside the rule:
+* Create a mapping rule under `/opt/shibboleth-idp/conf/attributes/custom/`, e.g. `/opt/shibboleth-idp/conf/attributes/custom/entraid_givenname.rule`:
+  ```
+  id=entraid_givenname
+  transcoder=SAML2StringTranscoder
+  saml2.name=http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname
+  saml2.nameFormat=
+  saml2.encodeType=False
+  ```
+  > **Note**
+  > It is important to avoid clashing with attribute names already defined on the IdP (such as `givenName`) - therefore using `entraid_givenname` to avoid the clash.
+
+* Add each of these attribute to the attribute filter policy already created above for the `username` attribute - e.g.:
+  ```
+  <AttributeFilterPolicy id="proxy">
+      <PolicyRequirementRule xsi:type="Issuer" value="https://sts.windows.net/abcdefg0-1234-abcd-cdef-123456789abc/"/>
+
+      <AttributeRule attributeID="username" permitAny="true" />
+      <AttributeRule attributeID="entra_id" permitAny="true" />
+  </AttributeFilterPolicy>
+  ```
+
+* In attribute resolver, change attribute mappings to use the above attributes received from Entra ID.
+  * Please note that the attributes received are isolated from the attributes that Shibboleth IdP creates - they are stored as Subject attributes as part of the authentication context.
+  * Shibboleth IdP provides a new attribute definition type, [SubjectDerivedAttribute](https://shibboleth.atlassian.net/wiki/spaces/IDP5/pages/3199503385/SubjectDerivedAttributeAttributeDefinition).
+  * These have to be used instead of `SimpleAttributeDefinition` using an attribute value provided by a `DataConnector`.  So for example:
+    ```
+    <AttributeDefinition id="givenName" xsi:type="Simple" >
+        <InputDataConnector ref="myLDAP" attributeNames="givenName" />
+
+    ```
+    becomes
+    ```
+    <AttributeDefinition id="givenName" xsi:type="SubjectDerivedAttribute" principalAttributeName="entraid_givenname" />
+    ```
+  * As the received attributes are isolated from IdP attribute definitions,
+    they need to be explictly imported (via an explicit [IdPAttributeDefinition](https://shibboleth.atlassian.net/wiki/spaces/IDP5/pages/3199502907/AttributeDefinitionConfiguration?atl_f=content-tree))
+    before being used as inputs to other attribute definitions.
+    
+    For example:
+    ```
+    <AttributeDefinition id="eduPersonPrincipalName" xsi:type="Scoped" scope="example.org" >
+        <InputDataConnector ref="myLDAP" attributeNames="sAMAccountName" />
+    ```
+    has to become
+    ```
+    <AttributeDefinition id="username" xsi:type="SubjectDerivedAttribute" principalAttributeName="entraid_username" />
+
+    <AttributeDefinition id="eduPersonPrincipalName" xsi:type="Scoped" scope="example.org" >
+        <InputAttributeDefinition ref="entraid_username" />
+    ```
+
