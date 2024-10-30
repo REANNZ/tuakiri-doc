@@ -26,6 +26,7 @@ sidebar:
       - identity_providers/upgrading_a_shibboleth_3_x_idp
       - identity_providers/configuring_a_shibboleth_identity_provider_to_join_the_Tuakiri_federation
       - identity_providers/adding_samlSubjectID_and_samlPairwiseID_attributes
+      - identity_providers/configuring_an_idp_to_authenticate_with_entra_id
       - identity_providers/configuring_refeds_mfa_on_shibboleth_idp
       - identity_providers/fetching_metadata_and_attribute_filter_and_caching_them_locally
       - identity_providers/idp_3_x_username_normalization
