@@ -117,9 +117,9 @@ Please download the [filter-idp-metadata.xslt](https://github.com/REANNZ/Tuakiri
     > **Note**
     > For this setting to work, your IdP needs to be configured (in `/opt/shibboleth-idp/conf/idp.properties`) to load the `/opt/shibboleth-idp/conf/authn/auth.properies` file - either explictly in `idp.additionalProperties` or via `idp.searchForProperties=true`
 
-* Create incoming attribute mappings: create `/opt/shibboleth-idp/conf/attributes/custom/username.rule` with the following content (assuming the username attribute will be called `username` in the IdP config and `onpremiseusername` in the SAML assertion sent by Entra ID):
+* Create incoming attribute mappings: create `/opt/shibboleth-idp/conf/attributes/custom/entraid_username.rule` with the following content (assuming the username attribute will be called `entraid_username` in the IdP config and `onpremiseusername` in the SAML assertion sent by Entra ID):
   ```
-  id=username
+  id=entraid_username
   transcoder=SAML2StringTranscoder
   saml2.name=onpremiseusername
   saml2.nameFormat=
@@ -134,7 +134,7 @@ Please download the [filter-idp-metadata.xslt](https://github.com/REANNZ/Tuakiri
   <AttributeFilterPolicy id="proxy">
       <PolicyRequirementRule xsi:type="Issuer" value="https://sts.windows.net/abcdefg0-1234-abcd-cdef-123456789abc/"/>
 
-      <AttributeRule attributeID="username" permitAny="true" />
+      <AttributeRule attributeID="entraid_username" permitAny="true" />
   </AttributeFilterPolicy>
   ```
 
@@ -147,7 +147,7 @@ Please download the [filter-idp-metadata.xslt](https://github.com/REANNZ/Tuakiri
   # Enable getting attributes from Subject (without attribute resolver)
   idp.c14n.attribute.resolveFromSubject = true
   # Set source attribute ID
-  idp.c14n.attribute.attributeSourceIds = onpremisessamaccountname
+  idp.c14n.attribute.attributeSourceIds = entraid_username
   ```
 
   * In case your IdP uses older style of configuration files (from IdP 4.0.x.), do the same also in `/opt/shibboleth-idp/conf/c14n/attribute-sourced-subject-c14n-config.xml` (bean `shibboleth.c14n.attribute.AttributeSourceIds`)
@@ -197,12 +197,12 @@ Entra ID can pass claims (as SAML attributes) alongside the authentication and t
 
 To achieve this, Entra ID would have to provide input data for all attributes defined in `/opt/shibboleth-idp/conf/attribute-resolver.xml`:
 * Consult the `attribute-resolver.xml` file to see what attributes are being used and what their inputs are.
-* Look for equivalent claims/attributes available in Entra ID that would either directly provide the value needed or the required input for constructing it.
+* Look for equivalent claims/attributes available in Entra ID that would either directly provide the value needed or the required input for constructing it.  Import/add them into Entra ID if not available there yet.
 * Note that the attributes do not have to come in exactly the same format, as long as it is possible to derive the same outgoing values from the information received.
-* For example, if the `staff` value of `eduPersonAffiliation` was derived from presence of a specific group name in the `memberOf` attribute, a suitable alternative may be to instead pass a boolean `isStaff` attribute, or pass `staff` value in a custom affiliation attribute.  (Or completely construct `eduPersonAffiliation` in Entra ID).
-* Add all these attributes to the Entra ID SAML application representing the Tuakiri IdP and note the names they would be passed as (e.g., `givenname`, `surname`, `email` and their SAML names (e.g. `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname`).
+  * For example, if the `staff` value of `eduPersonAffiliation` was derived from presence of a specific group name in the `memberOf` attribute, a suitable alternative may be to instead pass a boolean `isStaff` attribute, or pass `staff` value in a custom affiliation attribute.  (Or completely construct `eduPersonAffiliation` in Entra ID).
+* Add all these attributes to the Entra ID SAML application representing the Tuakiri IdP and note the SAML2 names they would be passed under (e.g. `http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname`).
 
-On the Tuakiri IdP, for each IdP, repeat the steps already done above for the `username` attribute, using an internal attribute ID for the rule name and `id` and the SAML2 name inside the rule:
+On the Tuakiri IdP, for each IdP, repeat the steps already done above for the `username` attribute, using an internal attribute ID for both the rule name and the `id` value inside the rule, and the SAML2 for `saml2.name`:
 * Create a mapping rule under `/opt/shibboleth-idp/conf/attributes/custom/`, e.g. `/opt/shibboleth-idp/conf/attributes/custom/entraid_givenname.rule`:
   ```
   id=entraid_givenname
@@ -219,23 +219,26 @@ On the Tuakiri IdP, for each IdP, repeat the steps already done above for the `u
   <AttributeFilterPolicy id="proxy">
       <PolicyRequirementRule xsi:type="Issuer" value="https://sts.windows.net/abcdefg0-1234-abcd-cdef-123456789abc/"/>
 
-      <AttributeRule attributeID="username" permitAny="true" />
-      <AttributeRule attributeID="entra_id" permitAny="true" />
+      <AttributeRule attributeID="entraid_username" permitAny="true" />
+      <AttributeRule attributeID="entraid_givenname" permitAny="true" />
   </AttributeFilterPolicy>
   ```
 
 * In attribute resolver, change attribute mappings to use the above attributes received from Entra ID.
   * Please note that the attributes received are isolated from the attributes that Shibboleth IdP creates - they are stored as Subject attributes as part of the authentication context.
   * Shibboleth IdP provides a new attribute definition type, [SubjectDerivedAttribute](https://shibboleth.atlassian.net/wiki/spaces/IDP5/pages/3199503385/SubjectDerivedAttributeAttributeDefinition).
-  * These have to be used instead of `SimpleAttributeDefinition` using an attribute value provided by a `DataConnector`.  So for example:
+  * These have to be used instead of `SimpleAttributeDefinition` using an attribute value provided by a `DataConnector`.
+    
+    For example:
     ```
     <AttributeDefinition id="givenName" xsi:type="Simple" >
         <InputDataConnector ref="myLDAP" attributeNames="givenName" />
-
+        ...
     ```
     becomes
     ```
-    <AttributeDefinition id="givenName" xsi:type="SubjectDerivedAttribute" principalAttributeName="entraid_givenname" />
+    <AttributeDefinition id="givenName" xsi:type="SubjectDerivedAttribute" principalAttributeName="entraid_givenname" >
+        ...
     ```
   * As the received attributes are isolated from IdP attribute definitions,
     they need to be explictly imported (via an explicit [IdPAttributeDefinition](https://shibboleth.atlassian.net/wiki/spaces/IDP5/pages/3199502907/AttributeDefinitionConfiguration?atl_f=content-tree))
@@ -245,12 +248,14 @@ On the Tuakiri IdP, for each IdP, repeat the steps already done above for the `u
     ```
     <AttributeDefinition id="eduPersonPrincipalName" xsi:type="Scoped" scope="example.org" >
         <InputDataConnector ref="myLDAP" attributeNames="sAMAccountName" />
+        ...
     ```
     has to become
     ```
     <AttributeDefinition id="username" xsi:type="SubjectDerivedAttribute" principalAttributeName="entraid_username" />
 
     <AttributeDefinition id="eduPersonPrincipalName" xsi:type="Scoped" scope="example.org" >
-        <InputAttributeDefinition ref="entraid_username" />
+        <InputAttributeDefinition ref="username" />
+        ...
     ```
 
