@@ -14,6 +14,7 @@ id: index
     *   [Upgrading a Shibboleth 4.x IdP to 5.x](identity_providers/upgrading_a_4_x_idp_to_5_x.md)
     *   [Mapping Tuakiri attributes to your own identity management system attributes](attributes)
     *   [Configuring an existing Shibboleth Identity Provider to join the Tuakiri Federation](identity_providers/configuring_a_shibboleth_identity_provider_to_join_the_Tuakiri_federation)
+    *   [Configuring an IdP to authenticate with Entra ID](identity_providers/configuring_an_idp_to_authenticate_with_entra_id)
     *   [Replacing back-channel certificate and key on an IdP](identity_providers/replacing_back-channel_certificate_and_key_on_an_idp)
         
 *   Other Resources
