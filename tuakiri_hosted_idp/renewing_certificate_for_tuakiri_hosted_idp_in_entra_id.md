@@ -5,7 +5,7 @@ id: tuakiri_hosted_idp/renewing_certificate_for_tuakiri_hosted_idp_in_entra_id
 
 The [Tuakiri Hosted IdP](../tuakiri_hosted_idp) runs a SAML Identity Provider (IdP) as a SAML proxy, facing Tuakiri as an IdP and facing an upstream IdP as a Service Provider (SP).
 
-The upstream IdP of the Tuakiri Hosted IdP instance may be Microsoft Entra ID.  The certificate included in the metadata produced by Microsoft Entra ID has a fixed expiry date (usually 3 years) and would stop functioning at thee expiry time (and the metadata itself would expire as well).
+The upstream IdP of the Tuakiri Hosted IdP instance may be Microsoft Entra ID.  The certificate included in the metadata produced by Microsoft Entra ID has a fixed expiry date (usually 3 years) and would stop functioning at the expiry time (and the metadata itself would expire as well).
 
 Before the certificate and the metadata expire, it is necessary to replace the certificate, create new metadats, and replace it on the Tuakiri Hosted IdP instance.
 
@@ -22,7 +22,7 @@ This page documents the steps required to replace the certificate and update the
   * this adds the new certificate into the metadata, so far as _Inactive_.
   * close the `SAML Signing Certificate` pop up (by clicking the `X` in the top-right corner)
 5. From the `SAML Certificates` panel, `Download` the `Federation Metadata XML`.
-   * send the downloaded metadata file to tuakiri@reannz.co.nz and wait for confirmation the metadata has been updated on the Tuakiri Hosted IdP service.
+   * send the downloaded metadata file to [tuakiri@reannz.co.nz](mailto:tuakiri@reannz.co.nz) and wait for confirmation the metadata has been updated on the Tuakiri Hosted IdP service.
    * this step will make sure Tuakiri Hosted IdP is ready to accept either the old or the new certificate.
 
 **Only affter** receiving confirmation the metadata has been updated on Tuakiri Hosted IdP, proceed with the following steps (again, repeating them for both TEST and PROD instances of your application).
@@ -32,6 +32,6 @@ This page documents the steps required to replace the certificate and update the
   * The `Expiration Date` should also help tell the the old and new certificates apart.
 9. Delete the old (now _Inactive_) certificate (select  `Delete Certificate` from its `...` context menu).
   * Again close the `SAML Signing Certificates` popup.
-10. `Download` the `Federation Metadata XML` once more and send to tuakiri@reannz.co.nz.
+10. `Download` the `Federation Metadata XML` once more and send to [tuakiri@reannz.co.nz](mailto:tuakiri@reannz.co.nz).
    * this step will make sure Tuakiri Hosted IdP now accepts only the new certificate.
 
