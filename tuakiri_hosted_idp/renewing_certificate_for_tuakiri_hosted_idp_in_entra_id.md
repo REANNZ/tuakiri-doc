@@ -7,7 +7,7 @@ The [Tuakiri Hosted IdP](../tuakiri_hosted_idp) runs a SAML Identity Provider (I
 
 The upstream IdP of the Tuakiri Hosted IdP instance may be Microsoft Entra ID.  The certificate included in the metadata produced by Microsoft Entra ID has a fixed expiry date (usually 3 years) and would stop functioning at the expiry time (and the metadata itself would expire as well).
 
-Before the certificate and the metadata expire, it is necessary to replace the certificate, create new metadats, and replace it on the Tuakiri Hosted IdP instance.
+Before the certificate and the metadata expire, it is necessary to replace the certificate, create new metadata, and replace it on the Tuakiri Hosted IdP instance.
 
 This page documents the steps required to replace the certificate and update the metadata for the Entra ID registration of a Tuakiri Hosted IdP instance.
 
@@ -25,7 +25,7 @@ This page documents the steps required to replace the certificate and update the
    * send the downloaded metadata file to [tuakiri@reannz.co.nz](mailto:tuakiri@reannz.co.nz) and wait for confirmation the metadata has been updated on the Tuakiri Hosted IdP service.
    * this step will make sure Tuakiri Hosted IdP is ready to accept either the old or the new certificate.
 
-**Only affter** receiving confirmation the metadata has been updated on Tuakiri Hosted IdP, proceed with the following steps (again, repeating them for both TEST and PROD instances of your application).
+**Only after** receiving confirmation the metadata has been updated on Tuakiri Hosted IdP, proceed with the following steps (again, repeating them for both TEST and PROD instances of your application).
 6. Navigate to your application again, following the same steps as above.
 7. Under `Manage` `=>` `Single sign-on` `=>` `SAML Certificates`, again select `Edit`
 8. In the list of certificates, identify the new one (so far marked _Inactive_) and from its context menu (`...` at the end of the line representing the certificate), select `Make certificate active`).  The previously Active certificate will now become _Inactive_.
