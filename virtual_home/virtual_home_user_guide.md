@@ -12,7 +12,7 @@ Download a [PDF version](vh-user-guide-v3.pdf) of this guide.
 
 ## What is this tool?
 
-The Virtual Home (VH) enables small organisations, including collaborative research facilities, to manage user identities for international, government, and industry based researchers. The VH replaces older software (the VHO) and has been developed by the Australian Access Federation. The VH uses new technology, and is based on real requirements and use cases.  
+The Virtual Home (VH) enables small organisations, including collaborative research facilities, to manage user identities for international, government, and industry based researchers. The VH has been developed by the Australian Access Federation. The VH uses new technology, and is based on real requirements and use cases.
 As a researcher or end user, you generally wouldn't log into the VH unless you need to change your password or find administrator contact details. Usually you'll just select "Tuakiri Virtual Home" when logging into the particular Service you intend to access.  
 ![](vho_user_guide/vho-login-screen.png)
 
