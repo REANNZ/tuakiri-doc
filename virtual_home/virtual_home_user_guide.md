@@ -29,10 +29,10 @@ Please note the password requirements on the right hand side. Your mobile number
 
 ## How do I reset my password?
 
-You'll find the "recover your lost password" link on the login page. This will begin the process to choose a new password. You'll need your mobile and email account on hand to enter the SMS or email codes we'll send you.  
+You'll find the "Recover your lost password" link on the login page. This will begin the process to choose a new password. You'll need your mobile and email account on hand to enter the SMS or email codes we'll send you.
 You'll have to enter a new password to comply with the minimum password requirements. These are listed on the right hand side. We recommend you use a password with more than 16 characters. For example, "iWonOnAHorseinthemelbournecupin2011" satisfies the password requirements and is extremely secure (providing you keep it a secret!).  
-![](vho_user_guide/worddav4b22a9290f8deceaf914f66c9889b54c.png)  
-![](vho_user_guide/worddav5113787a5390ec918a94773743b4cf65.png)
+![](vho_user_guide/vho-password-reset-1-start.png)
+![](vho_user_guide/vho-password-reset-2-complete.png)
 
 ## How do I change my password?
 
