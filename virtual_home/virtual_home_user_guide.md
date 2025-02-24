@@ -19,7 +19,7 @@ As a researcher or end user, you generally wouldn't log into the VH unless you n
 ## How do I get a Tuakiri VH account?
 
 The authority to create an account on the Tuakiri VH is delegated to the subscriber organisations of Tuakiri. If you are a student, staff member or collaborator of a Tuakiri subscriber organisation, and you think your work could benefit from having an account on the Tuakiri VH, then please contact your identity provider administrator to discuss this option.  
-For a list of organisations subscribed to Tuakiri, view the [subscriber list](https://www.reannz.co.nz/products-and-services/tuakiri/join/) online. To find your identity provider administrator, contact your local service desk. If you have any issues, please contact us at [support@tuakiri.ac.nz](mailto:support@tuakiri.ac.nz).  
+For a list of organisations subscribed to Tuakiri, view the [subscriber list](https://www.reannz.co.nz/products-and-services/tuakiri/join/) online. To find your identity provider administrator, contact your local service desk. If you have any issues, please contact us at [tuakiri@reannz.co.nz](mailto:tuakiri@reannz.co.nz).
 
 ## How do I set up my new account?
 
@@ -61,9 +61,9 @@ Find the service you wish to log in to and, provided the service is connected to
 
 ## Why is my account locked out?
 
-In case you enter an incorrect password, you may attempt to login to the VH up to five times. After five failed login attempts, your account will be locked out. If your account is locked out, you will receive a notification email informing you about this. To unlock your account, please contact Tuakiri support at [support@tuakiri.ac.nz](mailto:support@tuakiri.ac.nz).  
+In case you enter an incorrect password, you may attempt to login to the VH up to five times. After five failed login attempts, your account will be locked out. If your account is locked out, you will receive a notification email informing you about this. To unlock your account, please contact Tuakiri support at [tuakiri@reannz.co.nz](mailto:tuakiri@reannz.co.nz).
 ![](vho_user_guide/email-password-locked.png)
 
 ## Where can I find more help?
 
-Contact Tuakiri support on [support@tuakiri.ac.nz](mailto:support@tuakiri.ac.nz.).
+Contact Tuakiri support on [tuakiri@reannz.co.nz](mailto:tuakiri@reannz.co.nz.).
