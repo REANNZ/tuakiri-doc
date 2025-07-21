@@ -34,7 +34,7 @@ Therefore, the sequence of steps is slightly more complex:
     
     *   Log into the Federation Registry (at [https://registry.tuakiri.ac.nz/federationregistry/](https://registry.tuakiri.ac.nz/federationregistry/) )
     *   Navigate to the details page for your SP
-    *   On the Certificates tab (under SAML in FR2 used in Tuakiri-TEST), add the new certificate.
+    *   On the Certificates tab (under SAML tab), add the new certificate.
         *   Use the default settings, adding the certificate for both **signing** and **encryption** use.  
               
             
@@ -52,7 +52,7 @@ Therefore, the sequence of steps is slightly more complex:
     
     *   Again, log into the Federation Registry
     *   Navigate to the details page for your SP
-    *   On the Certificates tab (under SAML in FR2 used in Tuakiri-TEST), remove the old certificate (make sure this is the old one and not the new one).
+    *   On the Certificates tab (under SAML tab), remove the old certificate (make sure this is the old one and not the new one).
         *   Note that the certificate is listed twice (separately for the **signing** and **encryption** roles), so it is necessary to delete the certificate twice.  
               
             

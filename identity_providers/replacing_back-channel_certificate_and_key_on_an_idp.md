@@ -38,7 +38,7 @@ The steps are:
 2.  Add the new key in the Federation Registry for the IdP:
     *   Log into the Federation Registry (at [https://registry.tuakiri.ac.nz/federationregistry/](https://registry.tuakiri.ac.nz/federationregistry/) )
     *   Navigate to the details page for your IdP
-    *   On the Certificates tab (under SAML in FR2 used in Tuakiri-TEST), add the new certificate.
+    *   On the Certificates tab (under SAML tab), add the new certificate.
         *   Use the default settings of only adding the "signing" use for the certificate.  
               
             
@@ -60,7 +60,7 @@ The steps are:
 5.  Remove the old certificate from the Federation Registry
     *   Again, log into the Federation Registry
     *   Navigate to the details page for your IdP
-    *   On the Certificates tab (under SAML in FR2 used in Tuakiri-TEST), remove the old certificate (make sure this is the old one and not the new one).  
+    *   On the Certificates tab (under SAML tab), remove the old certificate (make sure this is the old one and not the new one).
           
         
 6.  This completes the certificate replacement process.  After another metadata refresh (4 hours maximum), no SP would be trusting the old IdP certificate.
