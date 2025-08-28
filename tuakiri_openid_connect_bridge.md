@@ -29,12 +29,14 @@ Please start the process by contacting us at [tuakiri@reannz.co.nz](mailto:tuaki
 *   A descriptive name of the service
 *   The `redirect_uri` the OpenIDConnect RP on the service will use
     *   the `redirect_uri` must use HTTPS - and must use a host name properly registered in DNS; an IP address would not be accepted
+*   A base hostname to use to identify the service (if not obvious from the `redirect_uri`).
 *   Which of the Tuakiri [Attributes](attributes) the service will need access to (and what scopes the service will be requesting - see below)
 *   Whether for authenticating to the service, a _targeted_ (_pairwise_) subject identifier will be sufficient, or whether the service needs _public_ (non-targeted) subject identifier.  
     (The latter would only be the case when multiple services connected to the bridge independently need to receive matching subject identifiers).
 *   Name of the organisation operating the service
 *   A further (brief) description of the service (going beyond the service name) - for use in the Tuakiri Service Catalogue.
 *   A URL that can be used to link to the service from the Service Catalogue
+*   Contact information (technical, support, security, ideally role-based email aliases) to publish in the metadata describing the service (if available).
 *   Which federation this registration is for - Tuakiri (Production) or Tuakiri-TEST.
 *   The deployment state of the service (Production, UAT, Testing, Development...)
 
