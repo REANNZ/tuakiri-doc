@@ -40,7 +40,7 @@ Please start the process by contacting us at [tuakiri@reannz.co.nz](mailto:tuaki
 
 We will respond with further instructions.
 
-We will also need a way to communicate the clientID and secret to you in a secure way.  For this, we use [Keybase.io](https://keybase.io/) - so please also include your Keybase account ID in your registration request.
+Once your client is set up, we will communicate the clientID and secret to you in a secure way.
 
 ## Service configuration
 
