@@ -49,7 +49,7 @@ The above so far only includes REFEDS MFA in the SSO request sent to the IdP.  
 
 This can be done with the Apache `require` directive - in the simplest case replacing the stub `require shibboleth` used in the example above.  (If multiple `require` directives were needed, they'd have to be wrapped in a `RequireAll` block to join them with a logical **and** , otherwise Apache would default to a logical **or** ).
 
-If the session is established with a different `authnContextClassRef` value (which, if REFEDS MFA was _requested_ in the SSO request would be a misconfiguration of the IdP, or deliberate tinkering with the session setup), Apache will block further access with an _HTTP 401 Authorization Required_ error page.
+If the session is established with a different `authnContextClassRef` value (which, if REFEDS MFA was _requested_ in the SSO request would be a misconfiguration of the IdP, or deliberate tampering with the session setup), Apache will block further access with an _HTTP 401 Authorization Required_ error page.
 
 We recommend customising the error response page to make it clear login was rejected because MFA was not used.
 
