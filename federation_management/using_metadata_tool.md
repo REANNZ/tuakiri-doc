@@ -16,10 +16,8 @@ However, the way the metadata is submitted, as well as supporting processes, are
 
 The Metadata Tool reuses the public hostnames originally used by the Federation Registry (as it still acts as the registry of entities registered in Tuakiri).  The hostnames are:
 
-| Federation | Metadata Tool |
-| --- | --- |
-| Tuakiri (Production) | [https://registry.tuakiri.ac.nz/](https://registry.tuakiri.ac.nz/) |
-| Tuakiri-TEST | [https://registry.test.tuakiri.ac.nz/](https://registry.test.tuakiri.ac.nz/) |
+* **Tuakiri** (Production) : [https://registry.tuakiri.ac.nz/](https://registry.tuakiri.ac.nz/)
+* **Tuakiri-TEST** : [https://registry.test.tuakiri.ac.nz/](https://registry.test.tuakiri.ac.nz/)
 
 The Metadata Tool first presents a landing page that does not require authentication and presents a read-only view of entities registered in Tuakiri (and also of entities accepted from eduGAIN).
 
