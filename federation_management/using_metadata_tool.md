@@ -55,7 +55,7 @@ For common implementations, the URLs take the following form (available at the s
 
 After submitting the publication request, the Metadata Tool will send you an email confirming the request.
 
-Forward this email to tuakiri@reannz.co.nz to trigger the next step.
+Forward this email to [tuakiri@reannz.co.nz](mailto:tuakiri@reannz.co.nz) to trigger the next step.
 
 A Tuakiri Service Desk team member will process the request and publish the metadata.
 
@@ -74,7 +74,7 @@ An existing entity registration can be updated by creating a Draft from the exis
 
 Same as when submitting a new registration,  the Metadata Tool will send you an email confirming the request.
 
-Forward this email to tuakiri@reannz.co.nz to trigger the next step.
+Forward this email to [tuakiri@reannz.co.nz](mailto:tuakiri@reannz.co.nz) to trigger the next step.
 
 A Tuakiri Service Desk team member will process the request and publish the updated metadata.
 
@@ -90,7 +90,7 @@ It is also possible to request removal of published metadata.
 
 Same as in the other scenarios above,  the Metadata Tool will send you an email confirming the request.
 
-Forward this email to tuakiri@reannz.co.nz to trigger the next step.
+Forward this email to [tuakiri@reannz.co.nz](mailto:tuakiri@reannz.co.nz) to trigger the next step.
 
 A Tuakiri Service Desk team member will process the request and remove the entity  metadata.
 
