@@ -4,10 +4,17 @@ id: federation_management/using_metadata_tool
 # Using the Metadata Tool to manage Tuakiri metadata
 {:.no_toc}
 
-Tuakiri has migrated from legacy tooling (Federation Registry run in combination with the SAML Service) to a new system, centered around the Metadata Tool, developed by SUNET (Swedish NREN) to operate SWAMID (Swedish R&E Identity Federation).
+Tuakiri has migrated from legacy tooling (Federation Registry run in combination
+with the SAML Service) to a new system, centered around the Metadata Tool,
+developed by SUNET (Swedish NREN) to operate SWAMID (Swedish R&E Identity Federation).
+This will allow Tuakiri to remove technical debt and provide access to new features
+and specifications developed by the international community.
 
-The Metadata Tool also provides a web interface to submitting new SAML metadata for an IdP or SP, as well as for requesting changes to already published metadata.  And authentication to the Metadata Tool is also via Tuakiri.
-However, the way the metadata is submitted, as well as supporting processes, are different.
+The Metadata Tool also provides a web interface to submitting new SAML metadata for an IdP or SP,
+as well as for requesting changes to already published metadata.
+Authentication to the Metadata Tool is via Tuakiri, same as it was for Federation Registry.
+However, the way the metadata is submitted, as well as the processes
+to get the change reflected in published metadata, are different.
 
 1. TOC
 {:toc}
