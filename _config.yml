@@ -36,6 +36,7 @@ sidebar:
       - service_providers/installing_shibboleth_sp_on_redhat_based_linux
       - service_providers/install_shibboleth_sp_on_debian_based_linux
       - service_providers/installing_a_simplesamlphp_sp
+      - service_providers/connecting_wordpress_site_with_openidconnect
       - service_providers/configuring_an_sp_for_edugain
       - service_providers/configuring_refeds_mfa_on_shibboleth_sp
       - service_providers/replacing_back-channel_certificate_and_key_on_an_sp

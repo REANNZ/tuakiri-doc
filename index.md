@@ -27,6 +27,7 @@ id: index
     *   [Installing Shibboleth SP on RedHat based Linux](service_providers/installing_shibboleth_sp_on_redhat_based_linux)
     *   [Install Shibboleth SP on Debian Based linux](service_providers/install_shibboleth_sp_on_debian_based_linux) (and Ubuntu as well)
     *   [Installing a SimpleSAMLphp SP](service_providers/installing_a_simplesamlphp_sp)
+    *   [Connecting a WordPress site with Tuakiri OpenID Connect Bridge](service_providers/connecting_wordpress_site_with_openidconnect)
 *   External Resources
     *   [Configuring Shibboleth authentication with DSpace](https://wiki.duraspace.org/display/DSDOC4x/Authentication+Plugins#AuthenticationPlugins-ShibbolethAuthentication)
     *   [Shibboleth authentication with Drupal](https://www.drupal.org/project/shib_auth)
