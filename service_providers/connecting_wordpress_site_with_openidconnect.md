@@ -1,5 +1,5 @@
 ---
-id: service_providers/connecting_wordpress_site_with_openidconnect.md
+id: service_providers/connecting_wordpress_site_with_openidconnect
 ---
 # Connecting a WordPress site with Tuakiri OpenID Connect Bridge
 {:.no_toc}
