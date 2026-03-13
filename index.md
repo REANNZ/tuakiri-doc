@@ -7,7 +7,6 @@ id: index
 # Information for Identity Providers
 
 *   Installation guidelines:
-    
     *   [Installing a Shibboleth 3.x IdP](identity_providers/installing_a_shibboleth_3_x_idp)
     *   [Upgrading a Shibboleth 3.x IdP](identity_providers/upgrading_a_shibboleth_3_x_idp) (within 3.x version range)
     *   [Upgrading a Shibboleth 3.x IdP to 4.x](identity_providers/upgrading_a_3_x_idp_to_4_x.md)
@@ -18,23 +17,16 @@ id: index
     *   [Replacing back-channel certificate and key on an IdP](identity_providers/replacing_back-channel_certificate_and_key_on_an_idp)
         
 *   Other Resources
-    
     *   Guidelines to help you make use of the [Enhanced Client/Proxy profile](ecp)
-        
     *   Guidelines to help you make use of the [Single Log Out (SLO)](single_log_out_slo)
     *   Information on [Tuakiri attributes](attributes)
-        
     *   Detailed information on [Levels of Assurance](levels_of_assurance)  
-        
 
 # Information for Service Providers
 
 *   Installation Guides
-    
     *   [Installing Shibboleth SP on RedHat based Linux](service_providers/installing_shibboleth_sp_on_redhat_based_linux)
-        
     *   [Install Shibboleth SP on Debian Based linux](service_providers/install_shibboleth_sp_on_debian_based_linux) (and Ubuntu as well)  
-        
     *   [Installing a SimpleSAMLphp SP](service_providers/installing_a_simplesamlphp_sp)  
         
 *   External Resources
@@ -47,10 +39,8 @@ id: index
     *   [Replacing back-channel certificate and key on an SP](service_providers/replacing_back-channel_certificate_and_key_on_an_sp)
     *   [Recommendations](service_providers/recommendations)
     *   Guidelines to help you make use of the [Enhanced Client/Proxy profile](ecp).
-        
     *   Guidelines to help you make use of the [Single Log Out (SLO)](single_log_out_slo)
     *   Information on [Tuakiri attributes](attributes)
-        
     *   Detailed information on [Levels of Assurance](levels_of_assurance)
 
 # eduGAIN resources
