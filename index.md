@@ -53,5 +53,6 @@ id: index
 *   [Tuakiri Metadata](federation_management/tuakiri_metadata)
 *   [Creating an Organization in the Tuakiri Federation](federation_management/creating_an_organization_in_the_Tuakiri_federation.html)
 *   [Adding a Service Provider to the Tuakiri Federation](federation_management/adding_a_service_provider_to_the_Tuakiri_federation)
+*   [Using the Metadata Tool to manage Tuakiri metadata](federation_management/using_metadata_tool)
 *   Tuakiri [Virtual Home User guide](virtual_home/virtual_home_user_guide)
 *   Tuakiri [Virtual Home Administrator guide](virtual_home/virtual_home_administrator_guide)
