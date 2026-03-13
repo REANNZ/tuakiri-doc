@@ -15,22 +15,19 @@ id: index
     *   [Configuring an existing Shibboleth Identity Provider to join the Tuakiri Federation](identity_providers/configuring_a_shibboleth_identity_provider_to_join_the_Tuakiri_federation)
     *   [Configuring an IdP to authenticate with Entra ID](identity_providers/configuring_an_idp_to_authenticate_with_entra_id)
     *   [Replacing back-channel certificate and key on an IdP](identity_providers/replacing_back-channel_certificate_and_key_on_an_idp)
-        
 *   Other Resources
     *   Guidelines to help you make use of the [Enhanced Client/Proxy profile](ecp)
     *   Guidelines to help you make use of the [Single Log Out (SLO)](single_log_out_slo)
     *   Information on [Tuakiri attributes](attributes)
-    *   Detailed information on [Levels of Assurance](levels_of_assurance)  
+    *   Detailed information on [Levels of Assurance](levels_of_assurance)
 
 # Information for Service Providers
 
 *   Installation Guides
     *   [Installing Shibboleth SP on RedHat based Linux](service_providers/installing_shibboleth_sp_on_redhat_based_linux)
-    *   [Install Shibboleth SP on Debian Based linux](service_providers/install_shibboleth_sp_on_debian_based_linux) (and Ubuntu as well)  
-    *   [Installing a SimpleSAMLphp SP](service_providers/installing_a_simplesamlphp_sp)  
-        
+    *   [Install Shibboleth SP on Debian Based linux](service_providers/install_shibboleth_sp_on_debian_based_linux) (and Ubuntu as well)
+    *   [Installing a SimpleSAMLphp SP](service_providers/installing_a_simplesamlphp_sp)
 *   External Resources
-    
     *   [Configuring Shibboleth authentication with DSpace](https://wiki.duraspace.org/display/DSDOC4x/Authentication+Plugins#AuthenticationPlugins-ShibbolethAuthentication)
     *   [Shibboleth authentication with Drupal](https://www.drupal.org/project/shib_auth)
     *   [Active Directory Federation Services guides](http://technet.microsoft.com/en-us/library/adfs2-step-by-step-guides(WS.10).aspx) (this includes a deployment guide for Shibboleth 2, ADFS 2, and Sharepoint 2010)
