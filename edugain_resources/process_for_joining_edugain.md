@@ -12,7 +12,7 @@ The steps in the process to join eduGAIN (as either IdP or SP) are:
 *   For an IdP to join eduGAIN:
     *   Run the latest IdP software
     *   Declare support for R&S
-    *   Declare SIRTFI and provide SIRTFI contact
+    *   Declare SIRTFIv2 and provide a security contact
     *   Provide a logo representing the organisation
     *   Consume eduGAIN metadata
     *   Release attributes to eduGAIN services  
@@ -21,7 +21,7 @@ The steps in the process to join eduGAIN (as either IdP or SP) are:
 *   For an SP to join eduGAIN:
     *   Run the latest SP software
     *   We recommend declaring R&S where applicable.
-    *   We recommend declaring SIRTFI
+    *   We recommend declaring SIRTFIv2 and providing a security contact.
     *   Provide a logo representing the service
     *   Provide a page with further information about the service (InformationURL)
     *   Consume eduGAIN metadata

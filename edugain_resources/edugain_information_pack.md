@@ -31,7 +31,7 @@ By connecting to eduGAIN, your organisation will benefit from:
 
 ### Requirements to connect to eduGAIN (connecting to eduGAIN is optional)
 
-|     | SAML  <br>Software implementation | Technical  <br>Connection requirements | R&S  <br>Research & Scholarship Entity Category | SIRTFI  <br>Security Incident Response Trust Framework for Federated Identity |
+|     | SAML  <br>Software implementation | Technical  <br>Connection requirements | R&S  <br>Research & Scholarship Entity Category | SIRTFIv2  <br>Security Incident Response Trust Framework for Federated Identity Version 2 |
 | --- | --- | --- | --- | --- |
 | IdP | Run the latest version of software | Consume Metadata  <br>Release attributes | Mandatory | Mandatory |
 | SP  | Run the latest version of software | Consume Metadata  <br>Discovery Service  <br>Request Attributes | Recommende for qualifying services | Recommended |
@@ -144,28 +144,28 @@ SPs asserting R&S will also have to provide an InformationURL - a URL to a page 
 
 For more information about the R&S Entity Category, go to [refeds.org/category/research-and-scholarship](http://refeds.org/category/research-and-scholarship)
 
-# SIRTFI
+# SIRTFIv2
 
-Security Incident Response Trust Framework for Federated Identity (SIRTIFI).
+Security Incident Response Trust Framework for Federated Identity Version 2 (SIRTIFIv2).
 
-## What is SIRTFI?
+## What is SIRTFIv2?
 
-SIRTFI (Security Incident Response Trust Framework for Federated Identity) provides a lightweight framework to request and provide security incident response assistance, publish security incident contact information and review your service’s security incident capability.
+SIRTFIv2 (Security Incident Response Trust Framework for Federated Identity Version 2) provides a lightweight framework to request and provide security incident response assistance, publish security incident contact information and review your service’s security incident capability.
 
 ## Why does my organisation need to use SIRTFI?
 
-SIRTFI is an important global framework covering good practice for communicating about security incidents in an effective and timely manner. SIRTFI helps security contacts know who to contact in other organisations and the best channels to use. The SIRTFI framework is an initiative of REFEDS.
+SIRTFIv2 is an important global framework covering good practice for communicating about security incidents in an effective and timely manner. SIRTFIv2 helps security contacts know who to contact in other organisations and the best channels to use. The SIRTFIv2 framework is an initiative of REFEDS.
 
-## How does my organisation assert SIRTFI?
+## How does my organisation assert SIRTFIv2?
 
-### Assert SIRTFI
+### Assert SIRTFIv2
 
-**Step 1:** Read and understand the SIRTFI framework requirements.
+**Step 1:** Read and understand the SIRTFIv2 framework requirements.
 
 *   Go to [refeds.org/sirtfi](http://refeds.org/sirtfi)
-*   View the SIRTFI Framework ([refeds.org/wp-content/uploads/2016/01/Sirtfi-1.0.pdf](http://refeds.org/wp-content/uploads/2016/01/Sirtfi-1.0.pdf))
+*   View the SIRTFIv2 Framework ([https://refeds.org/wp-content/uploads/2022/08/Sirtfi-v2.pdf](https://refeds.org/wp-content/uploads/2022/08/Sirtfi-v2.pdf))
 
-**Step 2:** Self-assess your organisational capability against the SIRTFI requirements.
+**Step 2:** Self-assess your organisational capability against the SIRTFIv2 requirements.
 
 **Step 3:** Provide your security contact information to Tuakiri to share with security contacts in other federations.
 
@@ -174,22 +174,22 @@ SIRTFI is an important global framework covering good practice for communicating
 
 **Step 4:** Notify Tuakiri Support when contact details change.
 
-### SIRTFI Framework
+### SIRTFIv2 Framework
 
-The SIRTFI framework ([refeds.org/wp-content/uploads/2016/01/Sirtfi-1.0.pdf](http://refeds.org/wp-content/uploads/2016/01/Sirtfi-1.0.pdf)) requires organisations to self-assess against the following areas:
+The SIRTFI framework ([https://refeds.org/wp-content/uploads/2022/08/Sirtfi-v2.pdf](https://refeds.org/wp-content/uploads/2022/08/Sirtfi-v2.pdf)) requires organisations to self-assess against the following areas:
 
-| Operational Security  <br>(OS) | Incident Response  <br>(IR) | Traceability  <br>(TR) | Participant Responsibilities  <br>(PR) |
+| Operational Security  <br>(OS) | Incident Response  <br>(IR) | Traceability  <br>(TR) | User Rules  <br>(UR) |
 | --- | --- | --- | --- |
-| Security patches | IR assistance | Retaining records | Acceptable Use Policy (AUP) |
-| Vulnerability management | SIRTFI IR assistance | Audit trails | User acknowledgement of AUP |
-| Threat detection | Collaboration |     |     |
-| User access rights | IR procedures |     |     |
+| Security patches | IR assistance | Retaining records | Rules and conditions of use |
+| Vulnerability management | SIRTFI IR assistance | Audit trails | Users notified of rules |
+| Threat detection | Notify participants |     |     |
+| User access rights | Collaboration |     |     |
 | Contact information | User privacy |     |     |
 | Security incident response | Traffic Light Protocol |     |     |
 
 ## Traffic Light Protocol
 
-Organisations within the SIRTFI community agree to provide a coordinated response to security incidents, including assisting other organisations as required. SIRTFI requires organisations to understand and use the Traffic Light Protocol (TLP) for security incident communications. For more information about TLP, go to [www.us-cert.gov/tlp](http://www.us-cert.gov/tlp)
+Organisations within the SIRTFIv2 community agree to provide a coordinated response to security incidents, including assisting other organisations as required. SIRTFIv2 requires organisations to understand and use the Traffic Light Protocol (TLP) for security incident communications. For more information about TLP, go to [www.us-cert.gov/tlp](http://www.us-cert.gov/tlp)
 
 # Logos
 
@@ -226,7 +226,7 @@ We have completed and tested the following technical requirements:
 
 Our IdP is R&S compliant.
 
-Our organisation is self-asserting SIRTFI.
+Our organisation is self-asserting SIRTFIv2.
 
 A logo representing our organisation is available at __URL__.
 
@@ -249,7 +249,7 @@ We have completed and tested the following technical configuration changes:
   * Loading the Tuakiri eduGAIN metadata
   * An eduGAIN enabled Discovery Service
 
-We (do / do not) require this service to assert compliance with SIRTFI.
+We (do / do not) require this service to assert compliance with SIRTFIv2.
 
 We (do / do not) require this service to assert Research and Scholarly to enable access to R&S attributes.
 

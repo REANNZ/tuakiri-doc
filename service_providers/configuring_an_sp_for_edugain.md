@@ -9,7 +9,7 @@ After meeting the [organisational requirements for joining eduGAIN](../edugain_r
 
 *   Run up-to-date software
 *   Declare R&S (recommended if applicable)
-*   Declare SIRTFI and provide SIRTFI contact (recommended)
+*   Declare SIRTFIv2 and provide security contact (recommended)
 *   Provide a logo representing the service
 *   Provide a page with further information about the service (InformationURL)
 *   Load eduGAIN metadata
@@ -40,16 +40,16 @@ If an SP declares it meets the SP R&S requirements (the purpose of the SP is to 
 
 The actual declaration of support for R&S will be part of the joining request sent to Tuakiri as per the instructions in the [eduGAIN Information Pack](../edugain_resources/edugain_information_pack.html#request-to-join-edugain).
 
-# SIRTFI
+# SIRTFIv2
 
-SIRTFI (Security Incident Response Trust Framework for Federated Identity) is a lightweight framework to request and provide security incident response assistance, publish security incident contact information and review security incident capability.
+SIRTFIv2 (Security Incident Response Trust Framework for Federated Identity Version 2) is a lightweight framework to request and provide security incident response assistance, publish security incident contact information and review security incident capability.
 
-For SPs, SIRTFI is highly recommended for joining eduGAIN.  Organisations self-assess against the SIRTFI criteria and then self-assert SIRTFI.  They also have to provide a security contact - which should be a role-based email address, not personal.
+For SPs, SIRTFIv2 is highly recommended for joining eduGAIN.  Organisations self-assess against the SIRTFIv2 criteria and then self-assert SIRTFIv2.  They also have to provide a security contact - which should be a role-based email address, not personal.
 
 *   The security contact should be provided by adding the contact as a `security` contact of the IdP in the Tuakiri Federation Registry.
-*   The step of self-asserting SIRTFI is included in the request to join eduGAIN as per the instructions in the [eduGAIN Information Pack](../edugain_resources/edugain_information_pack.html#request-to-join-edugain).
+*   The step of self-asserting SIRTFIv2 is included in the request to join eduGAIN as per the instructions in the [eduGAIN Information Pack](../edugain_resources/edugain_information_pack.html#request-to-join-edugain).
 
-For more information, please see the [eduGAIN Information Pack](../edugain_resources/edugain_information_pack.html#sirtfi) and the [REFEDS SIRTFI documentation](https://refeds.org/sirtfi).
+For more information, please see the [eduGAIN Information Pack](../edugain_resources/edugain_information_pack.html#sirtfiv2) and the [REFEDS SIRTFI documentation](https://refeds.org/sirtfi).
 
 # Logo
 
