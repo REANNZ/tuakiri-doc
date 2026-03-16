@@ -169,7 +169,7 @@ SIRTFIv2 is an important global framework covering good practice for communicati
 
 **Step 3:** Provide your security contact information to Tuakiri to share with security contacts in other federations.
 
-*   Update your contact details in Federation Registry (as contact type `security` ) or contact Tuakiri Support at [tuakiri@reannz.co.nz](mailto:tuakiri@reannz.co.nz)
+*   Update your contact details registered in Tuakiri (as contact type `security` ) or contact Tuakiri Support at [tuakiri@reannz.co.nz](mailto:tuakiri@reannz.co.nz)
 *   Notify Tuakiri Support that you have met the SIRTFI requirements.
 
 **Step 4:** Notify Tuakiri Support when contact details change.
