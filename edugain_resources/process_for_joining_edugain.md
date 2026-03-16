@@ -10,23 +10,23 @@ The steps in the process to join eduGAIN (as either IdP or SP) are:
 
 *   Organisation signs the **[Connect to eduGAIN form](Connect-to-eduGAIN-form-Tuakiri.pdf)**
 *   For an IdP to join eduGAIN:
-    *   Run the latest IdP software
-    *   Declare support for R&S
-    *   Declare SIRTFIv2 and provide a security contact
-    *   Provide a logo representing the organisation
-    *   Consume eduGAIN metadata
-    *   Release attributes to eduGAIN services  
+    *   Run the latest IdP software.
+    *   Declare support for R&S.
+    *   Declare SIRTFIv2 and provide a security contact.
+    *   Provide a logo representing the organisation.
+    *   Consume eduGAIN metadata.
+    *   Release attributes to eduGAIN services.  
           
         Please see [Configuring an IdP for eduGAIN](../identity_providers/configuring_an_idp_for_edugain) for full details.
 *   For an SP to join eduGAIN:
-    *   Run the latest SP software
+    *   Run the latest SP software.
     *   We recommend declaring R&S where applicable.
     *   We recommend declaring SIRTFIv2 and providing a security contact.
-    *   Provide a logo representing the service
-    *   Provide a page with further information about the service (InformationURL)
-    *   Consume eduGAIN metadata
-    *   Record requested attributes in Federation Registry
-    *   Configure Discovery for eduGAIN  
+    *   Provide a logo representing the service.
+    *   Provide a page with further information about the service (InformationURL).
+    *   Consume eduGAIN metadata.
+    *   Record requested attributes in Federation Registry.
+    *   Configure Discovery for eduGAIN.  
           
         Please [Configuring an SP for eduGAIN](../service_providers/configuring_an_sp_for_edugain) for full details.  
           
