@@ -40,7 +40,6 @@ sidebar:
       - service_providers/configuring_an_sp_for_edugain
       - service_providers/configuring_refeds_mfa_on_shibboleth_sp
       - service_providers/replacing_back-channel_certificate_and_key_on_an_sp
-      - service_providers/recommendations
   - label: eduGAIN resources
     children:
       - edugain_resources/process_for_joining_edugain

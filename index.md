@@ -34,7 +34,6 @@ id: index
     *   [Active Directory Federation Services guides](http://technet.microsoft.com/en-us/library/adfs2-step-by-step-guides(WS.10).aspx) (this includes a deployment guide for Shibboleth 2, ADFS 2, and Sharepoint 2010)
 *   Other Resources
     *   [Replacing back-channel certificate and key on an SP](service_providers/replacing_back-channel_certificate_and_key_on_an_sp)
-    *   [Recommendations](service_providers/recommendations)
     *   Guidelines to help you make use of the [Enhanced Client/Proxy profile](ecp).
     *   Guidelines to help you make use of the [Single Log Out (SLO)](single_log_out_slo)
     *   Information on [Tuakiri attributes](attributes)
