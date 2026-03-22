@@ -36,7 +36,7 @@ The steps are:
         ```
         
 2.  Add the new key in the Federation Registry for the IdP:
-    *   Log into the Federation Registry (at [https://registry.tuakiri.ac.nz/federationregistry/](https://registry.tuakiri.ac.nz/federationregistry/) )
+    *   Log into the Federation Registry (at [https://registry.tuakiri.ac.nz/](https://registry.tuakiri.ac.nz/) )
     *   Navigate to the details page for your IdP
     *   On the Certificates tab (under SAML tab), add the new certificate.
         *   Use the default settings of only adding the "signing" use for the certificate.  

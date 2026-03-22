@@ -10,12 +10,12 @@ In order to register Service Providers(SP), Identity Providers(IdP), and other e
 
 The federations to consider are:
 
-*   **Tuakiri:** suitable for production (and user acceptance testing) systems for use by New Zealand (and Australian) academic community ([https://registry.tuakiri.ac.nz/federationregistry/](https://registry.tuakiri.ac.nz/federationregistry/))
-*   **Tuakiri-TEST:** suitable for test and development systems for future use by New Zealand (and Australian) academic community ([https://registry.test.tuakiri.ac.nz/federationregistry/](https://registry.test.tuakiri.ac.nz/federationregistry/))
+*   **Tuakiri:** suitable for production (and user acceptance testing) systems for use by New Zealand (and Australian) academic community ([https://registry.tuakiri.ac.nz/](https://registry.tuakiri.ac.nz/))
+*   **Tuakiri-TEST:** suitable for test and development systems for future use by New Zealand (and Australian) academic community ([https://registry.test.tuakiri.ac.nz/](https://registry.test.tuakiri.ac.nz/))
 
 Users log into the Federation Registry to administer their Organization, IdP and SP by authenticating with their normal IdP. The login is not necessary to register an Organization, IdP, or SP as the registration can be sent in anonymous mode. An IdP authenticated login is required to modify the registration, and to accept the invitation to become an administrator that is automatically sent to the email address provided in the initial registration.
 
-This document is focused on adding a production Organization to the Tuakiri Federation.  To adding a development or test Organization to the Tuakiri-TEST Federation, please log into the [Tuakiri-TEST Federation Registry](https://registry.test.tuakiri.ac.nz/federationregistry/) instead.
+This document is focused on adding a production Organization to the Tuakiri Federation.  To adding a development or test Organization to the Tuakiri-TEST Federation, please log into the [Tuakiri-TEST Federation Registry](https://registry.test.tuakiri.ac.nz/) instead.
 
 ## Organization Creation
 
@@ -26,7 +26,7 @@ The Organization creation process is straightforward, but **can take up to two b
 >
 > It is possible to add an Organization into the federation without an account but to become the administrator of that Organization or later review the Organization entry or to make any changes, or to approve IdPs and SPs registered under the Organization, you **will** need an account.
 
-Go to the [Tuakiri Federation Registry](https://registry.tuakiri.ac.nz/federationregistry) (or, if registering a development or test Organization to the Tuakiri-TEST Federation, please go to the [Tuakiri-TEST Federation Registry](https://registry.test.tuakiri.ac.nz/federationregistry/) instead).
+Go to the [Tuakiri Federation Registry](https://registry.tuakiri.ac.nz/) (or, if registering a development or test Organization to the Tuakiri-TEST Federation, please go to the [Tuakiri-TEST Federation Registry](https://registry.test.tuakiri.ac.nz/) instead).
 
 If you are able to log in, click **Login** and login using your IdP. Start the registration by clicking **Subscribers** > **Organizations** > **Create**.
 

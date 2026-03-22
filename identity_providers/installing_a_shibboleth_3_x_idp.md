@@ -1428,7 +1428,7 @@ The `eduPersonEntitlement` attribute is a multivalued container for arbitrary st
 
 # Register the IdP into the federation
 
-Please follow the instructions on [registering an IdP into the Tuakiri federation](configuring_a_shibboleth_identity_provider_to_join_the_Tuakiri_federation#registering-an-idp-into-the-federation-registry) (using Federation Registry URL [https://registry.tuakiri.ac.nz/federationregistry/](https://registry.tuakiri.ac.nz/federationregistry/) for the Tuakiri federation or [https://registry.test.tuakiri.ac.nz/federationregistry/](https://registry.test.tuakiri.ac.nz/federationregistry/) for Tuakiri-TEST)
+Please follow the instructions on [registering an IdP into the Tuakiri federation](configuring_a_shibboleth_identity_provider_to_join_the_Tuakiri_federation#registering-an-idp-into-the-federation-registry) (using Federation Registry URL [https://registry.tuakiri.ac.nz/](https://registry.tuakiri.ac.nz/) for the Tuakiri federation or [https://registry.test.tuakiri.ac.nz/](https://registry.test.tuakiri.ac.nz/) for Tuakiri-TEST)
 
 For IdP version 3, these instructions need to be slightly adjusted, as IdPv3 generates three certificates/keypairs: signing, encryption and back-channel:
 

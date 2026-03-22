@@ -10,8 +10,8 @@ Even with Shibboleth SP installed, a Service Provider only becomes useful after 
 
 The Tuakiri federations to consider are:
 
-*   **[Tuakiri](https://registry.tuakiri.ac.nz/federationregistry)****:** suitable for production systems only
-*   **[Tuakiri-TEST](https://registry.test.tuakiri.ac.nz/federationregistry)****:** suitable for test and development systems
+*   **[Tuakiri](https://registry.tuakiri.ac.nz/)****:** suitable for production systems only
+*   **[Tuakiri-TEST](https://registry.test.tuakiri.ac.nz/)****:** suitable for test and development systems
 
 This document will cover adding a Service Provider to the Tuakiri or Tuakiri-TEST federation.
 

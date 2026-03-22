@@ -32,7 +32,7 @@ Therefore, the sequence of steps is slightly more complex:
         
 3.  Add the new certificate into the federation metadata for both **signing** (both old and new certificates are trusted) and **encryption** (an IdP can encrypt the assertion sent to this SP using either old or new certificate).  The second part is now OK as the SP would be able to decrypt the assertion.
     
-    *   Log into the Federation Registry (at [https://registry.tuakiri.ac.nz/federationregistry/](https://registry.tuakiri.ac.nz/federationregistry/) )
+    *   Log into the Federation Registry (at [https://registry.tuakiri.ac.nz/](https://registry.tuakiri.ac.nz/) )
     *   Navigate to the details page for your SP
     *   On the Certificates tab (under SAML tab), add the new certificate.
         *   Use the default settings, adding the certificate for both **signing** and **encryption** use.  

@@ -401,8 +401,8 @@ For reference, please also see the [attached image mapping SimpleSAMLphp metadat
 
 Access the Federation Registry at the correct URL for the respective federation:
 
-*   Tuakiri (Production): [https://registry.tuakiri.ac.nz/federationregistry/](https://registry.tuakiri.ac.nz/federationregistry/)
-*   Tuakiri-TEST: [https://registry.test.tuakiri.ac.nz/federationregistry/](https://registry.test.tuakiri.ac.nz/federationregistry/)
+*   Tuakiri (Production): [https://registry.tuakiri.ac.nz/](https://registry.tuakiri.ac.nz/)
+*   Tuakiri-TEST: [https://registry.test.tuakiri.ac.nz/](https://registry.test.tuakiri.ac.nz/)
 
 *   Start registering a new SP
 *   Enter your personal details

@@ -4,7 +4,7 @@
 >
 > It is possible to add an SP to the federation without an account but to become the administrator of that SP or later review the SP registration entry or to make any changes (in the textual description or the technical details - endpoint URLs, certificates, attributes required, etc), you **will** need an account.
 
-Navigate to the Tuakiri federation management site [https://registry.tuakiri.ac.nz/federationregistry](https://registry.tuakiri.ac.nz/federationregistry) (or, for Tuakiri-TEST federation, [https://registry.test.tuakiri.ac.nz/federationregistry](https://registry.test.tuakiri.ac.nz/federationregistry)).
+Navigate to the Tuakiri federation management site [https://registry.tuakiri.ac.nz/](https://registry.tuakiri.ac.nz/) (or, for Tuakiri-TEST federation, [https://registry.test.tuakiri.ac.nz/](https://registry.test.tuakiri.ac.nz/)).
 
 If you **do not** have an account with an IdP registered in the federation and you **do not** have an account with the Tuakiri VHO, start the SP registration (without logging in), by clicking the **Create Service Provider** link in the blue menu bar.
 
