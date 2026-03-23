@@ -368,6 +368,7 @@ Your IdP **entityId** will be `https://idp.institution.domain.ac.nz/idp/shibbole
 *   Connectors: in `/etc/tomcat/server.xml`, define a new AJP connector at port 8009.
     > **Note**  
     > Tomcat already has this connector defined, but in an insecure way that would be opening the connector to outside connections as well. Comment the original definition out and instead put this definition in.
+    
     ```
        <Connector port="8009" address="127.0.0.1"
                   enableLookups="false" redirectPort="443" protocol="AJP/1.3"
