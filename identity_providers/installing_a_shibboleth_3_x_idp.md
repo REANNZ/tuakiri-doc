@@ -155,34 +155,25 @@ We assume a standard install of either CentOS or RHEL, version 7. The IdP web ap
 
 *   MySQL (needed for storing sharedToken values if shared Token is stored in MySQL)
     *   MySQL is not strictly required and an alternative database system may be used if already available on site - just use the corresponding JDBC drivers for the alternative database. As of CentOS 7, the available MySQL server package is MariaDB
-        
         ```
         yum install mariadb mariadb-server
         ```
         
 
 *   Install NTP (if time synchronization is to be done inside the VM)
-    
     ```
     yum install ntp
     ```
-    
 
 *   Useful debugging / sysadmin tools
-    
     ```
     yum install openldap-clients wireshark-gnome mc strace subversion
     ```
     
 *   Install Tomcat:
-    
     ```
     yum install tomcat
     ```
-    
-    > **Note**  
-    > Historically, this document was recommending to install Tomcat7 from JPackage.  As this document is being updated for CentOS/RHEL 7, and the default tomcat on these systems is version 7, this is no longer needed.  (Also, the JPackage repository appears to be no longer maintained).
-    
 
 ## Local configuration
 
@@ -375,21 +366,15 @@ Your IdP **entityId** will be `https://idp.institution.domain.ac.nz/idp/shibbole
   
 
 *   Connectors: in `/etc/tomcat/server.xml`, define a new AJP connector at port 8009.
-    
-    Note
-    
     > **Note**  
-    > Tomcat7 already has this connector defined, but in an insecure way that would be opening the connector to outside connections as well. Comment the original definition out and instead put this definition in.
-    
+    > Tomcat already has this connector defined, but in an insecure way that would be opening the connector to outside connections as well. Comment the original definition out and instead put this definition in.
     ```
        <Connector port="8009" address="127.0.0.1"
                   enableLookups="false" redirectPort="443" protocol="AJP/1.3"
                   tomcatAuthentication="false"
                   secretRequired="false" />
     ```
-    
 *   And comment out the existing http connector defined for port 8080:
-    
     ```
         <!--
         <Connector port="8080" maxHttpHeaderSize="8192"
@@ -398,20 +383,11 @@ Your IdP **entityId** will be `https://idp.institution.domain.ac.nz/idp/shibbole
                    connectionTimeout="20000" disableUploadTimeout="true" />
         -->
     ```
-    
-
 *   Tweak Tomcat memory settings: increase the default Java minimal and maximal heap size settings (increasing the maximum to at least 1GB - or more, depending the total RAM in your VM)
     *   Edit `/etc/sysconfig/tomcat` and add (reasonably adjust according to the VM size):
-        
         ```
         JAVA_OPTS="-Xms768m -Xmx1536m"
         ```
-        
-        > **Note**  
-        > Historically, due to a [bug](http://www.jpackage.org/bugzilla/show_bug.cgi?id=377) in JPackage bundle of Tomcat7, settings in `/etc/tomcat7/tomcat7.conf` were ignored and we therefore recommended putting all Tomcat settings into `/etc/sysconfig/tomcat7`.
-        >
-        > With RHEL/CentOS7 Tomcat being managed by systemd, this bug (in startup script interaction) is now irrelevant.  However, we still recommend putting the memory settings into `/etc/sysconfig/tomcat`, as it is compatible with Tomcat per-instance configuration.
-        
 *   The IdPV3 code relies on the web application container having support for JSTL, but Tomcat7 comes packaged without JSTL.  Therefore, install JSTL (version 1.2.1, API and implementation jars) into `/usr/share/tomcat/lib`: download from [search.maven.org/remotecontent?filepath=javax/servlet/jsp/jstl/javax.servlet.jsp.jstl-api/1.2.1/javax.servlet.jsp.jstl-api-1.2.1.jar](http://search.maven.org/remotecontent?filepath=javax/servlet/jsp/jstl/javax.servlet.jsp.jstl-api/1.2.1/javax.servlet.jsp.jstl-api-1.2.1.jar) and [search.maven.org/remotecontent?filepath=org/glassfish/web/javax.servlet.jsp.jstl/1.2.1/javax.servlet.jsp.jstl-1.2.1.jar](http://search.maven.org/remotecontent?filepath=org/glassfish/web/javax.servlet.jsp.jstl/1.2.1/javax.servlet.jsp.jstl-1.2.1.jar) (credits: [http://stackoverflow.com/tags/jstl/info](http://stackoverflow.com/tags/jstl/info)):
     
     ```
@@ -2181,52 +2157,12 @@ Tomcat has R/W access to content labeled as `tomcat_var_lib_t`.  However, as t
     restorecon -R /opt/shibboleth-idp
     ```
     
-*   Allow Tomcat to talk to the dabase (new in CentOS/RHEL 7.6)
+*   Allow Tomcat to talk to the dabase (new in CentOS/RHEL 7.5+)
     
     ```
     setsebool -P tomcat_can_network_connect_db on
     ```
     
-
-On CentOS 7.4 only, it is necessary to implement a workaround to give Tomcat permission to connect to MySQL.
-
-On CentOS 7.5, the missing permission has been added and this workaround is no longer necessary - you can skip the rest of this section.
-
-If you are running CentOS 7.4, please unfold the box below to see the details of the workaround - archived otherwise for histroical purposes only.
-
-<details markdown="1">
-<summary>Click here to expand...</summary>
-
-Tomat needs to be able to connect to MySQL - and unfortunately, this has been so far omitted in the SELinux policy for target.  While we expect this to be fixed in future updates to the SELinux policy, for now, we have to use a workaround - create a custom policy module.
-
-*   Create a policy type enforcement file defining a policy module `tomcat-to-mysql` - in a working directory (e.g., `/root/inst`) create `tomcat-to-mysql.te` with the following contents:
-    
-    ```
-    module tomcat-to-mysql 1.0;
-    
-    require {
-            type tomcat_t;
-            type mysqld_port_t;
-            class tcp_socket name_connect;
-    }
-    
-    #============= tomcat_t ==============
-    allow tomcat_t mysqld_port_t:tcp_socket name_connect;
-    ```
-    
-*   Compile, package and load the module with:
-    
-    ```
-    checkmodule -m -M -o tomcat-to-mysql.mod tomcat-to-mysql.te
-    semodule_package -o tomcat-to-mysql.pp -m tomcat-to-mysql.mod
-    semodule -i tomcat-to-mysql.pp
-    ```
-    
-
-With these in place, Tomcat should have all the SELinux permissions required and the IdP should operate normally.
-
-</details>
-  
 
 ## Enabling HSTS
 
