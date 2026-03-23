@@ -132,11 +132,9 @@ If this is an alias and the system internally uses a different hostname, we reco
 Run the following code (substituting the externally visible hostname for `sp.example.org`) that will replace the certificates with new ones,
 valid for 20 years, with the provided hostname stored in the CN of the certificate, and the entityID stored as Subject Alternative Name of type `URI`.
 
-    ```
     cd /etc/shibboleth
     ./keygen.sh -f -n sp-signing -u shibd -g shibd -y 20 -h sp.example.org -e https://sp.example.org/shibboleth
     ./keygen.sh -f -n sp-encrypt -u shibd -g shibd -y 20 -h sp.example.org -e https://sp.example.org/shibboleth
-    ```
 
 # Federation Membership
 
