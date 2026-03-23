@@ -32,6 +32,7 @@ id: index
     *   [Shibboleth authentication with Drupal](https://www.drupal.org/project/shib_auth)
     *   [Active Directory Federation Services guides](http://technet.microsoft.com/en-us/library/adfs2-step-by-step-guides(WS.10).aspx) (this includes a deployment guide for Shibboleth 2, ADFS 2, and Sharepoint 2010)
 *   Other Resources
+    *   [Adding a Service Provider to the Tuakiri Federation](federation_management/adding_a_service_provider_to_the_Tuakiri_federation)
     *   [Replacing back-channel certificate and key on an SP](service_providers/replacing_back-channel_certificate_and_key_on_an_sp)
     *   Guidelines to help you make use of the [Single Log Out (SLO)](single_log_out_slo)
     *   Information on [Tuakiri attributes](attributes)
@@ -47,6 +48,7 @@ id: index
 # Federation Services
 
 *   [Tuakiri Metadata](federation_management/tuakiri_metadata)
+*   [Adding a Service Provider to the Tuakiri Federation](federation_management/adding_a_service_provider_to_the_Tuakiri_federation)
 *   [Using the Metadata Tool to manage Tuakiri metadata](federation_management/using_metadata_tool)
 *   Tuakiri [Virtual Home User guide](virtual_home/virtual_home_user_guide)
 *   Tuakiri [Virtual Home Administrator guide](virtual_home/virtual_home_administrator_guide)
