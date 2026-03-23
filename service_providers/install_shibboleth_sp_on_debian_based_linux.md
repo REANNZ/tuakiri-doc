@@ -9,11 +9,9 @@ id: service_providers/install_shibboleth_sp_on_debian_based_linux
 
 {% include service_providers/shibsp-excerpt-intro-part1.md %}
 
-This documentation is written based on and tested on Ubuntu 20.04 Server x86\_64, but should work on other Debian-based distributions as well.
+This documentation is written based on and tested on Ubuntu 20.04 Server x86\_64 and Debian 12 x86\_64, but should work on other Debian-based distributions as well.
 
 {% include service_providers/shibsp-excerpt-intro-part2.md %}
-
-Please note that SP 3.x has only been released for Ubuntu 20.04 and above and has not been released for older versions.  On hosts running older versions of Ubuntu, following this manual will install Shibboleth 2.6.x.
 
 1. TOC
 {:toc}
@@ -40,11 +38,7 @@ sudo a2ensite default-ssl
 
 # Installation
 
-Shibboleth SP is available in the standard Ubuntu and Debian repositories.  While the package stays at the major/minor version that was initially released with the Ubuntu/Debian version, it does get security updates backported.   However, as 18.04 only has ShibSP 2.6.1, we strongly recommend running at least Ubuntu 20.04 (which gets ShibSP 3.0.4).
-
-Note that the [SWITCH repository](https://pkg.switch.ch/switchaai/) used to provide more up-to-date ShibSP packages for Ubuntu and Debian, but this repository has been decommissioned (no updates after 2021-11-30 and will be switched off after 2022-11-30).
-
-  
+Shibboleth SP is available in the standard Ubuntu and Debian repositories.  While the package stays at the major/minor version that was initially released with the Ubuntu/Debian version, it does get security updates backported.
 
 The key steps are:
 
