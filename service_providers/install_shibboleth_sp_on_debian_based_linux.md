@@ -123,12 +123,6 @@ The key steps are:
 > </details>
   
 
-# Special considerations
-
-## HTTP/HTTPS access
-
-{% include service_providers/shibsp-excerpt-special-http-https.md %}
-
 # Logging
 
 {% include service_providers/shibsp-excerpt-logging.md %}

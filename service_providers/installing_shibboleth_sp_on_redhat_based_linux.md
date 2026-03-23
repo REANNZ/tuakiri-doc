@@ -187,12 +187,6 @@ valid for 20 years, with the provided hostname stored in the CN of the certifica
     </details>
     
 
-# Special considerations
-
-## HTTP/HTTPS access
-
-{% include service_providers/shibsp-excerpt-special-http-https.md %}
-
 # Logging
 
 {% include service_providers/shibsp-excerpt-logging.md %}
