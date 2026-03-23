@@ -393,39 +393,9 @@ Remove (comment-out) pre-configured IdPs and SPs
 
 # Register into Federation Registry
 
-The Tuakiri Federation Registry (FR) has in the initial setup only pre-configured support for Shibboleth SP implementation, not SimpleSAMLphp. Without the pre-configured support, it is necessary to enter all endpoints URLs manually. There is an ongoing project to add support to FR to support SimpleSAMLphp, until then, please use the Advanced Registration form as described in this section.
+You can register your SP into Tuakiri [Using the Metadata Tool]({{ 'federation_management/using_metadata_tool' | relative_url}}), starting the registration by uploading your SP metadata.  The metadata for your SP can be accessed at [https://sp.example.org/simplesaml/module.php/saml/sp/metadata.php/default-sp?output=xhtml](https://sp.example.org/simplesaml/module.php/saml/sp/metadata.php/default-sp?output=xhtml)
 
-As a reference point, the metadata for your SP can be accessed at [https://sp.example.org/simplesaml/module.php/saml/sp/metadata.php/default-sp?output=xhtml](https://sp.example.org/simplesaml/module.php/saml/sp/metadata.php/default-sp?output=xhtml)
-
-For reference, please also see the [attached image mapping SimpleSAMLphp metadata to Federation Registry form](SimpleSAMLphp-metadata-Tuakiri-Endpoint-config.png) (credits: Bevan Rudge, University of Auckland).
-
-Access the Federation Registry at the correct URL for the respective federation:
-
-*   Tuakiri (Production): [https://registry.tuakiri.ac.nz/](https://registry.tuakiri.ac.nz/)
-*   Tuakiri-TEST: [https://registry.test.tuakiri.ac.nz/](https://registry.test.tuakiri.ac.nz/)
-
-*   Start registering a new SP
-*   Enter your personal details
-*   Select your organization (Create an Organization first if not already listed)
-*   Enter the details about your SP (name, description, service URL)
-*   If SimpleSAMLphp is not listed as a supported implementation, select Advanced Registration and enter the following information (drawing from your SP metadata and using the mapping as in the image above), _replacing sp.example.org_ with the hostname of your SP:
-
-*   **Entity Descriptor ID**: [https://sp.example.org/simplesaml/module.php/saml/sp/metadata.php/default-sp](https://sp.example.org/simplesaml/module.php/saml/sp/metadata.php/default-sp)
-*   **Assertion Consuming Service (Post)**: [https://sp.example.org/simplesaml/module.php/saml/sp/saml2-acs.php/default-sp](https://sp.example.org/simplesaml/module.php/saml/sp/saml2-acs.php/default-sp) (Index: 0)
-*   **Assertion Consuming Service (Artifact)**: [https://sp.example.org/simplesaml/module.php/saml/sp/saml2-acs.php/default-sp](https://sp.example.org/simplesaml/module.php/saml/sp/saml2-acs.php/default-sp) (Index: 2)
-
-*   **Single Logout Redirect Endpoint**: [https://sp.example.org/simplesaml/module.php/saml/sp/saml2-logout.php/default-sp](https://sp.example.org/simplesaml/module.php/saml/sp/saml2-logout.php/default-sp)
-*   **Single Logout SOAP Endpoint**: [https://sp.example.org/simplesaml/module.php/saml/sp/saml2-logout.php/default-sp](https://sp.example.org/simplesaml/module.php/saml/sp/saml2-logout.php/default-sp)
-
-*   **Discovery Response**: [https://sp.example.org/simplesaml/module.php/saml/sp/discoresp.php](https://sp.example.org/simplesaml/module.php/saml/sp/discoresp.php)
-
-*   Leave other fields blank
-
-*   Certificate: paste in the contents of cert/saml.crt
-
-*   Attributes: select the attributes needed by your SP (and give a reason for requesting each of the attributes)
-
-*   Review the SP registration form and submit it for approval.
+{% include federation_management/adding_an_sp_to_tuakiri-excerpt.md %}
 
 # Testing
 
