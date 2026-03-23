@@ -356,12 +356,6 @@ Your IdP **entityId** will be `https://idp.institution.domain.ac.nz/idp/shibbole
                    unpackWAR="false"
                    swallowOutput="true" />
     ```
-    
-
-> **Note**  
-> Historically, the installation process involved deploying XML parser libraries as _endorsed_ libraries in Tomcat. Since IdP 2.4.3, this is no longer needed and the step has been removed.
-
-  
 
 *   Connectors: in `/etc/tomcat/server.xml`, define a new AJP connector at port 8009.
     > **Note**  
@@ -400,11 +394,6 @@ Your IdP **entityId** will be `https://idp.institution.domain.ac.nz/idp/shibbole
 Apache needs to be configured to:
 
 *   Listen on ports 443 and 8443 - this is done via separate configuration files idp.conf and idp8443.conf (bypassing parts of the default configuration in ssl.conf)
-
-> **Note**  
-> Note: historically, this guide used to recommend to disable SSL session cache to work around a [bug](https://wiki.shibboleth.net/confluence/display/SHIB2/NativeSPTroubleshootingCommonErrors#NativeSPTroubleshootingCommonErrors-error:1408F06B:SSLroutines:SSL3_GET_RECORD:baddecompression) - while the bug was never fully tracked, the current version of OpenSSL/ShibbolethSP/httpd/mod\_ssl no longer demonstrate this bug, so for performance reasons, we recommend keep SSL session caching turned on. Also, as the bug was in the back-channel communication which is rarely used with SAML2, even the impact in the unlikely case the bug reoccurs should be quite minimal.
-
-  
 
 *   To make Apache listen at ports 443 and 8443, create `/etc/httpd/conf.d/ports.conf` (or install from [ports.conf](https://raw.githubusercontent.com/REANNZ/Tuakiri-public/master/shibboleth-idp/apache/ports.conf))  with
     
@@ -466,11 +455,6 @@ Apache needs to be configured to:
 > If this URL is used anywhere to obtain the IdP metadata (we recommend against this practice, as it is insecure and fragile, but this gets used in some bilateral setups), this file will have to be kept up-to-date with the actual IdP metadata.  However, the installer should initially create it with the correct contents.
 
 {% include identity_providers/idp_excerpt_idp3-load-metadata.md %}
-
-> **Note**  
-> Please note that historically (in IdP 2.x), the IdP was  also loading its own metadata.  This is no longer needed and the `$IDP_HOME/metadata/idp-metadata.xml` file now exists only for informative purposes.
-
-  
 
 Configure the IdP to use secure cookies: by default Shibboleth IdP 3.x uses session cookies not marked as secure - which means the browser would also send them over a plain unencrypted HTTP connection.
 
@@ -2087,33 +2071,6 @@ To enable this service, please make the following changes (based on upstream ins
         ```
         idp.fticks.condition = TuakiriFTicksCondition
         ```
-        
-        > **Warning**  
-        > This property was only introduced in [IdP 4.1.0](https://issues.shibboleth.net/jira/browse/IDP-1643).  If your IdP is running on an earlier version (4.0.x), you can still activate this setting by directly modifying the activationCondition of the `WriteFTICKSLog` bean in `$IDP_HOME/``system/flows/saml/saml-abstract-beans.xml` , but changes to files under `system/` should be avoided - and will be overwritten on IdP upgrades. 
-        >
-        > However, if this change gets lost in an upgrade, the IdP will not break, just the behavior would return to default - send all FTICKS messages. 
-        >
-        > Preserving these instructions for historical reference (and for sites still on 4.0.x).
-        >
-        > <details markdown="1">
-        > <summary>Click here to expand the instructions for filtering usage logs on IdP 4.0.x</summary>
-        >
-        > *   Edit the definition of `WriteFTICKSLog`  bean in `$IDP_HOME/system/flows/saml/saml-abstract-beans.xml` and instead of the default in-line activation condition, pass a reference to the bean defined above:
-        >     
-        >     ```
-        >     --- system/flows/saml/saml-abstract-beans.xml.dist	2020-07-14 18:02:32.742299470 +1200
-        >     +++ system/flows/saml/saml-abstract-beans.xml	2020-07-21 17:06:41.030977466 +1200
-        >     @@ -337,7 +337,7 @@
-        >              p:httpServletRequest-ref="shibboleth.HttpServletRequest" />
-        >     
-        >          <bean id="WriteFTICKSLog" class="net.shibboleth.idp.saml.audit.impl.WriteFTICKSLog" scope="prototype"
-        >     -        p:activationCondition="#{'%{idp.fticks.federation:null}' != 'null'}"
-        >     +        p:activationCondition-ref="TuakiriFTicksCondition"
-        >              p:federationId="#{'%{idp.fticks.federation:Undefined}'.trim()}"
-        >              p:digestAlgorithm="#{'%{idp.fticks.algorithm:SHA-256}'.trim()}" p:salt="%{idp.fticks.salt:}" />
-        >     
-        >     ```
-        > </details>
             
     </details>
         
@@ -2188,39 +2145,6 @@ Please see the [IdPv3 wiki](https://wiki.shibboleth.net/confluence/display/IDP30
 *   [https://wiki.shibboleth.net/confluence/display/IDP30/Configuration](https://wiki.shibboleth.net/confluence/display/IDP30/Configuration)
 *   [https://wiki.shibboleth.net/confluence/display/IDP30/ConfigurationFileSummary](https://wiki.shibboleth.net/confluence/display/IDP30/ConfigurationFileSummary)
 
-  
-Earlier versions of this documentation included a workaround needed for IdP 3.1.x only.
-
-<details markdown="1">
-<summary>Click here to expand historical IdP 3.1.x compatbility workaround... (no action required on IdP 3.2.0+)</summary>
-
-Login breaks on IdP 3.1.x with SPs misconfigured to request AuthenticationType `urn:oasis:names:tc:SAML:2.0:ac:classes:unspecified`.
-
-Version 2 IdP just ignores that misconfiguration and login works. Version 3.2.0 includes a proper workaround, allowing to add a list of contexts to be ignored, with this value being included by default.
-
-On IdP 3.1.x, as an interim workaround, modify `$IDP_HOME/system/conf/general-authn-system.xml` and add this value to the list of `supportedPrincipals` in the `shibboleth.AuthenticationFlow` bean:
-
-```
---- /opt/shibboleth-idp/system/conf/general-authn-system.xml.dist 2015-11-18 10:55:36.713111653 +1300
-+++ /opt/shibboleth-idp/system/conf/general-authn-system.xml    2015-11-18 10:55:39.520094266 +1300
-@@ -40,6 +40,8 @@
-                     c:classRef="urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport" />
-                 <bean parent="shibboleth.SAML2AuthnContextClassRef"
-                     c:classRef="urn:oasis:names:tc:SAML:2.0:ac:classes:Password" />
-+                <bean parent="shibboleth.SAML2AuthnContextClassRef"
-+                    c:classRef="urn:oasis:names:tc:SAML:2.0:ac:classes:unspecified" />
-                 <bean parent="shibboleth.SAML1AuthenticationMethod"
-                     c:method="urn:oasis:names:tc:SAML:1.0:am:password" />
-             </list>
-```
-
-For further details, please see [https://issues.shibboleth.net/jira/browse/IDP-780](https://issues.shibboleth.net/jira/browse/IDP-780)
-
-Note that as this interim workaround is applied to a file under `$IDP_HOME/system/`, it would get overwritten in an upgrade - but, the next version the upgrade would be introducing should already have the proper permanent workaround included.
-
-**No action is required on IdP 3.2.0+**
-
-</details>
 
 # Starting the IdP
 
