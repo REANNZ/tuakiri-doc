@@ -39,95 +39,11 @@ To configure a 3.x IdP to Load the Tuakiri metadata:
 
 {% include identity_providers/idp_excerpt_idp3-load-metadata.md %}
 
-For archival purposes, we also keep the original instructions for configuring the Tuakiri metadata into a 2.x IdP - unfold the box below to see the IdP 2.x compatible syntax:
-
-<details markdown="1">
-<summary>Legacy IdP 2.x configuration to load Tuakiri metadata</summary>
-
-*   Download the metadata signing certificate into `$IDP_HOME/credentials`:
-    
-    ```
-    wget https://directory.tuakiri.ac.nz/metadata/tuakiri-metadata-cert.pem -O $IDP_HOME/credentials/tuakiri-metadata-cert.pem
-    ```
-    
-*   In `$IDP_HOME/conf/relying-party.xml`
-    *   Add the following snippet into the `ChainingMetadataProvider`:
-        
-        ```
-                <!-- Tuakiri -->
-                <metadata:MetadataProvider id="Tuakiri" xsi:type="metadata:ResourceBackedMetadataProvider">
-                  <metadata:MetadataFilter xsi:type="metadata:ChainingFilter" xmlns="urn:mace:shibboleth:2.0:metadata">
-                    <metadata:MetadataFilter xsi:type="metadata:SignatureValidation" xmlns="urn:mace:shibboleth:2.0:metadata"
-                                    trustEngineRef="shibboleth.MetadataTrustEngine"
-                                    requireSignedMetadata="true" />
-                  </metadata:MetadataFilter>
-                  <metadata:MetadataResource xsi:type="resource:FileBackedHttpResource"
-                                  url="https://directory.tuakiri.ac.nz/metadata/tuakiri-metadata-signed.xml"
-                                  file="/opt/shibboleth-idp/metadata/tuakiri-metadata.xml" />
-                </metadata:MetadataProvider>
-        ```
-        
-    *   And add the following snippet into the `<security:TrustEngine id="shibboleth.MetadataTrustEngine" xsi:type="security:StaticExplicitKeySignature">` element:
-        
-        ```
-                <security:Credential id="Tuakiri-FederationCredentials" xsi:type="security:X509Filesystem">
-                    <security:Certificate>/opt/shibboleth-idp/credentials/tuakiri-metadata-cert.pem</security:Certificate>
-                </security:Credential>
-        ```
-        
-        > **Note**  
-        > Remember to uncomment the `<security:TrustEngine id="shibboleth.MetadataTrustEngine" xsi:type="security:StaticExplicitKeySignature">` element if it is still commented out (it is commented out in the default configuration).
-        
-</details>
-
-  
-
 # Configure attribute release/filtering through the federation
 
 To configure a 3.x IdP to Load the Tuakiri-managed attribute filter:
 
 {% include identity_providers/idp_excerpt_idp3-load-attribute-filter.md %}
-
-For archival purposes, we also keep the original instructions for configuring the Tuakiri-managed attribute filter into a 2.x IdP - unfold the box below to see the IdP 2.x compatible syntax:
-
-<details markdown="1">
-<summary>Legacy IdP 2.x syntax to load an attribute filter</summary>
-
-After requesting the attribute filter:
-
-  
-
-*   Add the following entry into `<srv:Service id="shibboleth.AttributeFilterEngine"` in `$IDP_HOME/conf/service.xml`(note that the URL varies for each IdP and has to be obtained from the federation administrators):
-    
-    ```
-            <srv:ConfigurationResource xsi:type="resource:FileBackedHttpResource"
-                                  url="https://directory.tuakiri.ac.nz/attribute-filter/<institution-domain>.xml"
-                                  file="/opt/shibboleth-idp/conf/tuakiri-attribute-filter.xml" />
-    ```
-    
-    > **Note**  
-    > Note: if your `$IDP_HOME` is different from `/opt/shibboleth-idp`, change the file path in the above snippet accordingly.
-    
-    > **Note**  
-    > If configuring this in Shibboleth IdP 2.1.x, do not use the srv: namespace prefix - i.e., use just:
-    >
-    > ```
-    >         <ConfigurationResource xsi:type="resource:FileBackedHttpResource"
-    >                       url="https://directory.tuakiri.ac.nz/attribute-filter/<institution-domain>.xml"
-    >                       file="/opt/shibboleth-idp/conf/tuakiri-attribute-filter.xml" />
-    >
-    > ```
-    
-*   We also strongly recommend you configure your IdP to periodically reload this file - we recommend at 2 hour intervals. This is documented in detail in the [IdP Install Manual: Reloading configuration section](installing_a_shibboleth_3_x_idp) and [Load Attribute Filter](installing_a_shibboleth_3_x_idp.html#load-attribute-filter) sections. The simple step is to add the `configurationResourcePollingFrequency="PT2H0M0.000S"` and `configurationResourcePollingRetryAttempts="10"` attributes to the `<srv:Service id="shibboleth.AttributeFilterEngine"`element. If you already have these attributes set for reloading the local configuration file - with a shorter interval, please adjust them accordingly to 2 hours for the remotely loaded attribute filter:
-    
-    ```
-        <srv:Service id="shibboleth.AttributeFilterEngine"
-    +             configurationResourcePollingFrequency="PT2H0M0.000S" configurationResourcePollingRetryAttempts="10"
-                 xsi:type="attribute-afp:ShibbolethAttributeFilteringEngine">
-    ```
-
-</details>
-  
 
 Now your IdP should be able to access service providers within the Tuakiri federation.
 
