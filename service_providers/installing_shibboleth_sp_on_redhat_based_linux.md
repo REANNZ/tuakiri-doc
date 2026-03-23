@@ -201,10 +201,6 @@ These libraries install automatically as dependencies of the main shibboleth pac
 
 Further information is available in the upstream documentation at [https://wiki.shibboleth.net/confluence/display/SHIB2/NativeSPLinuxRH6](https://wiki.shibboleth.net/confluence/display/SHIB2/NativeSPLinuxRH6)
 
-## ECP
-
-{% include service_providers/shibsp-excerpt-special-ecp.md %}
-
 # Logging
 
 {% include service_providers/shibsp-excerpt-logging.md %}

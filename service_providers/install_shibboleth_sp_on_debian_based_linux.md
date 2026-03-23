@@ -129,10 +129,6 @@ The key steps are:
 
 {% include service_providers/shibsp-excerpt-special-http-https.md %}
 
-## ECP
-
-{% include service_providers/shibsp-excerpt-special-ecp.md %}
-
 # Logging
 
 {% include service_providers/shibsp-excerpt-logging.md %}

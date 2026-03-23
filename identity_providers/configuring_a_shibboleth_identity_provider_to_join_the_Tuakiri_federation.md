@@ -29,14 +29,6 @@ We recommend first registering a Test system into Tuakiri-TEST and after success
 
 {% include identity_providers/idp_excerpt_register-idp-into-FR.md %}
 
-## ECP support
-
-If supporting ECP, advertise also your ECP SSO EndPoint:
-
-{% include identity_providers/idp_excerpt_idp-register-ecp.md indent="" %}
-
-The IdP also needs to be [configured to support ECP](installing_a_shibboleth_3_x_idp#ecp-support).
-
 # Configuring your IdP to load the federation metadata
 
 The code snippets in this section have values for Tuakiri Production federation. Please update them accordingly as per the table above if configuring your IdP to join the Tuakiri TEST/DEV federation. (The key code snippets are for convenience given in the "Tuakiri-TEST specific" box below).

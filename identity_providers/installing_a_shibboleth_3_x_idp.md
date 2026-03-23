@@ -1625,63 +1625,18 @@ Alternatively, set up the fetching via an external script and configure the IdP 
 
 ## ECP support
 
-To allow your IdP to be used with the [ECP](../ecp) profile (access via non-browser clients) to let your users access ECP-enabled services in the federation:
+Shibboleth IdP comes with support for the Enhanced Client/Proxy (ECP) profile.  While earlier supported, this protocol has now been deprecated in Tuakiri.
 
-*   In IdPV3, no configuration effort on the IdP side is needed - ECP is enabled by default.
-    
-*   Protect the /idp/profile/SAML2/SOAP/ECP location on your IdP with authentication against your LDAP - add the following (customized for your LDAP server) into `/etc/httpd/conf.d/idp.conf`:
+To protect the ECP endpoint against being misued (together with accidental misconfiguration):
+
+1. Disable ECP in IdP configuration: comment out the `SAML2.ECP` bean in `DefaulyRelyingParty` configuration in `$IDP_HOME/conf/relying-party.xml`.
+2. Protect the `/idp/profile/SAML2/SOAP/ECP` location on your IdP: add the following into `/etc/httpd/conf.d/idp.conf`:
     
     ```
             <Location /idp/profile/SAML2/SOAP/ECP>
-                    AuthType Basic
-                    AuthName "Example Institution Shibboleth Identity Provider - ECP profile"
-                    AuthBasicProvider ldap
-                    AuthLDAPURL ldap://ldap.example.org/ou=People,dc=example,dc=org?uid
-                    AuthLDAPBindDN "cn=read,dc=example,dc=org"
-                    AuthLDAPBindPassword "password"
-                    Require valid-user
-                    # enable this only over SSL -  not needed when defined in the context of a https VirtualHost
-                    SSLRequireSSL
+                    Require all denied
             </Location>
     ```
-    
-    *   Note: the Apache LDAP module cannot handle LDAP referrals. When connecting to an Active Directory server (which typically includes referrals to other domains in the AD forest in the results), you will need to connect to the Global Catalog at port 3268.
-    *   On RHEL/CentOS7, Apache 2.4 by default does not include `mod_ldap` - so install `mod_ldap` explicitly:
-        
-        ```
-        yum install mod_ldap
-        ```
-        
-    *   If you have SELinux enabled, you will also need to explicitly permit the LDAP communication from Apache:
-        
-        ```
-        setsebool -P httpd_can_connect_ldap on
-        ```
-        
-    *   When using an LDAP server using a self-signed certificate or a private root CA, configure `mod_ldap` to trust this CA.  Assuming the certificate is stored in `/opt/shibboleth/credentials/ldap-server.crt`, add the following into the above snippet (as per [mod\_ldap](https://httpd.apache.org/docs/2.4/mod/mod_ldap.html#ldaptrustedclientcert) documentation):
-        
-        ```
-         LDAPTrustedClientCert CA_BASE64 /opt/shibboleth-idp/credentials/ldap-server.crt
-        ```
-        
-    *   When configuring multiple LDAP servers to be used as fall-back, enter them inside a single `AuthLDAPURL` with multiple space-separated hostname-port tuples (and enclose the URL in quotes) e.g.: 
-        
-        ```
-        AuthLDAPURL "ldaps://dc01.instlocal:636 dc02.inst.local:636/ou=People,dc=example,dc=org?uid"
-        ```
-        
-    *   Please see the [IdP3 ECP documentation](https://wiki.shibboleth.net/confluence/display/IDP30/IDP3+ECP+with+Tomcat+and+Apache-Managed+Authentication) for further information:
-
-*   When registering your IdP in the Federation Registry, advertise also the ECP endpoint.  
-    
-{% include identity_providers/idp_excerpt_idp-register-ecp.md indent="    " %}
-
-> **Note**  
-> In order for the ECP handler (running as part of the IdP web application inside Tomcat) to receive the REMOTE\_USER variable set by Apache, the AJP connector in Tomcat must have the `tomcatAuthentication="false"` as instructed above.
->
-> ECP will not work if the AJP connector is left with the default settings.
->
-> For information on protecting the ECP endpoint from within Tomcat instead, please see [https://wiki.shibboleth.net/confluence/display/IDP30/ECPConfiguration](https://wiki.shibboleth.net/confluence/display/IDP30/ECPConfiguration)
 
 ## Configuring Single Logout
 

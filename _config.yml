@@ -59,7 +59,6 @@ sidebar:
     children:
       - multi-factor_authentication_with_refeds_mfa_profile
       - single_log_out_slo
-      - ecp
       - levels_of_assurance
   - label: Tuakiri Virtual Home
     children:
