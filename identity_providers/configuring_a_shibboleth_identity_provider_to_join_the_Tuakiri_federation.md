@@ -41,9 +41,9 @@ To configure a 3.x IdP to Load the Tuakiri metadata:
 
 # Configure attribute release/filtering through the federation
 
-To configure a 3.x IdP to Load the Tuakiri-managed attribute filter:
+To configure a 3.x IdP to Load the Tuakiri-provided attribute filter:
 
-{% include identity_providers/idp_excerpt_idp3-load-attribute-filter.md %}
+{% include identity_providers/idp_excerpt_attribute-release-edugain.md %}
 
 Now your IdP should be able to access service providers within the Tuakiri federation.
 
