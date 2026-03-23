@@ -271,8 +271,6 @@ From the very beginning, we will install the Shibboleth IdP:
 
 Having done these steps early in the installation prevents them from slipping later on.
 
-Please note that historically, this guide was separately documenting installation of the uApprove application for users to grant consent over attribute release. This application has now been integrated into the main IdP application as the _consent_ module - and is therefore installed (and enabled) in a basic IdPV3 deployment.
-
 The IdP installation paths (IDP\_HOME) will be `/opt/shibboleth-idp` (default)
 
 Your IdP hostname will be **idp.****_institution.domain.ac.nz_**  
@@ -1763,7 +1761,7 @@ Please see [https://issues.shibboleth.net/jira/browse/IDP-956](https://issues.sh
 
 ## Configuring Consent Module
 
-Privacy laws, depending on the jurisdiction where the IdP is deployed, may require the IdP to get an explicit consent from the user before releasing personal information about the user to other parties. Thus, before proceeding with a SAML login and sending the user's attributes to the Service Provider, the IdP must first obtain the user's consent. This was historically done through a separate application, uApprove, which has now (in IdPV3) been integrated into the IdP as the consent module.
+Privacy laws, depending on the jurisdiction where the IdP is deployed, may require the IdP to get an explicit consent from the user before releasing personal information about the user to other parties. Thus, before proceeding with a SAML login and sending the user's attributes to the Service Provider, the IdP must first obtain the user's consent. This sdone through the IdP Consent module.
 
 The consent module steps in the first time the user is logging in to a service, and asks the user for permission to release the required (and desired) attributes to the service. There are several options (discussed below) on when the user would be asked again - these depend on the choices made available in the configuration and on the selection user makes on the consent screen.
 
@@ -1946,7 +1944,7 @@ An institution may decide to bypass the consent module for Service Providers (SP
 
 ## Friendly attribute names
 
-By default, uApprove would be representing attributes by their local alias - which may not provide the best possible user experience. Names like "eduPersonPrincipalName" look quite cryptic to an ordinary user. The metadata syntax allows to provide friendly names (even locale-specific multiple names) in the `attribute-resolver.xml` file, and uApprove will pick the attribute names from there.
+By default, the Consent module would be representing attributes by their local alias - which may not provide the best possible user experience. Names like "eduPersonPrincipalName" look quite cryptic to an ordinary user. The metadata syntax allows to provide friendly names (even locale-specific multiple names) in the `attribute-resolver.xml` file, and the Consent module will pick the attribute names from there.
 
 The syntax for specifying the attribute names is:
 
