@@ -120,6 +120,24 @@ Shibboleth SP is available for RedHat and derivative distributions via yum repos
     ```
     
 
+## Certificates
+
+The `shibboleth` package automatically generates certificates used for encryption and signing,
+stored in `/etc/shibboleth/sp-signing-cert.pem` and `/etc/shibboleth/sp-encrypt-cert.pem`.
+These certificates are generated as valid for 10 years, issued to the local hostname, with an RSA 3072-bits private key (based on OpenSSL configuration).
+
+We recommend using long-lived certificates (20 years).
+It is also highly recommended that the `CN` in the certificate matches the hostname the service provider is being registered under.
+If this is an alias and the system internally uses a different hostname, we recommend you instead generate a new certificate with the correct hostname.
+Run the following code (substituting the externally visible hostname for `sp.example.org`) that will replace the certificates with new ones,
+valid for 20 years, with the provided hostname stored in the CN of the certificate, and the entityID stored as Subject Alternative Name of type `URI`.
+
+    ```
+    cd /etc/shibboleth
+    ./keygen.sh -f -n sp-signing -u shibd -g shibd -y 20 -h sp.example.org -e https://sp.example.org/shibboleth
+    ./keygen.sh -f -n sp-encrypt -u shibd -g shibd -y 20 -h sp.example.org -e https://sp.example.org/shibboleth
+    ```
+
 # Federation Membership
 
 {% include federation_management/adding_an_sp_to_tuakiri-excerpt.md %}
