@@ -193,14 +193,6 @@ valid for 20 years, with the provided hostname stored in the CN of the certifica
 
 {% include service_providers/shibsp-excerpt-special-http-https.md %}
 
-## RedHat Enterprise Linux 6 and 7
-
-Please note that RedHat Enterprise Linux 6 and 7 (and so also CentOS 6 and 7) come with CURL built against NSS, not OpenSSL. Using this version of the CURL libraries would break the SOAP calls Shibboleth SP is making to the IdP port 8443 (back-channel communication) for artifact resolution and attribute queries.  While initial approach taken by the Shibboleth SP project was to provide CURL version linked against OpenSSL that would "upgrade" (replace) the one that comes with the OS, this was later seen as having undesired consequences and the new approach is to instead provide "look-aside" version of the library that installs into `/opt`.
-
-These libraries install automatically as dependencies of the main shibboleth package and no action is needed by the deployer.
-
-Further information is available in the upstream documentation at [https://wiki.shibboleth.net/confluence/display/SHIB2/NativeSPLinuxRH6](https://wiki.shibboleth.net/confluence/display/SHIB2/NativeSPLinuxRH6)
-
 # Logging
 
 {% include service_providers/shibsp-excerpt-logging.md %}
