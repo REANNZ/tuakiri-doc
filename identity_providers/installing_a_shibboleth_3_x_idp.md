@@ -1387,15 +1387,6 @@ The `eduPersonEntitlement` attribute is a multivalued container for arbitrary st
 
 # Register the IdP into the federation
 
-Please follow the instructions on [registering an IdP into the Tuakiri federation](configuring_a_shibboleth_identity_provider_to_join_the_Tuakiri_federation#registering-an-idp-into-the-federation-registry) (using Federation Registry URL [https://registry.tuakiri.ac.nz/](https://registry.tuakiri.ac.nz/) for the Tuakiri federation or [https://registry.test.tuakiri.ac.nz/](https://registry.test.tuakiri.ac.nz/) for Tuakiri-TEST)
-
-For IdP version 3, these instructions need to be slightly adjusted, as IdPv3 generates three certificates/keypairs: signing, encryption and back-channel:
-
-*   On the initial registration form, paste the certificate from `$IDP_HOME/credentials/idp-signing.crt`.
-*   Afterwards, update the registration and add the back-channel certificate `$IDP_HOME/credentials/idp-backchannel.crt` as an additional certificate for **signing** and `$IDP_HOME/credentials/idp-encryption.crt` as an **encryption** certificate.
-*   Otherwise, proceed as with an IdPV2 (2.4.x) registration - and select that version if the Federation Registry is not listing 3.0.0 as an explicit choice.
-*   Also, when updating the registration entry, add the Single Log Out (SLO) endpoints as documented in the [Configuring Single Logout](#configuring-single-logout) section.
-
 {% include identity_providers/idp_excerpt_register-idp-into-FR.md %}
 
 # Advanced IdP Configuration
