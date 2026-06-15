@@ -90,7 +90,7 @@ To load the metadata, add the following snippet in `/etc/shibboleth/shibboleth2.
         backingFilePath="metadata.tuakiri-edugain.xml" reloadInterval="7200" validate="true">
     <MetadataFilter type="Signature" certificate="tuakiri-metadata-cert.pem" verifyBackup="false"/>
     <MetadataFilter type="RequireValidUntil" maxValidityInterval="2419200"/>
-    <MetadataFilter type="EntityRoleWhiteList">
+    <MetadataFilter type="EntityRole">
         <RetainedRole xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata">md:IDPSSODescriptor</RetainedRole>
     </MetadataFilter>
 </MetadataProvider>
@@ -106,7 +106,7 @@ To load the metadata, add the following snippet in `/etc/shibboleth/shibboleth2.
         backingFilePath="metadata.tuakiri-test-edugain.xml" reloadInterval="7200" validate="true">
     <MetadataFilter type="Signature" certificate="tuakiri-test-metadata-cert.pem" verifyBackup="false"/>
     <MetadataFilter type="RequireValidUntil" maxValidityInterval="2419200"/>
-    <MetadataFilter type="EntityRoleWhiteList">
+    <MetadataFilter type="EntityRole">
         <RetainedRole xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata">md:IDPSSODescriptor</RetainedRole>
     </MetadataFilter>
 </MetadataProvider>
