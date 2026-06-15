@@ -48,9 +48,9 @@ To deploy this solution without XmlSecTool:
         
                     <MetadataFilter xsi:type="SignatureValidation"
                             certificateFile="%{idp.home}/credentials/tuakiri-metadata-cert.pem"
-                            requireSignedRoot="false">
-                    </MetadataFilter>
-                    <MetadataFilter xsi:type="EntityRoleWhiteList">
+                            requireSignedRoot="true"/>
+
+                    <MetadataFilter xsi:type="EntityRole">
                             <RetainedRole>md:SPSSODescriptor</RetainedRole>
                     </MetadataFilter>
         

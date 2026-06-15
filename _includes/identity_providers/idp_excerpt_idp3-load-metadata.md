@@ -11,9 +11,9 @@
     
                 <MetadataFilter xsi:type="SignatureValidation"
                         certificateFile="%{idp.home}/credentials/tuakiri-metadata-cert.pem"
-                        requireSignedRoot="true">
-                </MetadataFilter>
-                <MetadataFilter xsi:type="EntityRoleWhiteList">
+                        requireSignedRoot="true"/>
+
+                <MetadataFilter xsi:type="EntityRole">
                         <RetainedRole>md:SPSSODescriptor</RetainedRole>
                 </MetadataFilter>
     
@@ -50,9 +50,9 @@
     >
     >             <MetadataFilter xsi:type="SignatureValidation"
     >                     certificateFile="%{idp.home}/credentials/tuakiri-test-metadata-cert.pem"
-    >                     requireSignedRoot="true">
-    >             </MetadataFilter>
-    >             <MetadataFilter xsi:type="EntityRoleWhiteList">
+    >                     requireSignedRoot="true"/>
+    >
+    >             <MetadataFilter xsi:type="EntityRole">
     >                     <RetainedRole>md:SPSSODescriptor</RetainedRole>
     >             </MetadataFilter>
     >
