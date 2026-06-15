@@ -19,8 +19,8 @@
         ```
                 <MetadataProvider type="XML" url="https://directory.tuakiri.ac.nz/metadata/tuakiri-metadata-signed.xml"
                         backingFilePath="metadata.tuakiri.xml" reloadInterval="7200" validate="true">
-                    <MetadataFilter type="RequireValidUntil" maxValidityInterval="2419200"/>
                     <MetadataFilter type="Signature" certificate="tuakiri-metadata-cert.pem" verifyBackup="false"/>
+                    <MetadataFilter type="RequireValidUntil" maxValidityInterval="2419200"/>
                 </MetadataProvider>
         ```
         
@@ -29,8 +29,8 @@
         ```
                 <MetadataProvider type="XML" url="https://directory.test.tuakiri.ac.nz/metadata/tuakiri-test-metadata-signed.xml"
                         backingFilePath="metadata.tuakiri-test.xml" reloadInterval="7200" validate="true">
-                    <MetadataFilter type="RequireValidUntil" maxValidityInterval="2419200"/>
                     <MetadataFilter type="Signature" certificate="tuakiri-test-metadata-cert.pem" verifyBackup="false"/>
+                    <MetadataFilter type="RequireValidUntil" maxValidityInterval="2419200"/>
                 </MetadataProvider>
         ```
 
