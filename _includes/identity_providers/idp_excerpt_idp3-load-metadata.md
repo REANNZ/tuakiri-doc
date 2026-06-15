@@ -13,6 +13,8 @@
                         certificateFile="%{idp.home}/credentials/tuakiri-metadata-cert.pem"
                         requireSignedRoot="true"/>
 
+                <MetadataFilter xsi:type="RequiredValidUntil" maxValidityInterval="P28D"/>
+
                 <MetadataFilter xsi:type="EntityRole">
                         <RetainedRole>md:SPSSODescriptor</RetainedRole>
                 </MetadataFilter>
@@ -51,6 +53,8 @@
     >             <MetadataFilter xsi:type="SignatureValidation"
     >                     certificateFile="%{idp.home}/credentials/tuakiri-test-metadata-cert.pem"
     >                     requireSignedRoot="true"/>
+    >
+    >             <MetadataFilter xsi:type="RequiredValidUntil" maxValidityInterval="P28D"/>
     >
     >             <MetadataFilter xsi:type="EntityRole">
     >                     <RetainedRole>md:SPSSODescriptor</RetainedRole>

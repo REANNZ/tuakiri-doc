@@ -90,6 +90,8 @@ To load the metadata, add the following snippet in `/opt/shibboleth-idp/conf/met
           certificateFile="%{idp.home}/credentials/tuakiri-metadata-cert.pem"
           requireSignedRoot="true"/>
 
+  <MetadataFilter xsi:type="RequiredValidUntil" maxValidityInterval="P28D"/>
+
   <MetadataFilter xsi:type="EntityRole">
           <RetainedRole>md:SPSSODescriptor</RetainedRole>
   </MetadataFilter>
@@ -112,6 +114,8 @@ To load the metadata, add the following snippet in `/opt/shibboleth-idp/conf/met
   <MetadataFilter xsi:type="SignatureValidation"
           certificateFile="%{idp.home}/credentials/tuakiri-test-metadata-cert.pem"
           requireSignedRoot="true"/>
+
+  <MetadataFilter xsi:type="RequiredValidUntil" maxValidityInterval="P28D"/>
 
   <MetadataFilter xsi:type="EntityRole">
           <RetainedRole>md:SPSSODescriptor</RetainedRole>
